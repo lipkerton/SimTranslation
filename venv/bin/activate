@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/petrpetuhov/Dev/project_for_translate/venv"
+VIRTUAL_ENV="/Users/peterliepa/Dev/simintech_translator/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

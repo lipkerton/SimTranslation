@@ -1,4 +1,4 @@
-#!/Users/petrpetuhov/Dev/project_for_translate/venv/bin/python3
+#!/Users/peterliepa/Dev/simintech_translator/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
