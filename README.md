@@ -29,6 +29,7 @@ Python
 + python3 -m venv venv
 + source venv/bin/activate
 + pip3 install -r requirements.txt
+
 Или одну команду:
 + python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
 
@@ -36,6 +37,7 @@ Python
 + python3 -m venv venv
 + source venv/Scripts/activate
 + pip3 install -r requirements.txt
+
 Или одну команду:
 + python3 -m venv venv && source venv/Scripts/activate && pip3 install -r requirements.txt
 
