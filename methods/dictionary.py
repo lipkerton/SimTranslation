@@ -6,6 +6,21 @@ from .constants import (
 )
 
 
+def making_clean_string(key=None, value=None):
+
+    if key is not None:
+        result = key.strip(
+                '/&$-,.=+@[;:<#$%*"!?\' '
+            ).lower()
+
+    elif value is not None:
+        result = value.strip(
+                '/&$-,.=+@[;:<#$%*"!?\' '
+            )
+
+    return result
+
+
 def forming_dictionary(path_dictionary):
     """Раскодируем словарь заказчика"""
     file_name = path_dictionary
@@ -26,22 +41,19 @@ def forming_dictionary(path_dictionary):
 
     for i in range(2, len(line) - 1, 2):
 
-        key = line[i - 1].strip(
-            '/&$-,.=+@[;:<#$%*"!\''
-        )
-        value = line[i].strip(
-            '/&$-,.=+@[;:<#$%*"!\''
-        )
-        new_dict[key.strip().lower()] = value.strip()
+        key = making_clean_string(key=line[i - 1])
+        value = making_clean_string(value=line[i])
 
-    if line[-2] not in new_dict.keys():
+        new_dict[key] = value
 
-        key = line[-2].strip(
-            '/&$-,.=+@[;:<#$%*"!\'('
-        )
-        value = line[-1].strip(
-            '/&$-,.=+@[;:<#$%*"!\'('
-        )
+    if (
+        line[-2] not in new_dict.keys()
+        and line[-1] not in new_dict.values()
+    ):
+
+        key = making_clean_string(key=line[-2])
+        value = making_clean_string(value=line[-1])
+
         new_dict[key] = value
 
     return new_dict
