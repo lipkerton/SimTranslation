@@ -1,6 +1,6 @@
 import pickle
 
-from ..methods.constants import path_for_main_dict
+from constants import path_for_main_dict
 
 
 def updating_dict(rus_key, temporary_dict):

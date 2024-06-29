@@ -1,13 +1,13 @@
 from googletrans import Translator
 
 from .working_with_files_dirs import (chinese_recordings,
-                                      printing_translations_into_txt)
+                                      printing_translations_into_csv)
 
 
 def match(
         text: str, alphabet=set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
-):
-    """Проверка строки на русские символы."""
+) -> bool:
+    """Checking line for russian letters."""
 
     if text is not None:
         return not alphabet.isdisjoint(text.lower())
@@ -64,7 +64,7 @@ def check_the_line_in_dict(
     if MEME_1 is None and MEME_2 is None:
         TRANSLATED_ENG = translate_line_eng(line.strip("'"))
         temporary_dict[line.lower()] = TRANSLATED_ENG.strip()
-        printing_translations_into_txt(line, TRANSLATED_ENG.strip(), file_name)
+        printing_translations_into_csv(line, TRANSLATED_ENG.strip(), file_name)
         chinese_recordings(TRANSLATED_ENG, TRANSLATED_CHN)
         return TRANSLATED_ENG
 

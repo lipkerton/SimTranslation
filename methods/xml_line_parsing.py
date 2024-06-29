@@ -1,8 +1,7 @@
 import pickle
 import xml.etree.ElementTree as ET
 
-from .constants import path_for_translations_eng, path_for_main_dict
-
+from .constants import path_for_main_dict, path_for_translations_eng
 from .translation_chn_eng import (check_the_line_in_dict, match,
                                   translate_file_name)
 from .working_with_files_dirs import (chinese_unpacking, making_other_files,
@@ -10,7 +9,10 @@ from .working_with_files_dirs import (chinese_unpacking, making_other_files,
 
 
 def parse_line(
-        line: str, boss_dict, temporary_dict, file_name
+        line: str,
+        boss_dict: dict,
+        temporary_dict: dict,
+        file_name: str
 ) -> str:
     """Расшифровка строки."""
 
@@ -65,7 +67,7 @@ def parsing_xml(
     else:
         temporary_dict = dict()
         all_translations_file = open(
-            f'{path_for_translations_eng}/{NAME_FILE}.csv', 'a'
+            f'{path_for_translations_eng}/{NAME_FILE}.csv', 'w'
         )
         tree = ET.parse(file)
         root_node = tree.getroot()

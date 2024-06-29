@@ -6,7 +6,10 @@ from .constants import (
 )
 
 
-def making_clean_string(key=None, value=None):
+def making_clean_string(
+        key=None, value=None
+) -> str:
+    """Kicking off some trash from the line."""
 
     if key is not None:
         result = key.strip(
@@ -21,14 +24,15 @@ def making_clean_string(key=None, value=None):
     return result
 
 
-def forming_dictionary(path_dictionary):
-    """Раскодируем словарь заказчика"""
-    file_name = path_dictionary
+def forming_dictionary(
+        path_dictionary: str
+) -> dict:
+    """Decoding orderer's dictionary."""
 
     line = ''
     new_dict = dict()
 
-    with open(file_name, 'rb') as sample:
+    with open(path_dictionary, 'rb') as sample:
         new = sample.read().decode('utf-16-le')
         line += new
 
@@ -59,7 +63,8 @@ def forming_dictionary(path_dictionary):
     return new_dict
 
 
-def print_dictionary():
+def print_dictionary() -> None:
+    """Creating decoded_dictionary.pkl."""
     sample_of_starting_dict = forming_dictionary(path_for_boss_dict)
     with open(path_for_main_dict, 'wb') as f:
         pickle.dump(sample_of_starting_dict, f)

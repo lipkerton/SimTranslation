@@ -13,10 +13,10 @@ def chinese_unpacking():
             chn.write(key.strip() + ';' + value + '\n')
 
 
-def printing_translations_into_txt(
+def printing_translations_into_csv(
         word: str, translated_word: str, file_name: str
 ) -> None:
-    """Заносим переводы в txt в папку all_translations."""
+    """Заносим переводы в csv в папку trans_csv_eng."""
     file_name.write(word.strip() + ';' + translated_word + '\n')
 
 
