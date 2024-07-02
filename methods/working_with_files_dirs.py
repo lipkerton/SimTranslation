@@ -6,7 +6,9 @@ from .constants import path_for_translations_chn
 
 def chinese_unpacking():
     with open(
-        f'{path_for_translations_chn}/chinese_translations.csv', 'a'
+        f'{path_for_translations_chn}/chinese_translations.csv',
+        'a',
+        encoding='utf-8'
     ) as chn:
         global chinese_wordlist
         for key, value in chinese_wordlist.items():
@@ -28,8 +30,18 @@ def chinese_recordings(
 
 
 def making_rep(file_path):
-    new_file_path = '/'.join(
-        file_path.split('/')[:-1]
+
+    # macOS version
+    # new_file_path = '/'.join(
+    # file_path.split('/')[:-1]
+    # ).replace(
+    #     'trans_input_files',
+    #     'trans_result_files'
+    # )
+
+    # windows version
+    new_file_path = '\\'.join(
+        file_path.split('\\')[:-1]
     ).replace(
         'trans_input_files',
         'trans_result_files'
@@ -42,9 +54,17 @@ def making_rep(file_path):
 
 
 def making_other_files(file):
-    name_file = file.split('/')[0]
+
+    # macOS version
+    # name_file = file.split('/')[0]
+    # new_dir = making_rep(file)
+    # shutil.copy2(file, f'{new_dir}/{name_file}')
+
+    # windows version
+    name_file = file.split('\\')[0]
     new_dir = making_rep(file)
-    shutil.copy2(file, f'{new_dir}/{name_file}')
+    shutil.copy2(file, f'{new_dir}\\{name_file}')
+
 
 
 chinese_wordlist = dict()

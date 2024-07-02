@@ -57,8 +57,10 @@ def parsing_xml(
 ) -> None:
     FILE_NUMBER = 1  # Переменная, которая показывает номер переведенного файла
     NUMBER_TRANSLATED_LINES = 0  # Количество переведенных строк в файле
-    NAME_FILE = file[file.rfind('/') + 1:].split('.')[-2]
-    EXTENZ = file[file.rfind('/') + 1:].split('.')[-1]
+    # NAME_FILE = file[file.rfind('/') + 1:].split('.')[-2]  # macOS version
+    NAME_FILE = file[file.rfind('\\') + 1:].split('.')[-2]  # win version
+    # EXTENZ = file[file.rfind('/') + 1:].split('.')[-1]
+    EXTENZ = file[file.rfind('\\') + 1:].split('.')[-1]
     saved_dict = open(path_for_main_dict, 'rb')
     boss_dict = pickle.load(saved_dict)
     exceptions = ('xprt', 'prt', 'xml')
@@ -67,7 +69,7 @@ def parsing_xml(
     else:
         temporary_dict = dict()
         all_translations_file = open(
-            f'{path_for_translations_eng}/{NAME_FILE}.csv', 'w'
+            f'{path_for_translations_eng}/{NAME_FILE}.csv', 'w', encoding='utf-8'
         )
         tree = ET.parse(file)
         root_node = tree.getroot()
@@ -135,7 +137,7 @@ def parsing_xml(
                         )
                         NUMBER_TRANSLATED_LINES += 1
             translated_file_name = translate_file_name(
-                NAME_FILE.split(".")[0],
+                NAME_FILE,
                 boss_dict,
                 temporary_dict,
                 all_translations_file

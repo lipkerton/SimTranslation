@@ -20,7 +20,6 @@ def making_clean_string(
         result = value.strip(
                 '/&$-,.=+@[;:<#$%*"!?\' '
             )
-
     return result
 
 
