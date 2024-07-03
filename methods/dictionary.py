@@ -1,9 +1,9 @@
 import pickle
 import re
 
-from .constants import (
-    path_for_boss_dict, path_for_main_dict, lines_fixing_in_dictionary
-)
+from .constants import (lines_fixing_in_dictionary, path_for_boss_dict,
+                        path_for_main_dict,
+                        path_for_temp_translations_eng)
 
 
 def making_clean_string(
@@ -58,6 +58,14 @@ def forming_dictionary(
         value = making_clean_string(value=line[-1])
 
         new_dict[key] = value
+
+    with open(
+        path_for_temp_translations_eng, 'r', encoding='utf-8'
+    ) as temp_eng:
+
+        for line in temp_eng.readlines():
+            line = line.strip('\n').split(';')
+            new_dict[line[0]] = line[1]
 
     return new_dict
 

@@ -1,7 +1,9 @@
 from googletrans import Translator
 
 from .working_with_files_dirs import (chinese_recordings,
-                                      printing_translations_into_csv)
+                                      english_recordings,
+                                      printing_eng_translations_into_csv,
+                                      printint_chn_translations_into_csv)
 
 
 def match(
@@ -15,24 +17,27 @@ def match(
         return text
 
 
-def translate_file_name(
-        line: str, boss_dict: dict, temporary_dict: dict, file_name: str
+def translate_eng_file_name(
+        line: str, boss_dict: dict, file_name: str
 ) -> str:
-    """Переводит имя файла."""
+    """Translating file name."""
+
     line = line.replace(' ', '_')
     WORDLIST = sorted(line.split('_'), key=len, reverse=True)
 
     for WORD in WORDLIST:
+
         TRANSLATED_WORD = check_the_line_in_dict(
             WORD,
             boss_dict,
-            temporary_dict,
             file_name
         )
+
         line = line.replace(
             WORD,
             TRANSLATED_WORD
         )
+
     return line
 
 
@@ -46,34 +51,39 @@ def translate_line_chn(
 def translate_line_eng(
         line: str
 ) -> str:
-    """Перевод строки на английский."""
+    """Line translation into english."""
 
     result = translator.translate(line, dest='en')
     return result.text
 
 
 def check_the_line_in_dict(
-        line: str, boss_dict: dict, temporary_dict: dict, file_name: str
+        line: str, boss_dict: dict, file_name: str
 ) -> str:
     """Переводит и проверяет наличие слова в словаре."""
+
     TRANSLATED_CHN = translate_line_chn(line.strip("'"))
 
     MEME_1 = boss_dict.get(line.strip("'").lower(), None)
-    MEME_2 = temporary_dict.get(line.strip("'").lower(), None)
 
-    if MEME_1 is None and MEME_2 is None:
+    if MEME_1 is None:
+
         TRANSLATED_ENG = translate_line_eng(line.strip("'"))
-        temporary_dict[line.lower()] = TRANSLATED_ENG.strip()
-        printing_translations_into_csv(line, TRANSLATED_ENG.strip(), file_name)
+
+        printing_eng_translations_into_csv(
+            line, TRANSLATED_ENG.strip(), file_name[0]
+        )
+        printint_chn_translations_into_csv(
+            line, TRANSLATED_CHN.strip(), file_name[1]
+        )
+
+        english_recordings(line.strip("'"), TRANSLATED_ENG)
         chinese_recordings(TRANSLATED_ENG, TRANSLATED_CHN)
+
         return TRANSLATED_ENG
 
-    if MEME_1 is not None:
-        chinese_recordings(MEME_1, TRANSLATED_CHN)
-        return MEME_1
-
-    chinese_recordings(MEME_2, TRANSLATED_CHN)
-    return MEME_2
+    chinese_recordings(MEME_1, TRANSLATED_CHN)
+    return MEME_1
 
 
 translator = Translator()

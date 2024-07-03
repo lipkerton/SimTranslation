@@ -32,6 +32,12 @@ path_for_translations_eng = pathlib.Path(
 path_for_translations_chn = pathlib.Path(
     f'{project_dir}/trans_csv_chn'
 ).absolute()
+path_for_temp_translations_chn = pathlib.Path(
+    f'{project_dir}/dictionaries/chinese_temp_dictionary.csv'
+).absolute()
+path_for_temp_translations_eng = pathlib.Path(
+    f'{project_dir}/dictionaries/english_temp_dictionary.csv'
+)
 path_for_boss_dict = pathlib.Path(
     f'{project_dir}/dictionaries/maintranslation.trans'
 ).absolute()

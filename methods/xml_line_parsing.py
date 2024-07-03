@@ -1,17 +1,18 @@
 import pickle
 import xml.etree.ElementTree as ET
 
-from .constants import path_for_main_dict, path_for_translations_eng
+from .constants import path_for_main_dict
 from .translation_chn_eng import (check_the_line_in_dict, match,
-                                  translate_file_name)
-from .working_with_files_dirs import (chinese_unpacking, making_other_files,
-                                      making_rep)
+                                  translate_eng_file_name)
+from .working_with_files_dirs import (making_other_files,
+                                      making_rep,
+                                      chinese_one_file_exec,
+                                      english_one_file_exec)
 
 
 def parse_line(
         line: str,
         boss_dict: dict,
-        temporary_dict: dict,
         file_name: str
 ) -> str:
     """Расшифровка строки."""
@@ -42,7 +43,6 @@ def parse_line(
             TRANSLATED_WORD = check_the_line_in_dict(
                 WORD,
                 boss_dict,
-                temporary_dict,
                 file_name
             )
             line = line.replace(
@@ -55,29 +55,39 @@ def parse_line(
 def parsing_xml(
         file: str
 ) -> None:
+
     FILE_NUMBER = 1  # Переменная, которая показывает номер переведенного файла
     NUMBER_TRANSLATED_LINES = 0  # Количество переведенных строк в файле
-    # NAME_FILE = file[file.rfind('/') + 1:].split('.')[-2]  # macOS version
-    NAME_FILE = file[file.rfind('\\') + 1:].split('.')[-2]  # win version
-    # EXTENZ = file[file.rfind('/') + 1:].split('.')[-1]
-    EXTENZ = file[file.rfind('\\') + 1:].split('.')[-1]
+
+    NAME_FILE = file[file.rfind('/') + 1:].split('.')[-2]  # macOS version
+    # NAME_FILE = file[file.rfind('\\') + 1:].split('.')[-2]  # win version
+    EXTENZ = file[file.rfind('/') + 1:].split('.')[-1]  # macOS version
+    # EXTENZ = file[file.rfind('\\') + 1:].split('.')[-1]  # win version
+
     saved_dict = open(path_for_main_dict, 'rb')
     boss_dict = pickle.load(saved_dict)
+
     exceptions = ('xprt', 'prt', 'xml')
+
     if EXTENZ not in exceptions:
         making_other_files(file)
     else:
-        temporary_dict = dict()
-        all_translations_file = open(
-            f'{path_for_translations_eng}/{NAME_FILE}.csv', 'w', encoding='utf-8'
+
+        files_translations = (
+            english_one_file_exec(NAME_FILE),
+            chinese_one_file_exec(NAME_FILE)
         )
+
         tree = ET.parse(file)
         root_node = tree.getroot()
+
         # Цикл перебора всех тегов по заданному адресу
         for tag in root_node.findall('project'):
             for child in tag.iter():
+
                 if child.tag == 'data':
                     child_name_text = child.findtext('name').lower()
+
                     if (
                         'labeltext' in child_name_text
                         or 'text' in child_name_text
@@ -88,8 +98,7 @@ def parsing_xml(
                             child.find('value').text = parse_line(
                                 value_text,
                                 boss_dict,
-                                temporary_dict,
-                                all_translations_file
+                                files_translations
                             )
                             NUMBER_TRANSLATED_LINES += 1
 
@@ -99,8 +108,7 @@ def parsing_xml(
                         child.find('title').text = parse_line(
                             title_text,
                             boss_dict,
-                            temporary_dict,
-                            all_translations_file
+                            files_translations
                         )
                         NUMBER_TRANSLATED_LINES += 1
 
@@ -110,8 +118,7 @@ def parsing_xml(
                         child.find('title').text = parse_line(
                             title_text,
                             boss_dict,
-                            temporary_dict,
-                            all_translations_file
+                            files_translations
                         )
                         NUMBER_TRANSLATED_LINES += 1
 
@@ -121,8 +128,7 @@ def parsing_xml(
                         child.find('title').text = parse_line(
                             title_text,
                             boss_dict,
-                            temporary_dict,
-                            all_translations_file
+                            files_translations
                         )
                         NUMBER_TRANSLATED_LINES += 1
 
@@ -132,34 +138,39 @@ def parsing_xml(
                         child.find('title').text = parse_line(
                             title_text,
                             boss_dict,
-                            temporary_dict,
-                            all_translations_file
+                            files_translations
                         )
                         NUMBER_TRANSLATED_LINES += 1
-            translated_file_name = translate_file_name(
+
+            translated_eng_file_name = translate_eng_file_name(
                 NAME_FILE,
                 boss_dict,
-                temporary_dict,
-                all_translations_file
+                files_translations[0]
             )
+
             new_file_path = making_rep(file)
             name_file = (
                 f'{new_file_path}/'
-                f'{translated_file_name + "_eng"}.xprt'
+                f'{translated_eng_file_name + "_eng"}.xprt'
             )
-            all_translations_file.close()
+
+            files_translations[0].close()
+            files_translations[1].close()
+
             tree.write(name_file, encoding='utf-8', xml_declaration=True)
-            print()
+
             print(
                 f'{NAME_FILE} was translated! File number: {FILE_NUMBER},'
                 f'translated lines counter: {NUMBER_TRANSLATED_LINES}'
             )
-            FILE_NUMBER += 1
             print()
-            boss_dict.update(temporary_dict)
+
+            FILE_NUMBER += 1
+
     saved_dict.close()
+
     saved_dict = open(path_for_main_dict, 'wb')
     pickle.dump(boss_dict, saved_dict)
     saved_dict.close()
-    chinese_unpacking()
+
     print('Files translation has been completed!')
