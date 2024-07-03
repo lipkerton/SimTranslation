@@ -1,54 +1,17 @@
-# Для чего нужен проект #
-Перевод отдельных тегов в .xprt-файлах с сохранением структуры и функционала изначального .xprt-файла. Создание копии изначального файла на китайском/английском языках и создание перечня всех сделанных переводов в процессе работы программы.
+# What is the project for #
+Translation of individual tags in .xprt files while maintaining the structure and functionality of the original .xprt file. Creating a copy of the original file in Chinese/English and creating a list of all translations made while the program is running.
 
-# Технологии #
+# Technologies #
 Python
 
-# Как установить среду для проекта #
+# How to start translation #
+To start, follow these steps:
++ upload files that need translation to the trans_input_files folder
++ translated copies will be stored in trans_result_files
++ the binary dictionary maintranslation.trans (which contains the original SimInTech translations) should be located in the dictionaries folder
++ when all the necessary things are in place (files for translation in the trans_input_files and maintranslation.trans folder), you can run the .exe file in one of the launcher folders - the translation of all projects will be completed and the result can be found in the trans_result_files folder.
++ the list of completed translations can be viewed in the trans_csv_chn and trans_csv_eng folders
 
-Для macOS:
-+ Скачайте установщик Python и pip - https://www.python.org/downloads/
-+ При установке обязательно активируйте опцию - "Add Python <версия> to PATH"
-+ Установите VSCode - https://code.visualstudio.com/
-+ После установки VSCode можно развернуть проект внутри этой среды.
-
-Для Windows:
-+ Скачайте установщик Python и pip - https://www.python.org/downloads/windows/
-+ При установке обязательно активируйте опцию - "Add Python <версия> to PATH"
-+ Установите VSCode - https://code.visualstudio.com/
-+ После установки VSCode можно развернуть проект внутри этой среды.
-
-# Как развернуть проект #
-Проект может быть развернут на любой системе с установленным программным обеспечением Python и pip. Чтобы активировать проект следует, находясь в корневой папке проекта, последовательно исполнить в терминале команды:
-
-Попасть в корневую папку проекта можно с помощью команды:
-+ cd <путь>
-+ когда формируете путь используйте клавишу Tab
-
-Для macOS:
-+ python3 -m venv venv
-+ source venv/bin/activate
-+ pip3 install -r requirements.txt
-
-Или одну команду:
-+ python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-
-Для Windows:
-+ python3 -m venv venv
-+ source venv/Scripts/activate
-+ pip3 install -r requirements.txt
-
-Или одну команду:
-+ python3 -m venv venv && source venv/Scripts/activate && pip3 install -r requirements.txt
-
-Этими командами, мы устанавливаем вируальное окружение, активируем его, а после устанавливаем зависимости (сторонние модули, которые помогут скрипту работать). После первой такой процедуры ее больше не нужно повторять.
-
-# Как запустить перевод #
-Для запуска следуйте набору действий:
-+ загрузите файлы, перевод которых требуется в папку trans_input_files
-+ запустите файл main.py
-+ переведенные копии будут храниться в trans_result_files
-+ список осуществленных переводов можно посмотреть в папках trans_csv_chn и trans_csv_eng
-
-# Дополнительно #
-Бинарный словарь (maintranslation.trans), который лежит в основе процедуры перевода можно обновить (в случае, если новые переводы были добавлены через программу SimInTech). Для этого положите новый словарь (maintranslation.trans) в папку dictionaries с заменой существующего там файла. Далее программу можно запустить как обычно.
+# Additional #
++ The binary dictionary (maintranslation.trans), which underlies the translation procedure, can be updated (if new translations were added through the SimInTech program). To do this, put a new dictionary (maintranslation.trans) in the dictionaries folder, replacing the existing file there. Then the program can be launched as usual.
++ After the files you need are translated, the entire list of new translations (which are not in the original SimInTech dictionary) will be displayed in csv files (they are located in the trans_csv_eng/trans_csv_chn folders); if you want to change any word in the translation, you do not need to look for a file with this word - you just need to go to the dictionaries folder and write the new translation to the file english_temp_dictionary.csv in the format: Russian word;English translation (for Russian-English translations) or to a file chinese_temp_dictionary.csv in the format: English word;Chinese translation (for English-Chinese translations). Even if you made a mistake with the value, simply enter a new value into the desired file and the old value will be replaced.

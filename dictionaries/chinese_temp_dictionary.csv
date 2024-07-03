@@ -1,3 +1,81 @@
+Graphic;形象的
+y(t) value;y(t) 值
+Time t, s;时间 t, s
+Chart 2;图2
+Chart 3;图3
+with clarification;有澄清
+Operator;操作员
+events;事件
+intersections;交叉点
+quantization;量化
+clarifications;澄清
+Block;堵塞
+test;测试
+with;和
+Graphic;形象的
+y(t) value;y(t) 值
+Time t, s;时间 t, s
+Chart 2;图2
+Chart 3;图3
+with clarification;有澄清
+Operator;操作员
+events;事件
+intersections;交叉点
+quantization;量化
+clarifications;澄清
+Block;堵塞
+test;测试
+with;和
+aerodynamic;空气动力学
+forces and moments;力和力矩
+Calculation;计算
+a(H), m/s;高度（H），米/秒
+Ro(H), kgf*cm^2/m^4;Ro(H), kgf*cm^2/m^4
+Motion angles;运动角度
+PSI, town;PSI，城镇
+Turning angle of trajectory;轨迹旋转角度
+Yaw Angle;偏航角
+Sliding angle;滑动角度
+Water;水
+PU;聚氨酯
+Vp;副总裁
+IC;我知道了
+simplified;简化的
+movement;移动
+Lateral;侧
+LA;洛杉矶
+Graphic;形象的
+y(t) value;y(t) 值
+Time t, s;时间 t, s
+Chart 2;图2
+Chart 3;图3
+with clarification;有澄清
+Operator;操作员
+events;事件
+intersections;交叉点
+quantization;量化
+clarifications;澄清
+Block;堵塞
+test;测试
+with;和
+aerodynamic;空气动力学
+forces and moments;力和力矩
+Calculation;计算
+a(H), m/s;高度（H），米/秒
+Ro(H), kgf*cm^2/m^4;Ro(H), kgf*cm^2/m^4
+Motion angles;运动角度
+PSI, town;PSI，城镇
+Turning angle of trajectory;轨迹旋转角度
+Yaw Angle;偏航角
+Sliding angle;滑动角度
+Water;水
+PU;聚氨酯
+Vp;副总裁
+IC;我知道了
+simplified;简化的
+movement;移动
+Lateral;侧
+LA;洛杉矶
 Set point;锻炼
 angle;角落
 inverter;逆变器
@@ -10,5 +88,3 @@ INV;INV
 Sensor;传感器
 current;当前的
 laid down.;放下。
-Graphic;形象的
-Time t, s;时间 t, s

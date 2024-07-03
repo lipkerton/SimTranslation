@@ -145,7 +145,7 @@ def parsing_xml(
             translated_eng_file_name = translate_eng_file_name(
                 NAME_FILE,
                 boss_dict,
-                files_translations[0]
+                files_translations
             )
 
             new_file_path = making_rep(file)
