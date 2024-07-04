@@ -63,9 +63,21 @@ def forming_dictionary(
         path_for_temp_translations_eng, 'r', encoding='utf-8'
     ) as temp_eng:
 
-        for line in temp_eng.readlines():
-            line = line.strip('\n').split(';')
-            new_dict[line[0]] = line[1]
+        temp_eng_array = temp_eng.readlines()
+
+        for index in range(len(temp_eng_array)):
+
+            try:
+                line = temp_eng_array[index].strip('\n').split(';')
+                new_dict[line[0].lower()] = line[1]
+
+            except IndexError:
+                raise IndexError(
+                    'Something wrong in temp_english_dictionary '
+                    f'file in line {index}. '
+                    'Make sure you have used the correct format: '
+                    'Russian word;English translation'
+                )
 
     return new_dict
 

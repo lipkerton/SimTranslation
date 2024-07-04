@@ -22,21 +22,20 @@ project_dir = str(
         )
     )
 )
-print(project_dir)
 path_dir_for_rus_files = pathlib.Path(
     f'{project_dir}/trans_input_files'
 ).absolute()
 path_for_translations_eng = pathlib.Path(
-    f'{project_dir}/trans_csv_eng'
+    f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
 ).absolute()
 path_for_translations_chn = pathlib.Path(
-    f'{project_dir}/trans_csv_chn'
+    f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
 ).absolute()
 path_for_temp_translations_chn = pathlib.Path(
-    f'{project_dir}/dictionaries/chinese_temp_dictionary.csv'
+    f'{project_dir}/dictionaries/temp_chinese_dictionary.csv'
 ).absolute()
 path_for_temp_translations_eng = pathlib.Path(
-    f'{project_dir}/dictionaries/english_temp_dictionary.csv'
+    f'{project_dir}/dictionaries/temp_english_dictionary.csv'
 )
 path_for_boss_dict = pathlib.Path(
     f'{project_dir}/dictionaries/maintranslation.trans'
