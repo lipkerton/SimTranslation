@@ -94,12 +94,12 @@ def making_rep(file_path):
 def making_other_files(file):
 
     # macOS version
-    # name_file = file.split('/')[0]
+    # name_file = file.split('/')[-1]
     # new_dir = making_rep(file)
     # shutil.copy2(file, f'{new_dir}/{name_file}')
 
     # windows version
-    name_file = file.split('\\')[0]
+    name_file = file.split('\\')[-1]
     new_dir = making_rep(file)
     shutil.copy2(file, f'{new_dir}\\{name_file}')
 
