@@ -70,20 +70,20 @@ def english_one_file_exec(
 def making_rep(file_path):
 
     # macOS version
-    new_file_path = '/'.join(
-        file_path.split('/')[:-1]
-    ).replace(
-        'trans_input_files',
-        'trans_result_files'
-    )
-
-    # windows version
-    # new_file_path = '\\'.join(
-    #     file_path.split('\\')[:-1]
+    # new_file_path = '/'.join(
+    #     file_path.split('/')[:-1]
     # ).replace(
     #     'trans_input_files',
     #     'trans_result_files'
     # )
+
+    # windows version
+    new_file_path = '\\'.join(
+        file_path.split('\\')[:-1]
+    ).replace(
+        'trans_input_files',
+        'trans_result_files'
+    )
     try:
         makedirs(new_file_path)
         return new_file_path
@@ -94,14 +94,14 @@ def making_rep(file_path):
 def making_other_files(file):
 
     # macOS version
-    name_file = file.split('/')[0]
-    new_dir = making_rep(file)
-    shutil.copy2(file, f'{new_dir}/{name_file}')
+    # name_file = file.split('/')[0]
+    # new_dir = making_rep(file)
+    # shutil.copy2(file, f'{new_dir}/{name_file}')
 
     # windows version
-    # name_file = file.split('\\')[0]
-    # new_dir = making_rep(file)
-    # shutil.copy2(file, f'{new_dir}\\{name_file}')
+    name_file = file.split('\\')[0]
+    new_dir = making_rep(file)
+    shutil.copy2(file, f'{new_dir}\\{name_file}')
 
 
 chinese_wordlist = dict()
