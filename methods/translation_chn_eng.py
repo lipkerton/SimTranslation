@@ -1,9 +1,7 @@
 from googletrans import Translator
 
-from .working_with_files_dirs import (chinese_recordings,
-                                      english_recordings,
-                                      printing_eng_translations_into_csv,
-                                      printint_chn_translations_into_csv)
+from .working_with_files_dirs import (english_recordings,
+                                      printing_eng_translations_into_csv)
 
 
 def match(
