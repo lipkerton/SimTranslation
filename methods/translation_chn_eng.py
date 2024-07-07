@@ -62,28 +62,39 @@ def check_the_line_in_dict(
 ) -> str:
     """Переводит и проверяет наличие слова в словаре."""
 
-    TRANSLATED_CHN = translate_line_chn(line.strip("'"))
+    global base_temp_dict
 
-    MEME_1 = boss_dict.get(line.strip("'").lower(), None)
+    line = line.strip("'")
 
-    if MEME_1 is None:
+    # TRANSLATED_CHN = translate_line_chn(line)
 
-        TRANSLATED_ENG = translate_line_eng(line.strip("'"))
+    MEME_1 = boss_dict.get(line.lower(), None)
+    MEME_2 = base_temp_dict.get(line.lower(), None)
+
+    if MEME_1 is None and MEME_2 is None:
+
+        TRANSLATED_ENG = translate_line_eng(line)
 
         printing_eng_translations_into_csv(
             line, TRANSLATED_ENG.strip(), file_name[0]
         )
-        printint_chn_translations_into_csv(
-            line, TRANSLATED_CHN.strip(), file_name[1]
-        )
+        # printint_chn_translations_into_csv(
+        #     line, TRANSLATED_CHN.strip(), file_name[1]
+        # )
 
-        english_recordings(line.strip("'"), TRANSLATED_ENG)
-        chinese_recordings(TRANSLATED_ENG, TRANSLATED_CHN)
+        english_recordings(line, TRANSLATED_ENG)
+        # chinese_recordings(TRANSLATED_ENG, TRANSLATED_CHN)
+
+        base_temp_dict[line.lower()] = TRANSLATED_ENG
 
         return TRANSLATED_ENG
 
-    chinese_recordings(MEME_1, TRANSLATED_CHN)
+    if MEME_2 is not None:
+        return MEME_2
+
+    # chinese_recordings(MEME_1, TRANSLATED_CHN)
     return MEME_1
 
 
 translator = Translator()
+base_temp_dict = dict()

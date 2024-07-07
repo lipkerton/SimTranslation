@@ -31,6 +31,8 @@ def main():
     chinese_temp_dictionary.close()
     english_temp_dictionary.close()
 
+    print('Files translation has been completed!')
+
 
 if __name__ == '__main__':
     main()
