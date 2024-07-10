@@ -50,7 +50,7 @@ def chinese_one_file_exec(
 ):
     file_chn_translations = open(
         f'{path_for_translations_chn}/{name_file}.csv',
-        'w',
+        'a',
         encoding='utf-8'
     )
     return file_chn_translations
@@ -61,7 +61,7 @@ def english_one_file_exec(
 ):
     file_eng_translations = open(
         f'{path_for_translations_eng}/{name_file}.csv',
-        'w',
+        'a',
         encoding='utf-8'
     )
     return file_eng_translations
