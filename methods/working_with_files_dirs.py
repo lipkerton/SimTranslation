@@ -1,4 +1,5 @@
 from os import makedirs
+from pathlib import Path
 import shutil
 
 from .constants import path_for_translations_eng, path_for_translations_chn
@@ -93,14 +94,13 @@ def making_rep(file_path):
 
 def making_other_files(file):
 
-    # macOS version
-    name_file = file.split('/')[-1]
+    name_file = Path(file).name
     new_dir = making_rep(file)
+
+    # macOS verison
     shutil.copy2(file, f'{new_dir}/{name_file}')
 
     # windows version
-    # name_file = file.split('\\')[-1]
-    # new_dir = making_rep(file)
     # shutil.copy2(file, f'{new_dir}\\{name_file}')
 
 

@@ -4,8 +4,5 @@
 venv/
 venv
 
-# Dictionaries
-decoded_dictionary.pkl
-
 # Strange files
 .DS_Store

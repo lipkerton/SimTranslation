@@ -1,5 +1,6 @@
 import pickle
 import xml.etree.ElementTree as ET
+from pathlib import Path
 
 from .constants import path_for_main_dict
 from .translation_chn_eng import (check_the_line_in_dict, match,
@@ -59,15 +60,13 @@ def parsing_xml(
     FILE_NUMBER = 1  # Переменная, которая показывает номер переведенного файла
     NUMBER_TRANSLATED_LINES = 0  # Количество переведенных строк в файле
 
-    NAME_FILE = file[file.rfind('/') + 1:].split('.')[-2]  # macOS version
-    # NAME_FILE = file[file.rfind('\\') + 1:].split('.')[-2]  # win version
-    EXTENZ = file[file.rfind('/') + 1:].split('.')[-1]  # macOS version
-    # EXTENZ = file[file.rfind('\\') + 1:].split('.')[-1]  # win version
+    NAME_FILE = Path(file).name.split('.')[0]
+    EXTENZ = Path(file).suffix
 
     saved_dict = open(path_for_main_dict, 'rb')
     boss_dict = pickle.load(saved_dict)
 
-    exceptions = ('xprt', 'prt', 'xml')
+    exceptions = ('.xprt', '.prt', '.xml')
 
     if EXTENZ not in exceptions:
         making_other_files(file)
