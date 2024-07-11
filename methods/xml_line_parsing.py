@@ -18,8 +18,8 @@ def parse_line(
 ) -> str:
     """Расшифровка строки."""
 
-    RUS_TEXT = str()  # Создаем новую строку.
-    WORDLIST = list()  # Создаем пустой список.
+    RUS_TEXT = str()
+    WORDLIST = list()
     FLAG = False
 
     for SYMBOL_INDEX in range(len(line) - 1):
@@ -85,6 +85,7 @@ def parsing_xml(
             for child in tag.iter():
 
                 if child.tag == 'data':
+
                     child_name_text = child.findtext('name').lower()
 
                     if (
@@ -101,38 +102,15 @@ def parsing_xml(
                             )
                             NUMBER_TRANSLATED_LINES += 1
 
-                if child.tag == 'plot':
-                    title_text = child.findtext('title')
-                    if title_text is not None:
-                        child.find('title').text = parse_line(
-                            title_text,
-                            boss_dict,
-                            files_translations
-                        )
-                        NUMBER_TRANSLATED_LINES += 1
+                if (
+                    child.tag == 'plot'
+                    or child.tag == 'bottomaxis'
+                    or child.tag == 'leftaxis'
+                    or child.tag == 'series'
+                ):
 
-                if child.tag == 'bottomaxis':
                     title_text = child.findtext('title')
-                    if title_text is not None:
-                        child.find('title').text = parse_line(
-                            title_text,
-                            boss_dict,
-                            files_translations
-                        )
-                        NUMBER_TRANSLATED_LINES += 1
 
-                if child.tag == 'leftaxis':
-                    title_text = child.findtext('title')
-                    if title_text is not None:
-                        child.find('title').text = parse_line(
-                            title_text,
-                            boss_dict,
-                            files_translations
-                        )
-                        NUMBER_TRANSLATED_LINES += 1
-
-                if child.tag == 'series':
-                    title_text = child.findtext('title')
                     if title_text is not None:
                         child.find('title').text = parse_line(
                             title_text,

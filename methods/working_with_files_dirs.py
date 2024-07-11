@@ -70,21 +70,13 @@ def english_one_file_exec(
 
 def making_rep(file_path):
 
-    # macOS version
-    new_file_path = '/'.join(
-        file_path.split('/')[:-1]
-    ).replace(
-        'trans_input_files',
-        'trans_result_files'
-    )
+    new_file_path = Path(
+        file_path.replace(
+            'trans_input_files',
+            'trans_result_files'
+        )
+    ).parent
 
-    # windows version
-    # new_file_path = '\\'.join(
-    #     file_path.split('\\')[:-1]
-    # ).replace(
-    #     'trans_input_files',
-    #     'trans_result_files'
-    # )
     try:
         makedirs(new_file_path)
         return new_file_path

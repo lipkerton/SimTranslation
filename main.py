@@ -25,8 +25,9 @@ def main():
     for file_path in path_dir_for_rus_files.rglob('*.*'):
 
         parsing_xml(str(file_path))
-        chinese_unpacking(chinese_temp_dictionary)
-        english_unpacking(english_temp_dictionary)
+
+    chinese_unpacking(chinese_temp_dictionary)
+    english_unpacking(english_temp_dictionary)
 
     chinese_temp_dictionary.close()
     english_temp_dictionary.close()
