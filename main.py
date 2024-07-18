@@ -32,7 +32,12 @@ def main():
     chinese_temp_dictionary.close()
     english_temp_dictionary.close()
 
-    print('Files translation has been completed!')
+    print(
+        'Files translation has been completed!\n'
+        'Check trans_result_files to see a result.\n'
+        'Check dictionaries/temp_[english/chinese]_dictionary.csv '
+        'to see translations or to correct some mistakes.'
+    )
 
 
 if __name__ == '__main__':

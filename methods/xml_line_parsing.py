@@ -57,7 +57,7 @@ def parsing_xml(
         file: str
 ) -> None:
 
-    FILE_NUMBER = 1  # Переменная, которая показывает номер переведенного файла
+    global FILE_NUMBER
     NUMBER_TRANSLATED_LINES = 0  # Количество переведенных строк в файле
 
     NAME_FILE = Path(file).name.split('.')[0]
@@ -136,16 +136,19 @@ def parsing_xml(
 
             tree.write(name_file, encoding='utf-8', xml_declaration=True)
 
-            print(
-                f'{NAME_FILE} was translated! File number: {FILE_NUMBER},'
-                f'translated lines counter: {NUMBER_TRANSLATED_LINES}'
-            )
-            print()
+        print(
+            f'{NAME_FILE} was translated!\nFile number: {FILE_NUMBER}\n'
+            f'Translated lines counter: {NUMBER_TRANSLATED_LINES}'
+        )
+        print()
 
-            FILE_NUMBER += 1
+        FILE_NUMBER += 1
 
     saved_dict.close()
 
     saved_dict = open(path_for_main_dict, 'wb')
     pickle.dump(boss_dict, saved_dict)
     saved_dict.close()
+
+
+FILE_NUMBER = 1

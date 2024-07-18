@@ -89,11 +89,7 @@ def making_other_files(file):
     name_file = Path(file).name
     new_dir = making_rep(file)
 
-    # macOS verison
     shutil.copy2(file, f'{new_dir}/{name_file}')
-
-    # windows version
-    # shutil.copy2(file, f'{new_dir}\\{name_file}')
 
 
 chinese_wordlist = dict()
