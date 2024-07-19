@@ -2,26 +2,26 @@ import os
 import pathlib
 
 # manual launch version (through main.py)
-# project_dir = str(
-#     os.path.dirname(
-#         os.path.dirname(
-#             os.path.abspath(__file__)
-#         )
-#     )
-# )
-
-# exe version
 project_dir = str(
     os.path.dirname(
         os.path.dirname(
-            os.path.dirname(
-                os.path.dirname(
-                    os.path.abspath(__file__)
-                )
-            )
+            os.path.abspath(__file__)
         )
     )
 )
+
+# exe version
+# project_dir = str(
+#     os.path.dirname(
+#         os.path.dirname(
+#             os.path.dirname(
+#                 os.path.dirname(
+#                     os.path.abspath(__file__)
+#                 )
+#             )
+#         )
+#     )
+# )
 path_dir_for_rus_files = pathlib.Path(
     f'{project_dir}/trans_input_files'
 ).absolute()
