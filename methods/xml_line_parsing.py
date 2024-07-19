@@ -146,9 +146,5 @@ def parsing_xml(
 
     saved_dict.close()
 
-    saved_dict = open(path_for_main_dict, 'wb')
-    pickle.dump(boss_dict, saved_dict)
-    saved_dict.close()
-
 
 FILE_NUMBER = 1

@@ -59,6 +59,13 @@ def forming_dictionary(
 
         new_dict[key] = value
 
+    return new_dict
+
+
+def get_updated_dictionary():
+
+    updated_dict = dict()
+
     with open(
         path_for_temp_translations_eng, 'r', encoding='utf-8'
     ) as temp_eng:
@@ -69,7 +76,7 @@ def forming_dictionary(
 
             try:
                 line = temp_eng_array[index].strip('\n').split(';')
-                new_dict[line[0].lower()] = line[1]
+                updated_dict[line[0].lower()] = line[1]
 
             except IndexError:
                 raise IndexError(
@@ -79,11 +86,22 @@ def forming_dictionary(
                     'Russian word;English translation'
                 )
 
-    return new_dict
+    return updated_dict
 
 
 def print_dictionary() -> None:
     """Creating decoded_dictionary.pkl."""
+
     sample_of_starting_dict = forming_dictionary(path_for_boss_dict)
-    with open(path_for_main_dict, 'wb') as f:
-        pickle.dump(sample_of_starting_dict, f)
+    sample_updating_values = get_updated_dictionary()
+
+    try:
+        with open(path_for_main_dict, 'xb') as f:
+            pickle.dump(sample_of_starting_dict, f)
+
+    except FileExistsError:
+        with open(path_for_main_dict, 'rb') as f:
+            update_data = pickle.load(f)
+            update_data.update(sample_updating_values)
+        with open(path_for_main_dict, 'wb') as f:
+            pickle.dump(update_data, f)
