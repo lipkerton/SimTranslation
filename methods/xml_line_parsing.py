@@ -2,10 +2,10 @@ import pickle
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from .constants import path_for_main_dict
-from .translation_chn_eng import (check_the_line_in_dict, match,
+from constants import path_for_main_dict
+from translation_chn_eng import (check_the_line_in_dict, match,
                                   translate_eng_file_name)
-from .working_with_files_dirs import (making_other_files,
+from working_with_files_dirs import (making_other_files,
                                       making_rep,
                                       chinese_one_file_exec,
                                       english_one_file_exec)
@@ -54,14 +54,14 @@ def parse_line(
 
 
 def parsing_xml(
-        file: str
+        input_file: str, output_folder, input_folder
 ) -> None:
 
     global FILE_NUMBER
     NUMBER_TRANSLATED_LINES = 0  # Количество переведенных строк в файле
 
-    NAME_FILE = Path(file).name.split('.')[0]
-    EXTENZ = Path(file).suffix
+    NAME_FILE = Path(input_file).name.split('.')[0]
+    EXTENZ = Path(input_file).suffix
 
     saved_dict = open(path_for_main_dict, 'rb')
     boss_dict = pickle.load(saved_dict)
@@ -69,7 +69,7 @@ def parsing_xml(
     exceptions = ('.xprt', '.prt', '.xml')
 
     if EXTENZ not in exceptions:
-        making_other_files(file)
+        making_other_files(input_file, output_folder, input_folder)
     else:
 
         files_translations = (
@@ -77,7 +77,7 @@ def parsing_xml(
             chinese_one_file_exec(NAME_FILE)
         )
 
-        tree = ET.parse(file)
+        tree = ET.parse(input_file)
         root_node = tree.getroot()
 
         # Цикл перебора всех тегов по заданному адресу
@@ -125,7 +125,7 @@ def parsing_xml(
                 files_translations
             )
 
-            new_file_path = making_rep(file)
+            new_file_path = making_rep(input_file, output_folder, input_folder)
             name_file = (
                 f'{new_file_path}/'
                 f'{translated_eng_file_name + "_eng"}.xprt'
@@ -136,15 +136,16 @@ def parsing_xml(
 
             tree.write(name_file, encoding='utf-8', xml_declaration=True)
 
-        print(
+        message = (
             f'{NAME_FILE} was translated!\nFile number: {FILE_NUMBER}\n'
-            f'Translated lines counter: {NUMBER_TRANSLATED_LINES}'
+            f'Translated lines counter: {NUMBER_TRANSLATED_LINES}\n'
+            '\n'
         )
-        print()
 
         FILE_NUMBER += 1
 
     saved_dict.close()
+    return message
 
 
 FILE_NUMBER = 1

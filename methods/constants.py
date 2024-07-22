@@ -1,47 +1,43 @@
 import os
 import pathlib
 
+
 # manual launch version (through main.py)
+project_dir = str(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
+
+# exe version
 # project_dir = str(
 #     os.path.dirname(
 #         os.path.dirname(
-#             os.path.abspath(__file__)
+#             os.path.dirname(
+#                 os.path.dirname(
+#                     os.path.abspath(__file__)
+#                 )
+#             )
 #         )
 #     )
 # )
 
-# exe version
-project_dir = str(
-    os.path.dirname(
-        os.path.dirname(
-            os.path.dirname(
-                os.path.dirname(
-                    os.path.abspath(__file__)
-                )
-            )
-        )
-    )
-)
-path_dir_for_rus_files = pathlib.Path(
-    f'{project_dir}/trans_input_files'
-).absolute()
 path_for_translations_eng = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
 ).absolute()
 path_for_translations_chn = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
 ).absolute()
-path_for_temp_translations_chn = pathlib.Path(
-    f'{project_dir}/dictionaries/temp_chinese_dictionary.csv'
-).absolute()
-path_for_temp_translations_eng = pathlib.Path(
-    f'{project_dir}/dictionaries/temp_english_dictionary.csv'
-)
 path_for_boss_dict = pathlib.Path(
     f'{project_dir}/dictionaries/maintranslation.trans'
 ).absolute()
 path_for_main_dict = pathlib.Path(
     f'{project_dir}/dictionaries/decoded_dictionary.pkl'
+).absolute()
+media_directory = pathlib.Path(
+    f'{project_dir}/media'
 ).absolute()
 
 lines_fixing_in_dictionary = (

@@ -2,22 +2,7 @@ from os import makedirs
 from pathlib import Path
 import shutil
 
-from .constants import path_for_translations_eng, path_for_translations_chn
-
-
-def english_unpacking(temp_dictionary):
-
-    global english_wordlist
-    for key, value in english_wordlist.items():
-        temp_dictionary.write(key.strip() + ';' + value + '\n')
-
-
-def chinese_unpacking(temp_dictionary):
-
-    global chinese_wordlist
-    for key, value in chinese_wordlist.items():
-        temp_dictionary.write(key.strip() + ';' + value + '\n')
-
+from constants import path_for_translations_eng, path_for_translations_chn
 
 def printing_eng_translations_into_csv(
         word: str, translated_word: str, file_name: str
@@ -68,12 +53,12 @@ def english_one_file_exec(
     return file_eng_translations
 
 
-def making_rep(file_path):
+def making_rep(file_path, output_folder, input_folder):
 
     new_file_path = Path(
         file_path.replace(
-            'trans_input_files',
-            'trans_result_files'
+            str(input_folder),
+            str(output_folder)
         )
     ).parent
 
@@ -84,10 +69,10 @@ def making_rep(file_path):
         return new_file_path
 
 
-def making_other_files(file):
+def making_other_files(file, output_folder, input_folder):
 
     name_file = Path(file).name
-    new_dir = making_rep(file)
+    new_dir = making_rep(file, output_folder, input_folder)
 
     shutil.copy2(file, f'{new_dir}/{name_file}')
 
