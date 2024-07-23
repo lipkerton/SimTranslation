@@ -3,26 +3,28 @@ import pathlib
 
 
 # manual launch version (through main.py)
+# project_dir = str(
+#     os.path.dirname(
+#         os.path.dirname(
+#             os.path.abspath(__file__)
+#         )
+#     )
+# )
+
+# exe version
 project_dir = str(
     os.path.dirname(
         os.path.dirname(
-            os.path.abspath(__file__)
+            os.path.dirname(
+                os.path.dirname(
+                    os.path.abspath(__file__)
+                )
+            )
         )
     )
 )
 
-# exe version
-# project_dir = str(
-#     os.path.dirname(
-#         os.path.dirname(
-#             os.path.dirname(
-#                 os.path.dirname(
-#                     os.path.abspath(__file__)
-#                 )
-#             )
-#         )
-#     )
-# )
+print(project_dir)
 
 path_for_translations_eng = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng'

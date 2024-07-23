@@ -1,7 +1,7 @@
 import pickle
 import re
 
-from constants import (lines_fixing_in_dictionary, path_for_boss_dict,
+from .constants import (lines_fixing_in_dictionary, path_for_boss_dict,
                         path_for_main_dict)
 
 
@@ -12,12 +12,12 @@ def making_clean_string(
 
     if key is not None:
         result = key.strip(
-                '/&$-,.=+@[;:<#$%*"!?\' '
+                '/&$-,=+@[;:<#$%*"!?\' '
             ).lower()
 
     elif value is not None:
         result = value.strip(
-                '/&$-,.=+@[;:<#$%*"!?\' '
+                '/&$-,=+@[;:<#$%*"!?\' '
             )
     return result
 
@@ -64,7 +64,6 @@ def forming_dictionary(
 def quick_update(changes):
 
     updated_dict = dict()
-    changes = changes.split('\n')
 
     for index in range(len(changes)):
         if changes[index] != '':
@@ -75,7 +74,8 @@ def quick_update(changes):
                 updated_dict[word_to] = translate
 
             except IndexError:
-                return index
+                subindex = len(changes[index])
+                return (index, subindex)
         
     print_into_dictionary(updated_dict)
 

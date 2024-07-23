@@ -2,10 +2,10 @@ import pickle
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from constants import path_for_main_dict
-from translation_chn_eng import (check_the_line_in_dict, match,
+from .constants import path_for_main_dict
+from .translation_chn_eng import (check_the_line_in_dict, match,
                                   translate_eng_file_name)
-from working_with_files_dirs import (making_other_files,
+from .working_with_files_dirs import (making_other_files,
                                       making_rep,
                                       chinese_one_file_exec,
                                       english_one_file_exec)
@@ -62,6 +62,8 @@ def parsing_xml(
 
     NAME_FILE = Path(input_file).name.split('.')[0]
     EXTENZ = Path(input_file).suffix
+
+    message = None
 
     saved_dict = open(path_for_main_dict, 'rb')
     boss_dict = pickle.load(saved_dict)
@@ -145,6 +147,7 @@ def parsing_xml(
         FILE_NUMBER += 1
 
     saved_dict.close()
+
     return message
 
 

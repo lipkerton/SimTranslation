@@ -2,7 +2,7 @@ from os import makedirs
 from pathlib import Path
 import shutil
 
-from constants import path_for_translations_eng, path_for_translations_chn
+from .constants import path_for_translations_eng, path_for_translations_chn
 
 def printing_eng_translations_into_csv(
         word: str, translated_word: str, file_name: str
