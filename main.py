@@ -15,27 +15,33 @@ from methods.working_with_files_dirs import english_wordlist
 
 def input_entry_is_valid(value):
     """Сообщение об ошибке для строк ввода."""
-    result = re.match('^(.+)\/([^\/]+)$', value) is not None
-    
+    # macOS ver
+    result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
+    # windows version
+    # result = re.match('^(.+)\/([^\/]+)$', value) is not None
+
     if not result and not os.path.exists(value):
         error_message_input.set('Check that the entered path is correct.')
         translate_btn['state'] = 'disabled'
     else:
         error_message_input.set('')
         translate_btn['state'] = 'enabled'
-    
+
     return result
-        
+
 
 def output_entry_is_valid(value):
     """Сообщение об ошибке для строк ввода."""
-    result = re.match('^(.+)\/([^\/]+)$', value) is not None
-    
+    # macOS ver
+    result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
+    # windows ver
+    # result = re.match('^(.+)\/([^\/]+)$', value) is not None
+
     if not result and not os.path.exists(value):
         error_message_output.set('Check that the entered path is correct.')
     else:
         error_message_output.set('')
-    
+
     return result
 
 
@@ -54,7 +60,7 @@ def validate_entry_text(value, model):
         if result:
             saved_changes_list.append(value[index])
             model.delete(start_index, end_index)
-    
+
     return saved_changes_list
 
 
@@ -78,16 +84,14 @@ def output_search():
 
 def selected_language():
     """Получаем выбранный язык."""
-    selected_language = language.get()
+    language.get()
 
 
 def get_changes_for_dictionary():
     """Получаем символы из текстового окна."""
     global changes
     changes = changes_dictionary.get('1.0', 'end')
-    result = save_changes_for_dictionary(changes, changes_dictionary)
-    if result:
-        changes_delete = changes_dictionary.delete('1.0', 'end')
+    save_changes_for_dictionary(changes, changes_dictionary)
 
 
 def get_changes_for_inner_dictionary():
@@ -95,25 +99,28 @@ def get_changes_for_inner_dictionary():
     global inner_changes
     global inner_changes_dictionary
     inner_changes = inner_changes_dictionary.get('1.0', 'end')
-    result = save_changes_for_dictionary(inner_changes, inner_changes_dictionary)
-    if result:
-        change_delete = inner_changes_dictionary.delete('1.0', 'end')
+    save_changes_for_dictionary(
+        inner_changes, inner_changes_dictionary
+    )
 
 
 def undo_changes_for_inner_dictionary():
-    """Отменяем последнее удаление символов из текстового поля внутреннего словаря."""
+    """Отменяем последнее удаление символов
+    из текстового поля внутреннего словаря."""
+    inner_changes_dictionary.delete('1.0', 'end')
     inner_changes_dictionary.insert('1.0', inner_changes)
+
 
 def save_changes_for_dictionary(changes, model):
     """Сохраняем новые пары слов в словарь."""
     is_valid = validate_entry_text(changes, model)
     if is_valid:
         quick_update(is_valid)
-        return True
-    return False
+
 
 def undo_changes_for_dictionary():
     """Отменяем последнее удаление символов из текстового поля."""
+    changes_dictionary.delete('1.0', 'end')
     changes_dictionary.insert('1.0', changes)
 
 
@@ -130,18 +137,24 @@ def open_output_folder():
     """Открываем папку вывода."""
     if OUTPUT_PATH == output_folder:
         path = create_output_folder()
-        subprocess.Popen(f'explorer "{path}"')
+        # wind version
+        # subprocess.Popen(f'explorer "{path}"')
+        # macOS version
+        subprocess.call(["open", "-R", path])
     else:
         path = pathlib.Path(OUTPUT_PATH)
-        subprocess.Popen(f'explorer "{path}"')
+        # wind version
+        # subprocess.Popen(f'explorer "{path}"')
+        # macOS version
+        subprocess.call(["open", "-R", path])
 
 
 def close_window():
-    """Функция закрывающая старое окно и запускающая процесс перевода повторно."""
+    """Функция закрывающая старое окно
+    и запускающая процесс перевода повторно."""
     global window
     window.destroy()
     core_pattern()
-
 
 
 def output_window(message=None):
@@ -171,14 +184,24 @@ def output_window(message=None):
         x=50, y=355
     )
 
+    # windows ver
+    # result_list = ScrolledText(
+    #     window, width=60, height=15
+    # )
+    # macOS ver
     result_list = ScrolledText(
-        window, width=60, height=15
+        window, width=65, height=17
     )
     result_list.place(
         x=50, y=60
     )
+    # windows ver
+    # translated_lines_list = ScrolledText(
+    #     window, width=60, height=15
+    # )
+    # macOS ver
     translated_lines_list = ScrolledText(
-        window, width=60, height=15
+        window, width=65, height=17
     )
     translated_lines_list.place(
         x=50, y=380
@@ -186,21 +209,49 @@ def output_window(message=None):
 
     inner_changes_dictionary = translated_lines_list
 
-    save_changes_btn = ttk.Button(
-        window, text='Save changes', command=get_changes_for_inner_dictionary
-    ).place(x=50, y=630, height=30, width=110)
-    undo_changes_btn = ttk.Button(
-        window, text='Undo changes', command=undo_changes_for_inner_dictionary
-    ).place(x=170, y=630, height=30, width=110)
-    show_result_dir_btn = ttk.Button(
-        window, text='Output', command=open_output_folder
-    ).place(x=330, y=630, height=50, width=110)
+    # windows ver
+    # ttk.Button(
+    #     window,
+    #     text='Save changes',
+    #     command=get_changes_for_inner_dictionary
+    # ).place(x=50, y=630, height=30, width=110)
+    # ttk.Button(
+    #     window,
+    #     text='Undo changes',
+    #     command=undo_changes_for_inner_dictionary
+    # ).place(x=170, y=630, height=30, width=110)
+    # ttk.Button(
+    #     window,
+    #     text='Output',
+    #     command=open_output_folder
+    # ).place(x=330, y=630, height=50, width=110)
+    # translate_btn = ttk.Button(
+    #     window,
+    #     text='Translate again',
+    #     command=close_window
+    # )
+    # macOS ver
+    ttk.Button(
+        window,
+        text='Save changes',
+        command=get_changes_for_inner_dictionary
+    ).place(x=50, y=610, height=30, width=130)
+    ttk.Button(
+        window,
+        text='Undo changes',
+        command=undo_changes_for_inner_dictionary
+    ).place(x=180, y=610, height=30, width=130)
+    ttk.Button(
+        window,
+        text='Output',
+        command=open_output_folder
+    ).place(x=270, y=637, height=50, width=140)
     translate_btn = ttk.Button(
         window,
         text='Translate again',
         command=close_window
     )
-    translate_btn.place(x=450, y=630, height=50, width=110)
+    translate_btn.place(x=410, y=637, height=50, width=140)
 
     return (result_list, translated_lines_list)
 
@@ -224,7 +275,7 @@ def core_pattern():
         message = parsing_xml(str(file_path), OUTPUT_PATH, INPUT_PATH)
         if message is not None:
             output_dictionary_insert(result_list, message)
-    
+
     for key, value in english_wordlist.items():
         message = f'{key};{value}\n'
         output_dictionary_insert(translated_lines_list, message)
@@ -258,8 +309,10 @@ inner_changes_flag = False
 inner_changes = None
 inner_changes_dictionary = None
 
+# Константа для хранения текущего значения папки ввода.
 INPUT_PATH = None
-OUTPUT_PATH = output_folder  # Константа для хранения текущего значения папки вывода.
+# Константа для хранения текущего значения папки вывода.
+OUTPUT_PATH = output_folder
 
 tk_sample.title('SimTranslation')
 tk_sample.geometry('600x700')
@@ -331,13 +384,20 @@ translate_btn = ttk.Button(
     state=['disabled'],
     command=core_pattern
 )
+# windows ver
+# save_changes_btn = ttk.Button(
+#     text='Save changes', command=get_changes_for_dictionary
+# ).place(x=50, y=570, height=30, width=110)
+# undo_changes_btn = ttk.Button(
+#     text='Undo changes', command=undo_changes_for_dictionary
+# ).place(x=170, y=570, height=30, width=110)
 
 save_changes_btn = ttk.Button(
     text='Save changes', command=get_changes_for_dictionary
-).place(x=50, y=570, height=30, width=110)
+).place(x=50, y=570, height=30, width=130)
 undo_changes_btn = ttk.Button(
     text='Undo changes', command=undo_changes_for_dictionary
-).place(x=170, y=570, height=30, width=110)
+).place(x=180, y=570, height=30, width=130)
 
 translate_btn.place(x=450, y=620, height=50, width=110)
 
@@ -387,8 +447,13 @@ chinese_radio.place(
 )
 
 # Работа с обновлением словаря.
+# windows ver
+# changes_dictionary = ScrolledText(
+#     tk_sample, width=60, height=15
+# )
+# macOS ver
 changes_dictionary = ScrolledText(
-    tk_sample, width=60, height=15
+    tk_sample, width=65, height=17
 )
 
 changes_dictionary.place(

@@ -76,7 +76,7 @@ def quick_update(changes):
             except IndexError:
                 subindex = len(changes[index])
                 return (index, subindex)
-        
+
     print_into_dictionary(updated_dict)
 
 
