@@ -2,6 +2,7 @@ from googletrans import Translator
 
 from .working_with_files_dirs import (english_recordings,
                                       printing_eng_translations_into_csv)
+from .dictionary import making_clean_string
 
 
 def match(
@@ -69,7 +70,17 @@ def check_the_line_in_dict(
     MEME_1 = boss_dict.get(line.lower(), None)
     MEME_2 = base_temp_dict.get(line.lower(), None)
 
-    if MEME_1 is None and MEME_2 is None:
+    clean_string = making_clean_string(line.lower())
+
+    MEME_3 = boss_dict.get(clean_string, None)
+    MEME_4 = base_temp_dict.get(clean_string, None)
+
+    if (
+        MEME_1 is None
+        and MEME_2 is None
+        and MEME_3 is None
+        and MEME_4 is None
+    ):
 
         TRANSLATED_ENG = translate_line_eng(line)
 
@@ -89,6 +100,12 @@ def check_the_line_in_dict(
 
     if MEME_2 is not None:
         return MEME_2
+    
+    if MEME_3 is not None:
+        return MEME_3
+    
+    if MEME_4 is not None:
+        return MEME_4
 
     # chinese_recordings(MEME_1, TRANSLATED_CHN)
     return MEME_1

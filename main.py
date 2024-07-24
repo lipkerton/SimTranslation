@@ -136,9 +136,18 @@ def open_output_folder():
         subprocess.Popen(f'explorer "{path}"')
 
 
+def close_window():
+    """Функция закрывающая старое окно и запускающая процесс перевода повторно."""
+    global window
+    window.destroy()
+    core_pattern()
+
+
+
 def output_window(message=None):
     """Функция для демонстрации результирующего окна."""
     global inner_changes_dictionary
+    global window
     window = tk.Tk()
     window.title('Result page')
     window.geometry('600x700')
@@ -189,7 +198,7 @@ def output_window(message=None):
     translate_btn = ttk.Button(
         window,
         text='Translate again',
-        command=core_pattern
+        command=close_window
     )
     translate_btn.place(x=450, y=630, height=50, width=110)
 
@@ -228,6 +237,7 @@ def main():
 
 if __name__ == '__main__':
     tk_sample = main()
+    window = None
 
 
 output_path = str(
