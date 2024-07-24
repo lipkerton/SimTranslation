@@ -16,9 +16,9 @@ from methods.working_with_files_dirs import english_wordlist
 def input_entry_is_valid(value):
     """Сообщение об ошибке для строк ввода."""
     # macOS ver
-    result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
+    # result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
     # windows version
-    # result = re.match('^(.+)\/([^\/]+)$', value) is not None
+    result = re.match('^(.+)\/([^\/]+)$', value) is not None
 
     if not result and not os.path.exists(value):
         error_message_input.set('Check that the entered path is correct.')
@@ -33,9 +33,9 @@ def input_entry_is_valid(value):
 def output_entry_is_valid(value):
     """Сообщение об ошибке для строк ввода."""
     # macOS ver
-    result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
+    # result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
     # windows ver
-    # result = re.match('^(.+)\/([^\/]+)$', value) is not None
+    result = re.match('^(.+)\/([^\/]+)$', value) is not None
 
     if not result and not os.path.exists(value):
         error_message_output.set('Check that the entered path is correct.')
@@ -138,15 +138,15 @@ def open_output_folder():
     if OUTPUT_PATH == output_folder:
         path = create_output_folder()
         # wind version
-        # subprocess.Popen(f'explorer "{path}"')
+        subprocess.Popen(f'explorer "{path}"')
         # macOS version
-        subprocess.call(["open", "-R", path])
+        # subprocess.call(["open", "-R", path])
     else:
         path = pathlib.Path(OUTPUT_PATH)
         # wind version
-        # subprocess.Popen(f'explorer "{path}"')
+        subprocess.Popen(f'explorer "{path}"')
         # macOS version
-        subprocess.call(["open", "-R", path])
+        # subprocess.call(["open", "-R", path])
 
 
 def close_window():
@@ -185,24 +185,24 @@ def output_window(message=None):
     )
 
     # windows ver
-    # result_list = ScrolledText(
-    #     window, width=60, height=15
-    # )
-    # macOS ver
     result_list = ScrolledText(
-        window, width=65, height=17
+        window, width=60, height=15
     )
+    # macOS ver
+    # result_list = ScrolledText(
+    #     window, width=65, height=17
+    # )
     result_list.place(
         x=50, y=60
     )
     # windows ver
-    # translated_lines_list = ScrolledText(
-    #     window, width=60, height=15
-    # )
-    # macOS ver
     translated_lines_list = ScrolledText(
-        window, width=65, height=17
+        window, width=60, height=15
     )
+    # macOS ver
+    # translated_lines_list = ScrolledText(
+    #     window, width=65, height=17
+    # )
     translated_lines_list.place(
         x=50, y=380
     )
@@ -210,48 +210,49 @@ def output_window(message=None):
     inner_changes_dictionary = translated_lines_list
 
     # windows ver
-    # ttk.Button(
-    #     window,
-    #     text='Save changes',
-    #     command=get_changes_for_inner_dictionary
-    # ).place(x=50, y=630, height=30, width=110)
-    # ttk.Button(
-    #     window,
-    #     text='Undo changes',
-    #     command=undo_changes_for_inner_dictionary
-    # ).place(x=170, y=630, height=30, width=110)
-    # ttk.Button(
-    #     window,
-    #     text='Output',
-    #     command=open_output_folder
-    # ).place(x=330, y=630, height=50, width=110)
-    # translate_btn = ttk.Button(
-    #     window,
-    #     text='Translate again',
-    #     command=close_window
-    # )
-    # macOS ver
     ttk.Button(
         window,
         text='Save changes',
         command=get_changes_for_inner_dictionary
-    ).place(x=50, y=610, height=30, width=130)
+    ).place(x=50, y=630, height=30, width=110)
     ttk.Button(
         window,
         text='Undo changes',
         command=undo_changes_for_inner_dictionary
-    ).place(x=180, y=610, height=30, width=130)
+    ).place(x=170, y=630, height=30, width=110)
     ttk.Button(
         window,
         text='Output',
         command=open_output_folder
-    ).place(x=270, y=637, height=50, width=140)
+    ).place(x=330, y=630, height=50, width=110)
     translate_btn = ttk.Button(
         window,
         text='Translate again',
         command=close_window
     )
-    translate_btn.place(x=410, y=637, height=50, width=140)
+    translate_btn.place(x=450, y=630, height=50, width=110)
+    # macOS ver
+    # ttk.Button(
+    #     window,
+    #     text='Save changes',
+    #     command=get_changes_for_inner_dictionary
+    # ).place(x=50, y=610, height=30, width=130)
+    # ttk.Button(
+    #     window,
+    #     text='Undo changes',
+    #     command=undo_changes_for_inner_dictionary
+    # ).place(x=180, y=610, height=30, width=130)
+    # ttk.Button(
+    #     window,
+    #     text='Output',
+    #     command=open_output_folder
+    # ).place(x=270, y=637, height=50, width=140)
+    # translate_btn = ttk.Button(
+    #     window,
+    #     text='Translate again',
+    #     command=close_window
+    # )
+    # translate_btn.place(x=410, y=637, height=50, width=140)
 
     return (result_list, translated_lines_list)
 
@@ -385,19 +386,19 @@ translate_btn = ttk.Button(
     command=core_pattern
 )
 # windows ver
-# save_changes_btn = ttk.Button(
-#     text='Save changes', command=get_changes_for_dictionary
-# ).place(x=50, y=570, height=30, width=110)
-# undo_changes_btn = ttk.Button(
-#     text='Undo changes', command=undo_changes_for_dictionary
-# ).place(x=170, y=570, height=30, width=110)
-
 save_changes_btn = ttk.Button(
     text='Save changes', command=get_changes_for_dictionary
-).place(x=50, y=570, height=30, width=130)
+).place(x=50, y=570, height=30, width=110)
 undo_changes_btn = ttk.Button(
     text='Undo changes', command=undo_changes_for_dictionary
-).place(x=180, y=570, height=30, width=130)
+).place(x=170, y=570, height=30, width=110)
+
+# save_changes_btn = ttk.Button(
+#     text='Save changes', command=get_changes_for_dictionary
+# ).place(x=50, y=570, height=30, width=130)
+# undo_changes_btn = ttk.Button(
+#     text='Undo changes', command=undo_changes_for_dictionary
+# ).place(x=180, y=570, height=30, width=130)
 
 translate_btn.place(x=450, y=620, height=50, width=110)
 
@@ -448,13 +449,13 @@ chinese_radio.place(
 
 # Работа с обновлением словаря.
 # windows ver
-# changes_dictionary = ScrolledText(
-#     tk_sample, width=60, height=15
-# )
-# macOS ver
 changes_dictionary = ScrolledText(
-    tk_sample, width=65, height=17
+    tk_sample, width=60, height=15
 )
+# macOS ver
+# changes_dictionary = ScrolledText(
+#     tk_sample, width=65, height=17
+# )
 
 changes_dictionary.place(
     x=50, y=320
