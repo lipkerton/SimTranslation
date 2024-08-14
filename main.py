@@ -1,16 +1,15 @@
-import tkinter as tk
 import os
+import pathlib
 import re
 import subprocess
-import pathlib
-from tkinter import ttk, filedialog
+import tkinter as tk
+from tkinter import filedialog, ttk
 from tkinter.scrolledtext import ScrolledText
 
-from methods.constants import path_for_main_dict
-from methods.dictionary import print_into_dictionary
-from methods.xml_line_parsing import parsing_xml
-from methods.dictionary import quick_update
+from methods.constants import path_for_main_dict_eng
+from methods.dictionary import print_into_dictionary_eng, quick_update
 from methods.working_with_files_dirs import english_wordlist
+from methods.xml_line_parsing import parsing_xml
 
 
 def input_entry_is_valid(value):
@@ -84,7 +83,10 @@ def output_search():
 
 def selected_language():
     """Получаем выбранный язык."""
-    language.get()
+    global language
+    selected_language = language.get()
+    language = selected_language
+    return selected_language
 
 
 def get_changes_for_dictionary():
@@ -114,8 +116,9 @@ def undo_changes_for_inner_dictionary():
 def save_changes_for_dictionary(changes, model):
     """Сохраняем новые пары слов в словарь."""
     is_valid = validate_entry_text(changes, model)
+    language = selected_language()
     if is_valid:
-        quick_update(is_valid)
+        quick_update(is_valid, language)
 
 
 def undo_changes_for_dictionary():
@@ -157,7 +160,7 @@ def close_window():
     core_pattern()
 
 
-def output_window(message=None):
+def output_window():
     """Функция для демонстрации результирующего окна."""
     global inner_changes_dictionary
     global window
@@ -264,15 +267,23 @@ def output_dictionary_insert(dictionary, message):
 
 def core_pattern():
 
-    if not os.path.exists(path_for_main_dict):
-        print_into_dictionary()
+    if not os.path.exists(path_for_main_dict_eng):
+        print_into_dictionary_eng()
+
+    if not os.path.exists(INPUT_PATH):
+        os.makedirs(INPUT_PATH)
+
+    if not os.path.exists(OUTPUT_PATH):
+        os.makedirs(OUTPUT_PATH)
 
     result = output_window()
     result_list = result[0]
     translated_lines_list = result[1]
 
     for file_path in INPUT_PATH.rglob('*.*'):
-        message = parsing_xml(str(file_path), OUTPUT_PATH, INPUT_PATH)
+        message = parsing_xml(
+            str(file_path), OUTPUT_PATH, INPUT_PATH, language
+        )
         if message is not None:
             output_dictionary_insert(result_list, message)
 
@@ -313,6 +324,8 @@ inner_changes_dictionary = None
 INPUT_PATH = None
 # Константа для хранения текущего значения папки вывода.
 OUTPUT_PATH = output_folder
+
+language = None
 
 tk_sample.title('SimTranslation')
 tk_sample.geometry('600x700')

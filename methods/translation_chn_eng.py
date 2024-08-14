@@ -1,8 +1,8 @@
 from googletrans import Translator
 
+from .dictionary import making_clean_string
 from .working_with_files_dirs import (english_recordings,
                                       printing_eng_translations_into_csv)
-from .dictionary import making_clean_string
 
 
 def match(
@@ -100,10 +100,10 @@ def check_the_line_in_dict(
 
     if MEME_2 is not None:
         return MEME_2
-    
+
     if MEME_3 is not None:
         return MEME_3
-    
+
     if MEME_4 is not None:
         return MEME_4
 

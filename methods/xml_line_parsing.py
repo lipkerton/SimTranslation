@@ -2,19 +2,18 @@ import pickle
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from .constants import path_for_main_dict
+from .constants import path_for_main_dict_eng, path_for_boss_dict_chn
 from .translation_chn_eng import (check_the_line_in_dict, match,
                                   translate_eng_file_name)
-from .working_with_files_dirs import (making_other_files,
-                                      making_rep,
-                                      chinese_one_file_exec,
-                                      english_one_file_exec)
+from .working_with_files_dirs import (chinese_one_file_exec,
+                                      english_one_file_exec,
+                                      making_other_files, making_rep)
 
 
 def parse_line(
         line: str,
         boss_dict: dict,
-        file_name: str
+        file_name: tuple
 ) -> str:
     """Расшифровка строки."""
 
@@ -22,39 +21,39 @@ def parse_line(
     WORDLIST = list()
     FLAG = False
 
-    for SYMBOL_INDEX in range(len(line) - 1):
+    for symbol_index in range(len(line) - 1):
 
         exceptions = ("'", "`", '"')
 
         if FLAG:
-            RUS_TEXT += line[SYMBOL_INDEX]
+            RUS_TEXT += line[symbol_index]
 
-        if line[SYMBOL_INDEX] in exceptions:
+        if line[symbol_index] in exceptions:
             FLAG = True
 
-        if line[SYMBOL_INDEX + 1] in exceptions:
+        if line[symbol_index + 1] in exceptions:
             WORDLIST.append(RUS_TEXT.strip())
             RUS_TEXT = str()
             FLAG = False
 
     WORDLIST = sorted(WORDLIST, key=len, reverse=True)
 
-    for WORD in WORDLIST:
-        if match(WORD):
+    for word in WORDLIST:
+        if match(word):
             TRANSLATED_WORD = check_the_line_in_dict(
-                WORD,
+                word,
                 boss_dict,
                 file_name
             )
             line = line.replace(
-                WORD,
+                word,
                 TRANSLATED_WORD
             )
     return line
 
 
 def parsing_xml(
-        input_file: str, output_folder, input_folder
+        input_file: str, output_folder, input_folder, language
 ) -> None:
 
     global FILE_NUMBER
@@ -65,15 +64,18 @@ def parsing_xml(
 
     message = None
 
-    saved_dict = open(path_for_main_dict, 'rb')
-    boss_dict = pickle.load(saved_dict)
+    if language.get() == 'English':
+        saved_dict = open(path_for_main_dict_eng, 'rb')
+        boss_dict = pickle.load(saved_dict)
+    else:
+        saved_dict = open(path_for_boss_dict_chn, 'rb')
+        boss_dict = pickle.load(saved_dict)
 
-    exceptions = ('.xprt', '.prt', '.xml')
+    exceptions = ('.xprt', '.xml')
 
     if EXTENZ not in exceptions:
         making_other_files(input_file, output_folder, input_folder)
     else:
-
         files_translations = (
             english_one_file_exec(NAME_FILE),
             chinese_one_file_exec(NAME_FILE)
