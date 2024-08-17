@@ -1,81 +1,69 @@
+import shutil
 from os import makedirs
 from pathlib import Path
-import shutil
 
-from .constants import path_for_translations_eng, path_for_translations_chn
+from .constants import exceptions
 
-def printing_eng_translations_into_csv(
-        word: str, translated_word: str, file_name: str
+
+def printing_translations_into_csv(
+        word: str,
+        translated_word: str,
+        file_name: str
 ) -> None:
-    """Заносим переводы в csv в папку trans_csv_eng."""
+    """We put translations in csv in the trans_csv_eng folder."""
     file_name.write(word.strip() + ';' + translated_word + '\n')
 
 
-def printint_chn_translations_into_csv(
-        word: str, translated_word: str, file_name: str
-) -> None:
-    pass
-
-
-def chinese_recordings(
-        word: str, translated_word: str
-) -> None:
-    global chinese_wordlist
-    chinese_wordlist[word] = translated_word
-
-
-def english_recordings(
-        word: str, translated_word: str
-) -> None:
-    global english_wordlist
-    english_wordlist[word] = translated_word
-
-
-def chinese_one_file_exec(
-        name_file: str
+def one_file_exec(
+        name_file: str,
+        path_for_translations: Path
 ):
-    file_chn_translations = open(
-        f'{path_for_translations_chn}/{name_file}.csv',
+    """We create a separate csv file to record
+    translations for each project."""
+    file_translations = open(
+        f'{path_for_translations}/{name_file}.csv',
         'a',
         encoding='utf-8'
     )
-    return file_chn_translations
+    return file_translations
 
 
-def english_one_file_exec(
-        name_file: str
-):
-    file_eng_translations = open(
-        f'{path_for_translations_eng}/{name_file}.csv',
-        'a',
-        encoding='utf-8'
-    )
-    return file_eng_translations
+def check_file_extenz(
+    obj_sample
+) -> bool:
+    """Checking file extension."""
+    extenz = Path(obj_sample.input_file).suffix
+    if extenz not in exceptions:
+        making_other_files(
+            obj_sample
+        )
+        return False
+    return True
 
 
-def making_rep(file_path, output_folder, input_folder):
-
+def making_rep(
+    obj_sample
+) -> Path:
+    """Making directories for future files."""
+    input_file = str(obj_sample.input_file)
     new_file_path = Path(
-        file_path.replace(
-            str(input_folder),
-            str(output_folder)
+        input_file.replace(
+            str(obj_sample.input_folder),
+            str(obj_sample.output_folder)
         )
     ).parent
-
     try:
         makedirs(new_file_path)
-        return new_file_path
     except Exception:
-        return new_file_path
+        pass
+    return new_file_path
 
 
-def making_other_files(file, output_folder, input_folder):
-
-    name_file = Path(file).name
-    new_dir = making_rep(file, output_folder, input_folder)
-
-    shutil.copy2(file, f'{new_dir}/{name_file}')
-
-
-chinese_wordlist = dict()
-english_wordlist = dict()
+def making_other_files(
+    obj_sample
+) -> None:
+    """Making copies of files which we're not going to translate
+    and place them on the same places which they have in original rep."""
+    name_file = Path(obj_sample.input_file).name
+    new_dir = making_rep(obj_sample)
+    shutil.copy2(obj_sample.input_file, f'{new_dir}/{name_file}')

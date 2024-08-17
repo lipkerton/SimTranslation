@@ -1,47 +1,54 @@
 import os
 import pathlib
 
-
 # manual launch version (through main.py)
-# project_dir = str(
-#     os.path.dirname(
-#         os.path.dirname(
-#             os.path.abspath(__file__)
-#         )
-#     )
-# )
-
-# exe version
 project_dir = str(
     os.path.dirname(
         os.path.dirname(
-            os.path.dirname(
-                os.path.dirname(
-                    os.path.abspath(__file__)
-                )
-            )
+            os.path.abspath(__file__)
         )
     )
 )
 
-print(project_dir)
+# exe version
+# project_dir = str(
+#     os.path.dirname(
+#         os.path.dirname(
+#             os.path.dirname(
+#                 os.path.dirname(
+#                     os.path.abspath(__file__)
+#                 )
+#             )
+#         )
+#     )
+# )
 
 path_for_translations_eng = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
 ).absolute()
 path_for_translations_chn = pathlib.Path(
-    f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
+    f'{project_dir}/trans_support_files_dirs/trans_csv_chn'
 ).absolute()
-path_for_boss_dict = pathlib.Path(
+path_for_boss_dict_eng = pathlib.Path(
     f'{project_dir}/dictionaries/maintranslation.trans'
 ).absolute()
-path_for_main_dict = pathlib.Path(
-    f'{project_dir}/dictionaries/decoded_dictionary.pkl'
+path_for_boss_dict_chn = pathlib.Path(
+    f'{project_dir}/dictionaries/chn_base_dictionary.csv'
 ).absolute()
+path_for_main_dict_eng = pathlib.Path(
+    f'{project_dir}/dictionaries/decoded_dictionary_eng.pkl'
+).absolute()
+path_for_main_dict_chn = pathlib.Path(
+    f'{project_dir}/dictionaries/decoded_dictionary_chn.pkl'
+)
 media_directory = pathlib.Path(
     f'{project_dir}/media'
 ).absolute()
+output_folder = pathlib.Path(
+    f'{project_dir}/output'
+).absolute()
 
+exceptions = ('.xprt', '.xml')
 lines_fixing_in_dictionary = (
     r'[\x19\x0c\x10\x17\x07\x13\x16\x1f\x14\x07\x0f\x8a\xb2'
     r'\x1d\x1c\x1e\x1a\x12\x1b\n\x0b\x08\x0e\r\t\x01'
