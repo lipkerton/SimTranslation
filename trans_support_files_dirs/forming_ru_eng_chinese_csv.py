@@ -28,3 +28,32 @@ def file_making() -> None:
 
 
 file_making()
+
+def parsing_binary_trans(
+        path_dictionary: str
+) -> dict:
+    """Decoding orderer's dictionary."""
+
+    line = ''
+    new_dict = dict()
+    with open(path_dictionary, 'rb') as sample:
+        new = sample.read().decode('utf-16-le')
+        line += new
+    line = re.sub(
+        lines_fixing_in_dictionary,
+        '',
+        line
+    )
+    line = line.split('耀')
+    for i in range(2, len(line) - 1, 2):
+        key = making_clean_string(key=line[i - 1])
+        value = making_clean_string(value=line[i])
+        new_dict[key] = (value, None)
+    if (
+        line[-2] not in new_dict.keys()
+        and line[-1] not in new_dict.values()
+    ):
+        key = making_clean_string(key=line[-2])
+        value = making_clean_string(value=line[-1])
+        new_dict[key] = (value, None)
+    return new_dict

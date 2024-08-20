@@ -245,6 +245,17 @@ def output_dictionary_insert(
         dictionary.insert('1.0', message)
 
 
+def printing_translations_output_window(translated_lines_list):
+    if obj_sample.language == 'English':
+        for key, value in obj_sample.base_temp_dict.items():
+            message = f'{key};{value[0]}\n'
+            output_dictionary_insert(translated_lines_list, message)
+    else:
+        for key, value in obj_sample.base_temp_dict.items():
+            message = f'{key};{value[0]};{value[1]}\n'
+            output_dictionary_insert(translated_lines_list, message)
+
+
 def core_pattern() -> None:
     selected_language()
     result = output_window()
@@ -259,11 +270,9 @@ def core_pattern() -> None:
             message = parsing_xml(obj_sample)
             if message is not None:
                 output_dictionary_insert(result_list, message)
-    obj_sample.saved_dict_close()
     obj_sample.upd_files_counter(zeroed=True)
-    for key, value in obj_sample.base_temp_dict.items():
-        message = f'{key};{value}\n'
-        output_dictionary_insert(translated_lines_list, message)
+    printing_translations_output_window(translated_lines_list)
+    obj_sample.saved_dict_close()
 
 
 def main():

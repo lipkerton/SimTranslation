@@ -6,8 +6,8 @@ from pathlib import Path
 from .working_with_files_dirs import one_file_exec
 from .dictionary import print_into_dictionary, quick_update
 from .constants import (
-    path_for_main_dict_eng,
-    path_for_main_dict_chn,
+    path_for_main_dict,
+    path_for_boss_dict,
     path_for_translations_eng,
     path_for_translations_chn,
     output_folder
@@ -77,42 +77,27 @@ class PrepParseObj:
                 )
             )
 
-    def temp_dict_push(self, key, value=None):
+    def temp_dict_push(self, key, value=None, additional_value=None):
         """This dict is needed to print translations
         per each file in one translation session. In previous versions
         large projects overloaded the main translation pattern cause
         there were many similar words and each of them were translated as new one."""
-        self.base_temp_dict[key]=value
+        self.base_temp_dict[key]=(value, additional_value)
 
     def dictionaries_init(self):
         """Inititalization of pickle_dictionaries."""
-        if self.language == 'English':
-            self.saved_dict = open(path_for_main_dict_eng, 'rb')
-        else:
-            self.saved_dict = open(path_for_main_dict_chn, 'rb')
+        self.saved_dict = open(path_for_main_dict, 'rb')
         self.boss_dict = pickle.load(self.saved_dict)
     
     def dictionaries_creation(self):
-        if (
-            not os.path.exists(path_for_main_dict_eng)
-            and self.language == 'English'
-        ):
-            print_into_dictionary(
-                path_for_main_dict_eng, self.language
-            )
-        if (
-            not os.path.exists(path_for_main_dict_chn)
-            and self.language == 'Chinese'
-        ):
-            print_into_dictionary(
-                path_for_main_dict_chn, self.language
-            )
+        print_into_dictionary()
 
     def dictionaries_update(self, update):
-        quick_update(update, self.language)
+        quick_update(update)
     
     def saved_dict_close(self):
         """Closing pickle dictionaries."""
+        self.base_temp_dict = dict()
         self.saved_dict.close()
 
     def upd_files_counter(self, zeroed=False):
