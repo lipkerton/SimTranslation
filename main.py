@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import filedialog, ttk
 from tkinter.scrolledtext import ScrolledText
 
+from methods.constants import save_changes, undo_changes
 from methods.working_with_files_dirs import check_file_extenz
 from methods.xml_line_parsing import parsing_xml
 from methods.classes import PrepParseObj
@@ -160,7 +161,10 @@ def output_window() -> tuple:
     )
     ttk.Label(
         window,
-        text='format is <word or phrase to be translated;translation>',
+        text=(
+            'format is <word or phrase'
+            'to be translated;translation;chinese_translation>'
+        ),
         font=('Arial', 12)
     ).place(
         x=50, y=355
@@ -192,12 +196,12 @@ def output_window() -> tuple:
     if obj_sample.plat == 'win':
         ttk.Button(
             window,
-            text='Save changes',
+            text=save_changes,
             command=get_changes_for_inner_dictionary
         ).place(x=50, y=630, height=30, width=110)
         ttk.Button(
             window,
-            text='Undo changes',
+            text=undo_changes,
             command=undo_changes_for_inner_dictionary
         ).place(x=170, y=630, height=30, width=110)
         ttk.Button(
@@ -214,12 +218,12 @@ def output_window() -> tuple:
     elif obj_sample.plat == 'mac':
         ttk.Button(
             window,
-            text='Save changes',
+            text=save_changes,
             command=get_changes_for_inner_dictionary
         ).place(x=50, y=610, height=30, width=130)
         ttk.Button(
             window,
-            text='Undo changes',
+            text=undo_changes,
             command=undo_changes_for_inner_dictionary
         ).place(x=180, y=610, height=30, width=130)
         ttk.Button(
@@ -367,18 +371,18 @@ translate_btn = ttk.Button(
 # windows ver
 if obj_sample.plat == 'win':
     save_changes_btn = ttk.Button(
-        text='Save changes', command=get_changes_for_dictionary
+        text=save_changes, command=get_changes_for_dictionary
     ).place(x=50, y=570, height=30, width=110)
     undo_changes_btn = ttk.Button(
-        text='Undo changes', command=undo_changes_for_dictionary
+        text=undo_changes, command=undo_changes_for_dictionary
     ).place(x=170, y=570, height=30, width=110)
 # macOS ver
 elif obj_sample.plat == 'mac':
     save_changes_btn = ttk.Button(
-        text='Save changes', command=get_changes_for_dictionary
+        text=save_changes, command=get_changes_for_dictionary
     ).place(x=50, y=570, height=30, width=130)
     undo_changes_btn = ttk.Button(
-        text='Undo changes', command=undo_changes_for_dictionary
+        text=undo_changes, command=undo_changes_for_dictionary
     ).place(x=180, y=570, height=30, width=130)
 
 translate_btn.place(x=450, y=620, height=50, width=110)

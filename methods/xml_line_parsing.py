@@ -41,44 +41,47 @@ def parse_line(
     return line
 
 
+def searching_tag(child, obj_sample):
+    if child.tag == 'data':
+        child_name_text = child.findtext('name').lower()
+        if (
+            'labeltext' in child_name_text
+            or 'text' in child_name_text
+            or 'caption' in child_name_text
+        ):
+            value_text = child.findtext('value')
+            if value_text is not None:
+                child.find('value').text = parse_line(
+                    value_text,
+                    obj_sample
+                )
+                obj_sample.upd_lines_counter()
+    if (
+        child.tag == 'plot'
+        or child.tag == 'bottomaxis'
+        or child.tag == 'leftaxis'
+        or child.tag == 'series'
+    ):
+        title_text = child.findtext('title')
+        if title_text is not None:
+            child.find('title').text = parse_line(
+                title_text,
+                obj_sample
+            )
+            obj_sample.upd_lines_counter()
+
+
 def parsing_xml(
         obj_sample
-) -> None:
+) -> str:
     """Parsing xml and choosing tags which we need to translate,
     tags what we are going to translate - 'value', 'title'."""
     obj_sample.upd_lines_counter(zeroed=True)
     tree = ET.parse(obj_sample.input_file)
     root_node = tree.getroot()
-    # Цикл перебора всех тегов по заданному адресу
     for tag in root_node.findall('project'):
         for child in tag.iter():
-            if child.tag == 'data':
-                child_name_text = child.findtext('name').lower()
-                if (
-                    'labeltext' in child_name_text
-                    or 'text' in child_name_text
-                    or 'caption' in child_name_text
-                ):
-                    value_text = child.findtext('value')
-                    if value_text is not None:
-                        child.find('value').text = parse_line(
-                            value_text,
-                            obj_sample
-                        )
-                        obj_sample.upd_lines_counter()
-            if (
-                child.tag == 'plot'
-                or child.tag == 'bottomaxis'
-                or child.tag == 'leftaxis'
-                or child.tag == 'series'
-            ):
-                title_text = child.findtext('title')
-                if title_text is not None:
-                    child.find('title').text = parse_line(
-                        title_text,
-                        obj_sample
-                    )
-                    obj_sample.upd_lines_counter()
+            searching_tag(child, obj_sample)
         translated_file_name = translate_file_name(
             obj_sample
         )
@@ -94,7 +97,8 @@ def parsing_xml(
         tree.write(name_file, encoding='utf-8', xml_declaration=True)
     obj_sample.upd_files_counter()
     message = (
-        f'{obj_sample.name_file} was translated!\nFile number: {obj_sample.num_files}\n'
+        f'{obj_sample.name_file} was translated!\n'
+        f'File number: {obj_sample.num_files}\n'
         f'Translated lines counter: {obj_sample.num_lines}\n'
         '\n'
     )

@@ -2,26 +2,26 @@ import os
 import pathlib
 
 # manual launch version (through main.py)
-project_dir = str(
-    os.path.dirname(
-        os.path.dirname(
-            os.path.abspath(__file__)
-        )
-    )
-)
-
-# exe version
 # project_dir = str(
 #     os.path.dirname(
 #         os.path.dirname(
-#             os.path.dirname(
-#                 os.path.dirname(
-#                     os.path.abspath(__file__)
-#                 )
-#             )
+#             os.path.abspath(__file__)
 #         )
 #     )
 # )
+
+# exe version
+project_dir = str(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(
+                os.path.dirname(
+                    os.path.abspath(__file__)
+                )
+            )
+        )
+    )
+)
 
 path_for_translations_eng = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
@@ -53,3 +53,6 @@ lines_fixing_in_dictionary = (
     r'\u2080\u2081\u2082\ufeff\u03b4\u200b\u03c4\u2265'
     r'\u03c9\u2260\u2264\u22bb\u03b2]'
 )
+
+save_changes = 'Save changes'
+undo_changes = 'Undo changes'
