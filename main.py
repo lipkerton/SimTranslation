@@ -1,4 +1,5 @@
 import re
+import os
 import subprocess
 import tkinter as tk
 from tkinter import filedialog, ttk
@@ -14,16 +15,11 @@ def input_entry_is_valid(
         value: str
 ) -> bool:
     """Сообщение об ошибке для строк ввода."""
-    if obj_sample.plat == 'win':
-        result = re.match('^(.+)\/([^\/]+)$', value) is not None
-    elif obj_sample.plat == 'mac':
-        result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
+    result = os.path.exists(value)
     if not result:
         error_message_input.set('Check that the entered path is correct.')
-        translate_btn['state'] = 'disabled'
     else:
         error_message_input.set('')
-        translate_btn['state'] = 'enabled'
     return result
 
 
@@ -31,15 +27,28 @@ def output_entry_is_valid(
         value: str
 ) -> bool:
     """Сообщение об ошибке для строк ввода."""
-    if obj_sample.plat == 'win':
-        result = re.match('^(.+)\/([^\/]+)$', value) is not None
-    elif obj_sample.plat == 'mac':
-        result = re.match('^(.+)\\/([^\\/]+)$', value) is not None
+    if str(obj_sample.output_folder) == value:
+        result = True
+    else:
+        result = os.path.exists(value)
     if not result:
         error_message_output.set('Check that the entered path is correct.')
     else:
         error_message_output.set('')
     return result
+
+
+def check_value_index(value, index):
+    check_in_value = value[index]
+    try:
+        check_in_value = check_in_value.split(';')
+    except Exception:
+        return False
+    if len(check_in_value) > 3:
+        return False
+    elif len(check_in_value) < 2:
+        return False
+    return True
 
 
 def validate_entry_text(
@@ -48,15 +57,16 @@ def validate_entry_text(
 ) -> list:
     """Выделение ошибки при вводе строк в текстовое поле."""
     value = value.split('\n')
-    saved_changes_list = []
+    saved_changes_list = list()
+    unsaved_changes_list = str()
     for index in range(len(value)):
-        subindex = len(value[index])
-        result = re.match('(.{1,})[;](.{1,})', value[index]) is not None
-        start_index = f'{index + 1}.0'
-        end_index = f'{index + 1}.{subindex}'
+        result = check_value_index(value, index)
         if result:
             saved_changes_list.append(value[index])
-            model.delete(start_index, end_index)
+        else:
+            unsaved_changes_list += f'{value[index]}\n'
+    model.delete('1.0', 'end')
+    model.insert('1.0', unsaved_changes_list)
     return saved_changes_list
 
 
@@ -260,6 +270,16 @@ def printing_translations_output_window(translated_lines_list):
             output_dictionary_insert(translated_lines_list, message)
 
 
+def check_entry_values():
+    input = input_folder_entry.get()
+    output = output_folder_entry.get()
+    if (
+        input_entry_is_valid(input)
+        and output_entry_is_valid(output)
+    ):
+        core_pattern()
+
+
 def core_pattern() -> None:
     selected_language()
     result = output_window()
@@ -351,6 +371,23 @@ ttk.Label(
     x=40, y=170
 )
 
+# Работа со строками ввода.
+input_entry_field = tk.StringVar()
+output_entry_field = tk.StringVar(value=obj_sample.output_folder)
+
+input_folder_entry = ttk.Entry(
+    textvariable=input_entry_field
+)
+output_folder_entry = ttk.Entry(
+    textvariable=output_entry_field
+)
+
+input_folder_entry.place(
+    x=40, y=60, height=30, width=400
+)
+output_folder_entry.place(
+    x=40, y=140, height=30, width=400
+)
 
 # Работа с кнопками.
 input_folder_btn = ttk.Button(
@@ -365,8 +402,7 @@ show_result_dir_btn = ttk.Button(
 ).place(x=330, y=620, height=50, width=110)
 translate_btn = ttk.Button(
     text='Translate',
-    state=['disabled'],
-    command=core_pattern
+    command=check_entry_values
 )
 # windows ver
 if obj_sample.plat == 'win':
@@ -386,28 +422,6 @@ elif obj_sample.plat == 'mac':
     ).place(x=180, y=570, height=30, width=130)
 
 translate_btn.place(x=450, y=620, height=50, width=110)
-
-# Работа со строками ввода.
-input_entry_field = tk.StringVar()
-output_entry_field = tk.StringVar(value=obj_sample.output_folder)
-
-input_folder_entry = ttk.Entry(
-    textvariable=input_entry_field,
-    validate='focus',
-    validatecommand=error_check_input
-)
-output_folder_entry = ttk.Entry(
-    textvariable=output_entry_field,
-    validate='focus',
-    validatecommand=error_check_output
-)
-
-input_folder_entry.place(
-    x=40, y=60, height=30, width=400
-)
-output_folder_entry.place(
-    x=40, y=140, height=30, width=400
-)
 
 # Работа с выбором языка.
 english = 'English'

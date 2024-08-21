@@ -1,9 +1,16 @@
 import xml.etree.ElementTree as ET
 
-from .translation_chn_eng import (check_the_line_in_dict,
-                                  match,
-                                  translate_file_name)
+from .translation_chn_eng import words_in_line_translate
 from .working_with_files_dirs import making_rep
+from .constants import iter_tags, child_names, exceptions_dots
+
+
+def translate_file_name(
+        obj_sample
+) -> str:
+    """Translating file name."""
+    line = obj_sample.name_file.replace(' ', '_')
+    return words_in_line_translate(line.split('_'), line, obj_sample)
 
 
 def parse_line(
@@ -18,27 +25,15 @@ def parse_line(
     WORDLIST = list()
     FLAG = False
     for symbol_index in range(len(line) - 1):
-        exceptions = ("'", "`", '"')
         if FLAG:
             RUS_TEXT += line[symbol_index]
-        if line[symbol_index] in exceptions:
+        if line[symbol_index] in exceptions_dots:
             FLAG = True
-        if line[symbol_index + 1] in exceptions:
+        if line[symbol_index + 1] in exceptions_dots:
             WORDLIST.append(RUS_TEXT.strip())
             RUS_TEXT = str()
             FLAG = False
-    WORDLIST = sorted(WORDLIST, key=len, reverse=True)
-    for word in WORDLIST:
-        if match(word):
-            TRANSLATED_WORD = check_the_line_in_dict(
-                word,
-                obj_sample
-            )
-            line = line.replace(
-                word,
-                TRANSLATED_WORD
-            )
-    return line
+    return words_in_line_translate(WORDLIST, line, obj_sample)
 
 
 def searching_tag(child, obj_sample):
@@ -56,12 +51,7 @@ def searching_tag(child, obj_sample):
                     obj_sample
                 )
                 obj_sample.upd_lines_counter()
-    if (
-        child.tag == 'plot'
-        or child.tag == 'bottomaxis'
-        or child.tag == 'leftaxis'
-        or child.tag == 'series'
-    ):
+    if child.tag in iter_tags:
         title_text = child.findtext('title')
         if title_text is not None:
             child.find('title').text = parse_line(
@@ -82,24 +72,18 @@ def parsing_xml(
     for tag in root_node.findall('project'):
         for child in tag.iter():
             searching_tag(child, obj_sample)
-        translated_file_name = translate_file_name(
-            obj_sample
-        )
-        new_file_path = making_rep(
-            obj_sample
-        )
-        name_file = (
-            f'{new_file_path}/'
-            f'{translated_file_name}_'
-            f'{obj_sample.abs_for_translator}.xprt'
-        )
-        obj_sample.files_translations.close()
-        tree.write(name_file, encoding='utf-8', xml_declaration=True)
-    obj_sample.upd_files_counter()
-    message = (
-        f'{obj_sample.name_file} was translated!\n'
-        f'File number: {obj_sample.num_files}\n'
-        f'Translated lines counter: {obj_sample.num_lines}\n'
-        '\n'
+    translated_file_name = translate_file_name(
+        obj_sample
     )
-    return message
+    new_file_path = making_rep(
+        obj_sample
+    )
+    name_file = (
+        f'{new_file_path}/'
+        f'{translated_file_name}_'
+        f'{obj_sample.abs_for_translator}.xprt'
+    )
+    tree.write(name_file, encoding='utf-8', xml_declaration=True)
+    obj_sample.files_translations.close()
+    obj_sample.upd_files_counter()
+    return obj_sample.compile_message()

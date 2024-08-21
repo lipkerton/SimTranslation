@@ -27,8 +27,6 @@ class PrepParseObj:
         self.num_lines = 0
         if platform.system().lower() == 'windows':
             self.plat = 'win'
-        elif platform.system().lower() == 'darwin':
-            self.plat = 'mac'
         else:
             self.plat = 'mac'
 
@@ -102,6 +100,15 @@ class PrepParseObj:
         """Closing pickle dictionaries."""
         self.base_temp_dict = dict()
         self.saved_dict.close()
+    
+    def compile_message(self):
+        message = (
+            f'{self.name_file} was translated!\n'
+            f'File number: {self.num_files}\n'
+            f'Translated lines counter: {self.num_lines}\n'
+            '\n'
+        )
+        return message
 
     def upd_files_counter(self, zeroed=False):
         """It is for messages that translation session was complete."""

@@ -13,12 +13,8 @@ def match(
         return not alphabet.isdisjoint(text.lower())
 
 
-def translate_file_name(
-        obj_sample
-) -> str:
-    """Translating file name."""
-    line = obj_sample.name_file.replace(' ', '_')
-    WORDLIST = sorted(line.split('_'), key=len, reverse=True)
+def words_in_line_translate(WORDLIST, line, obj_sample):
+    WORDLIST = sorted(WORDLIST, key=len, reverse=True)
     for word in WORDLIST:
         if match(word):
             TRANSLATED_WORD = check_the_line_in_dict(

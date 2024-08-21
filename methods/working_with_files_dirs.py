@@ -2,7 +2,7 @@ import shutil
 from os import makedirs
 from pathlib import Path
 
-from .constants import exceptions
+from .constants import exceptions_extez
 
 
 def printing_translations_into_csv(
@@ -33,7 +33,7 @@ def check_file_extenz(
 ) -> bool:
     """Checking file extension."""
     extenz = Path(obj_sample.input_file).suffix
-    if extenz not in exceptions:
+    if extenz not in exceptions_extez:
         making_other_files(
             obj_sample
         )
