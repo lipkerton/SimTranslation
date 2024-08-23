@@ -1,5 +1,6 @@
 import os
 import pathlib
+from googletrans import Translator
 
 # manual launch version (through main.py)
 project_dir = str(
@@ -53,6 +54,8 @@ undo_changes = 'Undo changes'
 
 iter_tags = ('plot', 'bottomaxis', 'leftaxis', 'series')
 child_names = ('labeltext', 'text', 'caption')
+
+translator = Translator()
 
 # lines_fixing_in_dictionary = (
 #     r'[\x19\x0c\x10\x17\x07\x13\x16\x1f\x14\x07\x0f\x8a\xb2'

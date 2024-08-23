@@ -1,4 +1,5 @@
 import pickle
+import string
 
 from .constants import (
     path_for_boss_dict,
@@ -7,17 +8,14 @@ from .constants import (
 
 
 def making_clean_string(
-        key=None, value=None
+        value, low=False
 ) -> str:
     """Kicking off some trash from the line."""
-    if key is not None:
-        result = key.strip(
-                '/&$-,=+@[;:<#$%*"!?\' '
-            ).lower()
-    elif value is not None:
-        result = value.strip(
-                '/&$-,=+@[;:<#$%*"!?\'\n '
-            )
+    result = value.strip(
+        string.punctuation + string.whitespace
+    )
+    if low:
+        result = result.lower()
     return result
 
 
@@ -30,7 +28,7 @@ def forming_dictionary(
     ) as sample:
         for line in sample.readlines():
             line = line.strip('\n').split(';')
-            key = making_clean_string(key=line[0])
+            key = making_clean_string(value=line[0], low=True)
             value = making_clean_string(value=line[1])
             additional_value = making_clean_string(value=line[2])
             new_dict[key] = (value, additional_value)
@@ -56,24 +54,26 @@ def print_into_dictionary(update=None) -> None:
             pickle.dump(update_data, f)
 
 
-def quick_update(changes):
+def quick_update(
+        changes
+) -> None:
+    """Changes is a line that looks like this:
+    <rus_word;eng_word;chn_word>
+    we split this line in three parts and send them
+    in print_into_dictionary func
+    if something went wrong there will be IndexError
+    wrong formed words will be displayed in GUI."""
     updated_dict = dict()
     for index in range(len(changes)):
         if changes[index]:
-            try:
-                line = changes[index].strip('\n').split(';')
-                word_to = making_clean_string(key=line[0])
-                translate = making_clean_string(value=line[1])
-                if len(line) == 2:
-                    updated_dict[word_to] = (translate, None)
-                elif len(line) == 3:
-                    additional_value = making_clean_string(value=line[2])
-                    updated_dict[word_to] = (translate, additional_value)
-                else:
-                    raise IndexError('Wrong format!')
-            except IndexError:
-                subindex = len(changes[index])
-                return (index, subindex)
+            line = changes[index].strip('\n').split(';')
+            word_to = making_clean_string(value=line[0], low=True)
+            translate = making_clean_string(value=line[1])
+            if len(line) == 2:
+                updated_dict[word_to] = (translate, None)
+            elif len(line) == 3:
+                additional_value = making_clean_string(value=line[2])
+                updated_dict[word_to] = (translate, additional_value)
     print_into_dictionary(
         updated_dict
     )

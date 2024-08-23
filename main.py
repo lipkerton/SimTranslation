@@ -1,4 +1,3 @@
-import re
 import os
 import subprocess
 import tkinter as tk
@@ -17,7 +16,10 @@ def input_entry_is_valid(
     """Сообщение об ошибке для строк ввода."""
     result = os.path.exists(value)
     if not result:
-        error_message_input.set('Check that the entered path is correct.')
+        try:
+            os.makedirs(value)
+        except Exception:
+            error_message_input.set('Check that the entered path is correct.')
     else:
         error_message_input.set('')
     return result
@@ -27,12 +29,15 @@ def output_entry_is_valid(
         value: str
 ) -> bool:
     """Сообщение об ошибке для строк ввода."""
-    if str(obj_sample.output_folder) == value:
+    if str(CORE_SETTINGS.output_folder) == value:
         result = True
     else:
         result = os.path.exists(value)
     if not result:
-        error_message_output.set('Check that the entered path is correct.')
+        try:
+            os.makedirs(value)
+        except Exception:
+            error_message_input.set('Check that the entered path is correct.')
     else:
         error_message_output.set('')
     return result
@@ -56,7 +61,7 @@ def validate_entry_text(
         model
 ) -> list:
     """Выделение ошибки при вводе строк в текстовое поле."""
-    value = value.split('\n')
+    value = value.strip().split('\n')
     saved_changes_list = list()
     unsaved_changes_list = str()
     for index in range(len(value)):
@@ -75,7 +80,7 @@ def input_search() -> None:
     name = filedialog.askdirectory()
     input_entry_is_valid(name)
     input_entry_field.set(value=name)
-    obj_sample.input_path_push(name)
+    CORE_SETTINGS.input_path_push(name)
 
 
 def output_search() -> None:
@@ -83,13 +88,13 @@ def output_search() -> None:
     name = filedialog.askdirectory()
     output_entry_is_valid(name)
     output_entry_field.set(value=name)
-    obj_sample.output_path_push(name)
+    CORE_SETTINGS.output_path_push(name)
 
 
 def selected_language() -> None:
     """Получаем выбранный язык."""
     selected_language = language.get()
-    obj_sample.language_push(selected_language)
+    CORE_SETTINGS.language_push(selected_language)
     return selected_language
 
 
@@ -125,7 +130,7 @@ def save_changes_for_dictionary(
     is_valid = validate_entry_text(changes, model)
     selected_language()
     if is_valid:
-        obj_sample.dictionaries_update(is_valid)
+        CORE_SETTINGS.dictionaries_update(is_valid)
 
 
 def undo_changes_for_dictionary() -> None:
@@ -136,10 +141,10 @@ def undo_changes_for_dictionary() -> None:
 
 def open_output_folder() -> None:
     """Открываем папку вывода."""
-    path = obj_sample.create_output_folder()
-    if obj_sample.plat == 'win':
+    path = CORE_SETTINGS.create_output_folder()
+    if CORE_SETTINGS.plat == 'win':
         subprocess.Popen(f'explorer "{path}"')
-    elif obj_sample.plat == 'mac':
+    elif CORE_SETTINGS.plat == 'mac':
         subprocess.call(["open", "-R", path])
 
 
@@ -179,7 +184,7 @@ def output_window() -> tuple:
     ).place(
         x=50, y=355
     )
-    if obj_sample.plat == 'win':
+    if CORE_SETTINGS.plat == 'win':
         result_list = ScrolledText(
             window, width=60, height=15
         )
@@ -191,11 +196,11 @@ def output_window() -> tuple:
     result_list.place(
         x=50, y=60
     )
-    if obj_sample.plat == 'win':
+    if CORE_SETTINGS.plat == 'win':
         translated_lines_list = ScrolledText(
             window, width=60, height=15
         )
-    elif obj_sample.plat == 'mac':
+    elif CORE_SETTINGS.plat == 'mac':
         translated_lines_list = ScrolledText(
             window, width=65, height=17
         )
@@ -203,7 +208,7 @@ def output_window() -> tuple:
         x=50, y=380
     )
     inner_changes_dictionary = translated_lines_list
-    if obj_sample.plat == 'win':
+    if CORE_SETTINGS.plat == 'win':
         ttk.Button(
             window,
             text=save_changes,
@@ -225,7 +230,7 @@ def output_window() -> tuple:
             command=close_window
         )
         translate_btn.place(x=450, y=630, height=50, width=110)
-    elif obj_sample.plat == 'mac':
+    elif CORE_SETTINGS.plat == 'mac':
         ttk.Button(
             window,
             text=save_changes,
@@ -260,14 +265,9 @@ def output_dictionary_insert(
 
 
 def printing_translations_output_window(translated_lines_list):
-    if obj_sample.language == 'English':
-        for key, value in obj_sample.base_temp_dict.items():
-            message = f'{key};{value[0]}\n'
-            output_dictionary_insert(translated_lines_list, message)
-    else:
-        for key, value in obj_sample.base_temp_dict.items():
-            message = f'{key};{value[0]};{value[1]}\n'
-            output_dictionary_insert(translated_lines_list, message)
+    for key, value in CORE_SETTINGS.base_temp_dict.items():
+        message = f'{key:^18s};{value[0]:^20s};{str(value[1]):^18s}\n'
+        output_dictionary_insert(translated_lines_list, message)
 
 
 def check_entry_values():
@@ -285,18 +285,18 @@ def core_pattern() -> None:
     result = output_window()
     result_list = result[0]
     translated_lines_list = result[1]
-    obj_sample.dictionaries_creation()
-    obj_sample.dictionaries_init()
-    for file_path in obj_sample.input_folder.rglob('*.*'):
-        obj_sample.file_path_push(file_path)
-        if check_file_extenz(obj_sample):
-            obj_sample.one_file_exec()
-            message = parsing_xml(obj_sample)
+    CORE_SETTINGS.dictionaries_creation()
+    CORE_SETTINGS.dictionaries_init()
+    for file_path in CORE_SETTINGS.input_folder.rglob('*.*'):
+        CORE_SETTINGS.file_path_push(file_path)
+        if check_file_extenz(CORE_SETTINGS):
+            CORE_SETTINGS.one_file_exec()
+            message = parsing_xml(CORE_SETTINGS)
             if message is not None:
                 output_dictionary_insert(result_list, message)
-    obj_sample.upd_files_counter(zeroed=True)
     printing_translations_output_window(translated_lines_list)
-    obj_sample.saved_dict_close()
+    CORE_SETTINGS.upd_files_counter(zeroed=True)
+    CORE_SETTINGS.saved_dict_close()
 
 
 def main():
@@ -316,7 +316,7 @@ inner_changes_flag = False
 inner_changes = None
 inner_changes_dictionary = None
 
-obj_sample = PrepParseObj()
+CORE_SETTINGS = PrepParseObj()
 
 tk_sample.title('SimTranslation')
 tk_sample.geometry('600x700')
@@ -373,7 +373,7 @@ ttk.Label(
 
 # Работа со строками ввода.
 input_entry_field = tk.StringVar()
-output_entry_field = tk.StringVar(value=obj_sample.output_folder)
+output_entry_field = tk.StringVar(value=CORE_SETTINGS.output_folder)
 
 input_folder_entry = ttk.Entry(
     textvariable=input_entry_field
@@ -405,7 +405,7 @@ translate_btn = ttk.Button(
     command=check_entry_values
 )
 # windows ver
-if obj_sample.plat == 'win':
+if CORE_SETTINGS.plat == 'win':
     save_changes_btn = ttk.Button(
         text=save_changes, command=get_changes_for_dictionary
     ).place(x=50, y=570, height=30, width=110)
@@ -413,7 +413,7 @@ if obj_sample.plat == 'win':
         text=undo_changes, command=undo_changes_for_dictionary
     ).place(x=170, y=570, height=30, width=110)
 # macOS ver
-elif obj_sample.plat == 'mac':
+elif CORE_SETTINGS.plat == 'mac':
     save_changes_btn = ttk.Button(
         text=save_changes, command=get_changes_for_dictionary
     ).place(x=50, y=570, height=30, width=130)
@@ -448,12 +448,12 @@ chinese_radio.place(
 
 # Работа с обновлением словаря.
 # windows ver
-if obj_sample.plat == 'win':
+if CORE_SETTINGS.plat == 'win':
     changes_dictionary = ScrolledText(
         tk_sample, width=60, height=15
     )
 # macOS ver
-elif obj_sample.plat == 'mac':
+elif CORE_SETTINGS.plat == 'mac':
     changes_dictionary = ScrolledText(
         tk_sample, width=65, height=17
     )

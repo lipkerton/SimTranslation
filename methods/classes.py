@@ -1,15 +1,17 @@
 import pickle
 import platform
+import string
 import os
 from pathlib import Path
 
 from .working_with_files_dirs import one_file_exec
+from.translation_chn_eng import translated_line_construction, check_the_word_in_dict
 from .dictionary import print_into_dictionary, quick_update
 from .constants import (
     path_for_main_dict,
     path_for_translations_eng,
     path_for_translations_chn,
-    output_folder
+    output_folder,
 )
 
 
@@ -91,9 +93,11 @@ class PrepParseObj:
         self.boss_dict = pickle.load(self.saved_dict)
 
     def dictionaries_creation(self):
+        """Create decoded_dictionary.pkl"""
         print_into_dictionary()
 
     def dictionaries_update(self, update):
+        """Save changes in decoded_dictionary.pkl"""
         quick_update(update)
 
     def saved_dict_close(self):
@@ -102,6 +106,7 @@ class PrepParseObj:
         self.saved_dict.close()
     
     def compile_message(self):
+        """Compile summary message for output window."""
         message = (
             f'{self.name_file} was translated!\n'
             f'File number: {self.num_files}\n'
@@ -123,3 +128,75 @@ class PrepParseObj:
             self.num_lines += 1
         else:
             self.num_lines = 0
+
+
+class WordTranslate:
+
+    def __init__(self, word, CORE_SETTINGS) -> None:
+        self.init_word = word
+        self.clean_word = word.strip(
+            string.punctuation + string.punctuation
+        )
+        self.CORE_SETTINGS = CORE_SETTINGS
+    
+    def prep_translated_word(self):
+        self.translated_word = check_the_word_in_dict(self)
+
+
+class LineTranslate:
+    """The line is coming from parsing_xml func
+    searching for rus words in line and send them to
+    translation_chn_eng.py"""
+
+    def __init__(self, line, CORE_SETTINGS) -> None:
+        self.line = line
+        self.translated_line = line
+        self.wordlist = list()
+        self.exceptions_dots = ("'", "`", '"')
+        self.alphabet=set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+        self.translator_flag = self.match(line)
+        self.CORE_SETTINGS = CORE_SETTINGS
+
+    def match(
+            self, text: str
+    ) -> bool:
+        """Checking line for russian letters."""
+        if text is not None:
+            return not self.alphabet.isdisjoint(text.lower())
+
+    def core_parse_line(
+            self
+    ) -> None:
+        """Parsing line that we need to translate,
+        searching for any words in quotes,
+        send them into sorted wordlist.
+        Sorted list is going to be send in
+        words_in_line_translate func below."""
+        RUS_TEXT = str()
+        FLAG = False
+        for symbol_index in range(len(self.line) - 1):
+            if FLAG:
+                RUS_TEXT += self.line[symbol_index]
+            if self.line[symbol_index] in self.exceptions_dots:
+                FLAG = True
+            if self.line[symbol_index + 1] in self.exceptions_dots:
+                self.wordlist.append(RUS_TEXT)
+                RUS_TEXT = str()
+                FLAG = False
+        self.wordlist = sorted(self.wordlist, key=len, reverse=True)
+
+    def words_in_line_translate(
+            self, file_name=None
+    ) -> str:
+        """Iterating through wordlist
+        check-in every word for russion letters
+        sending each word into word_separation_in_two func."""
+        for word in self.wordlist:
+            if self.match(word):
+                word_obj = WordTranslate(word, self.CORE_SETTINGS)
+                translated_line_construction(self, word_obj)
+        if file_name:
+            if self.match(file_name):
+                word_obj = WordTranslate(file_name, self.CORE_SETTINGS)
+                translated_line_construction(self, word_obj)
+        return self.translated_line

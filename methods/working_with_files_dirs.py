@@ -29,27 +29,27 @@ def one_file_exec(
 
 
 def check_file_extenz(
-    obj_sample
+    CORE_SETTINGS
 ) -> bool:
     """Checking file extension."""
-    extenz = Path(obj_sample.input_file).suffix
+    extenz = Path(CORE_SETTINGS.input_file).suffix
     if extenz not in exceptions_extez:
         making_other_files(
-            obj_sample
+            CORE_SETTINGS
         )
         return False
     return True
 
 
 def making_rep(
-    obj_sample
+    CORE_SETTINGS
 ) -> Path:
     """Making directories for future files."""
-    input_file = str(obj_sample.input_file)
+    input_file = str(CORE_SETTINGS.input_file)
     new_file_path = Path(
         input_file.replace(
-            str(obj_sample.input_folder),
-            str(obj_sample.output_folder)
+            str(CORE_SETTINGS.input_folder),
+            str(CORE_SETTINGS.output_folder)
         )
     ).parent
     try:
@@ -60,10 +60,10 @@ def making_rep(
 
 
 def making_other_files(
-    obj_sample
+    CORE_SETTINGS
 ) -> None:
     """Making copies of files which we're not going to translate
     and place them on the same places which they have in original rep."""
-    name_file = Path(obj_sample.input_file).name
-    new_dir = making_rep(obj_sample)
-    shutil.copy2(obj_sample.input_file, f'{new_dir}/{name_file}')
+    name_file = Path(CORE_SETTINGS.input_file).name
+    new_dir = making_rep(CORE_SETTINGS)
+    shutil.copy2(CORE_SETTINGS.input_file, f'{new_dir}/{name_file}')
