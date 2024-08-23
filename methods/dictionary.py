@@ -66,7 +66,7 @@ def quick_update(
     updated_dict = dict()
     for index in range(len(changes)):
         if changes[index]:
-            line = changes[index].strip('\n').split(';')
+            line = changes[index].strip('\n').split(')')[1].split(';')
             word_to = making_clean_string(value=line[0], low=True)
             translate = making_clean_string(value=line[1])
             if len(line) == 2:

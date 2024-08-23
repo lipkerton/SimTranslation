@@ -18,9 +18,11 @@ def input_entry_is_valid(
     if not result:
         try:
             os.makedirs(value)
+            CORE_SETTINGS.input_path_push(value)
         except Exception:
             error_message_input.set('Check that the entered path is correct.')
     else:
+        CORE_SETTINGS.input_path_push(value)
         error_message_input.set('')
     return result
 
@@ -36,9 +38,12 @@ def output_entry_is_valid(
     if not result:
         try:
             os.makedirs(value)
+            CORE_SETTINGS.output_path_push(value)
+            return True
         except Exception:
             error_message_input.set('Check that the entered path is correct.')
     else:
+        CORE_SETTINGS.output_path_push(value)
         error_message_output.set('')
     return result
 
@@ -49,9 +54,10 @@ def check_value_index(value, index):
         check_in_value = check_in_value.split(';')
     except Exception:
         return False
-    if len(check_in_value) > 3:
-        return False
-    elif len(check_in_value) < 2:
+    if (
+        len(check_in_value) > 3
+        or len(check_in_value) < 2
+    ):
         return False
     return True
 
@@ -141,11 +147,12 @@ def undo_changes_for_dictionary() -> None:
 
 def open_output_folder() -> None:
     """Открываем папку вывода."""
-    path = CORE_SETTINGS.create_output_folder()
-    if CORE_SETTINGS.plat == 'win':
-        subprocess.Popen(f'explorer "{path}"')
-    elif CORE_SETTINGS.plat == 'mac':
-        subprocess.call(["open", "-R", path])
+    output_entry = output_folder_entry.get()
+    if output_entry_is_valid(output_entry):
+        if CORE_SETTINGS.plat == 'win':
+            subprocess.Popen(f'explorer "{output_entry}"')
+        elif CORE_SETTINGS.plat == 'mac':
+            subprocess.call(["open", "-R", output_entry])
 
 
 def close_window() -> None:
@@ -265,17 +272,22 @@ def output_dictionary_insert(
 
 
 def printing_translations_output_window(translated_lines_list):
-    for key, value in CORE_SETTINGS.base_temp_dict.items():
-        message = f'{key:^18s};{value[0]:^20s};{str(value[1]):^18s}\n'
+    index = len(CORE_SETTINGS.base_temp_dict.items())
+    core_message = '{0:<3s}{1:<18s};{2:^20s};{3:^18s}\n'
+    for key, value in reversed(CORE_SETTINGS.base_temp_dict.items()):
+        message = core_message.format(
+            str(index) + ')', key, value[0], str(value[1])
+        )
         output_dictionary_insert(translated_lines_list, message)
+        index -= 1
 
 
 def check_entry_values():
-    input = input_folder_entry.get()
-    output = output_folder_entry.get()
+    input_entry = input_folder_entry.get()
+    output_entry = output_folder_entry.get()
     if (
-        input_entry_is_valid(input)
-        and output_entry_is_valid(output)
+        input_entry_is_valid(input_entry)
+        and output_entry_is_valid(output_entry)
     ):
         core_pattern()
 

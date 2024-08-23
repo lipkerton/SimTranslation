@@ -1,5 +1,3 @@
-import string
-
 from .working_with_files_dirs import printing_translations_into_csv
 from .constants import translator
 
@@ -46,13 +44,14 @@ def memes_check(
         word_obj
 ) -> str:
     """Here i tried to make func that avoid None value in my dict
-    u see: basic sample of my dict looks like this <rus_word:(eng_word, chn_word)>
+    u see: basic sample of my dict looks like this
+    <rus_word:(eng_word, chn_word)>
     and one of eng/chn values can be None if the translate for them haven't
     been done.
     word_spec - is init_word or clean_word."""
     if meme:
         if word_obj.CORE_SETTINGS.language == 'English':
-            if meme[0]:
+            if meme[0] and meme[0] != 'None':
                 return meme[0]
             else:
                 return prep_translate(
@@ -60,7 +59,7 @@ def memes_check(
                     word_obj
                 )
         else:
-            if meme[1]:
+            if meme[1] and meme[1] != 'None':
                 return meme[1]
             else:
                 return prep_translate(
@@ -119,6 +118,6 @@ def translated_line_construction(
     be sure that we don't have them in our library already."""
     word_obj.prep_translated_word()
     line_obj.translated_line = line_obj.line.replace(
-        word_obj.init_word,
+        word_obj.base_word,
         word_obj.translated_word
     )

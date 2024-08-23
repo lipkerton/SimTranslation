@@ -15,7 +15,8 @@ def translate_file_name(
 
 
 def searching_tag(
-        child, CORE_SETTINGS
+        child,
+        CORE_SETTINGS
 ) -> None:
     """Asking which tag we recieved
     if it is 'data' or 'plot', 'bottomaxis', 'leftaxis', 'series'
@@ -58,9 +59,9 @@ def parsing_xml(
         for child in tag.iter():
             searching_tag(child, CORE_SETTINGS)
     translated_file_name = translate_file_name(
-        CORE_SETTINGS.name_file.replace(' ', '_'),
+        CORE_SETTINGS.name_file,
         CORE_SETTINGS
-    )
+    ).replace(' ', '_')
     new_file_path = making_rep(
         CORE_SETTINGS
     )

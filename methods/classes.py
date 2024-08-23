@@ -1,18 +1,14 @@
 import pickle
 import platform
 import string
-import os
 from pathlib import Path
 
-from .working_with_files_dirs import one_file_exec
-from.translation_chn_eng import translated_line_construction, check_the_word_in_dict
+from .constants import (output_folder, path_for_main_dict,
+                        path_for_translations_chn, path_for_translations_eng)
 from .dictionary import print_into_dictionary, quick_update
-from .constants import (
-    path_for_main_dict,
-    path_for_translations_eng,
-    path_for_translations_chn,
-    output_folder,
-)
+from .translation_chn_eng import (check_the_word_in_dict,
+                                  translated_line_construction)
+from .working_with_files_dirs import one_file_exec
 
 
 class PrepParseObj:
@@ -39,14 +35,6 @@ class PrepParseObj:
     def output_path_push(self, output_path):
         """Path to folder from GUI."""
         self.output_folder = Path(output_path)
-
-    def create_output_folder(self):
-        """output dir creation."""
-        try:
-            os.mkdir(self.output_folder)
-        except Exception:
-            pass
-        return self.output_folder
 
     def language_push(self, language: str):
         """Language from GUI."""
@@ -104,7 +92,7 @@ class PrepParseObj:
         """Closing pickle dictionaries."""
         self.base_temp_dict = dict()
         self.saved_dict.close()
-    
+
     def compile_message(self):
         """Compile summary message for output window."""
         message = (
@@ -133,12 +121,13 @@ class PrepParseObj:
 class WordTranslate:
 
     def __init__(self, word, CORE_SETTINGS) -> None:
-        self.init_word = word
+        self.base_word = word
+        self.init_word = word.lower()
         self.clean_word = word.strip(
             string.punctuation + string.punctuation
-        )
+        ).lower()
         self.CORE_SETTINGS = CORE_SETTINGS
-    
+
     def prep_translated_word(self):
         self.translated_word = check_the_word_in_dict(self)
 
@@ -153,7 +142,7 @@ class LineTranslate:
         self.translated_line = line
         self.wordlist = list()
         self.exceptions_dots = ("'", "`", '"')
-        self.alphabet=set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+        self.alphabet = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
         self.translator_flag = self.match(line)
         self.CORE_SETTINGS = CORE_SETTINGS
 
@@ -195,8 +184,7 @@ class LineTranslate:
             if self.match(word):
                 word_obj = WordTranslate(word, self.CORE_SETTINGS)
                 translated_line_construction(self, word_obj)
-        if file_name:
-            if self.match(file_name):
-                word_obj = WordTranslate(file_name, self.CORE_SETTINGS)
-                translated_line_construction(self, word_obj)
+        if file_name and self.match(file_name):
+            word_obj = WordTranslate(file_name, self.CORE_SETTINGS)
+            translated_line_construction(self, word_obj)
         return self.translated_line
