@@ -66,13 +66,15 @@ def quick_update(
     updated_dict = dict()
     for index in range(len(changes)):
         if changes[index]:
-            line = changes[index].strip('\n').split(')')[1].split(';')
+            line = changes[index].strip('\n').split(';')
             word_to = making_clean_string(value=line[0], low=True)
             translate = making_clean_string(value=line[1])
             if len(line) == 2:
-                updated_dict[word_to] = (translate, None)
+                updated_dict[word_to] = (translate, 'None')
             elif len(line) == 3:
-                additional_value = making_clean_string(value=line[2])
+                additional_value = making_clean_string(
+                    value=line[2]
+                )
                 updated_dict[word_to] = (translate, additional_value)
     print_into_dictionary(
         updated_dict

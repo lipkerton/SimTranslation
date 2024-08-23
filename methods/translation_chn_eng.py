@@ -21,7 +21,7 @@ def prep_translate(
     """If none had been found in dicts we will translate
     new value and write it in our dictionaries."""
     TRANSLATED = translate(
-        word_spec,
+        word_obj.base_word,
         word_obj.CORE_SETTINGS.abs_for_translator
     )
     printing_translations_into_csv(
@@ -33,7 +33,7 @@ def prep_translate(
         word_obj.CORE_SETTINGS.temp_dict_push(word_spec, TRANSLATED, None)
     else:
         if eng_line is None:
-            eng_line = translate(word_spec, 'en')
+            eng_line = translate(word_obj.base_word, 'en')
         word_obj.CORE_SETTINGS.temp_dict_push(word_spec, eng_line, TRANSLATED)
     return TRANSLATED
 

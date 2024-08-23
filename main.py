@@ -31,17 +31,14 @@ def output_entry_is_valid(
         value: str
 ) -> bool:
     """Сообщение об ошибке для строк ввода."""
-    if str(CORE_SETTINGS.output_folder) == value:
-        result = True
-    else:
-        result = os.path.exists(value)
+    result = os.path.exists(value)
     if not result:
         try:
             os.makedirs(value)
             CORE_SETTINGS.output_path_push(value)
             return True
         except Exception:
-            error_message_input.set('Check that the entered path is correct.')
+            error_message_output.set('Check that the entered path is correct.')
     else:
         CORE_SETTINGS.output_path_push(value)
         error_message_output.set('')
@@ -197,11 +194,11 @@ def output_window() -> tuple:
         )
     else:
         result_list = ScrolledText(
-            window, width=65, height=17
+            window, width=72, height=18
         )
 
     result_list.place(
-        x=50, y=60
+        x=35, y=60
     )
     if CORE_SETTINGS.plat == 'win':
         translated_lines_list = ScrolledText(
@@ -209,10 +206,10 @@ def output_window() -> tuple:
         )
     elif CORE_SETTINGS.plat == 'mac':
         translated_lines_list = ScrolledText(
-            window, width=65, height=17
+            window, width=72, height=18
         )
     translated_lines_list.place(
-        x=50, y=380
+        x=35, y=380
     )
     inner_changes_dictionary = translated_lines_list
     if CORE_SETTINGS.plat == 'win':
@@ -242,23 +239,23 @@ def output_window() -> tuple:
             window,
             text=save_changes,
             command=get_changes_for_inner_dictionary
-        ).place(x=50, y=610, height=30, width=130)
+        ).place(x=45, y=622, height=30, width=130)
         ttk.Button(
             window,
             text=undo_changes,
             command=undo_changes_for_inner_dictionary
-        ).place(x=180, y=610, height=30, width=130)
+        ).place(x=175, y=622, height=30, width=130)
         ttk.Button(
             window,
             text='Output',
             command=open_output_folder
-        ).place(x=270, y=637, height=50, width=140)
+        ).place(x=280, y=649, height=50, width=140)
         translate_btn = ttk.Button(
             window,
             text='Translate again',
             command=close_window
         )
-        translate_btn.place(x=410, y=637, height=50, width=140)
+        translate_btn.place(x=420, y=649, height=50, width=140)
     return (result_list, translated_lines_list)
 
 
@@ -272,14 +269,12 @@ def output_dictionary_insert(
 
 
 def printing_translations_output_window(translated_lines_list):
-    index = len(CORE_SETTINGS.base_temp_dict.items())
-    core_message = '{0:<3s}{1:<18s};{2:^20s};{3:^18s}\n'
     for key, value in reversed(CORE_SETTINGS.base_temp_dict.items()):
+        core_message = '{0:<23s};{1:^23s};{2:^22s}\n'
         message = core_message.format(
-            str(index) + ')', key, value[0], str(value[1])
+            key, value[0], str(value[1])
         )
         output_dictionary_insert(translated_lines_list, message)
-        index -= 1
 
 
 def check_entry_values():
@@ -363,7 +358,10 @@ ttk.Label(
     x=40, y=270
 )
 ttk.Label(
-    text='format is <word or phrase to be translated;translation>',
+    text=(
+        'format is <word or phrase'
+        'to be translated;translation;chinese_translation>'
+    ),
     font=('Arial', 12)
 ).place(
     x=50, y=295
@@ -467,11 +465,11 @@ if CORE_SETTINGS.plat == 'win':
 # macOS ver
 elif CORE_SETTINGS.plat == 'mac':
     changes_dictionary = ScrolledText(
-        tk_sample, width=65, height=17
+        tk_sample, width=72, height=18
     )
 
 changes_dictionary.place(
-    x=50, y=320
+    x=35, y=320
 )
 
 tk_sample.mainloop()
