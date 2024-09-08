@@ -1,6 +1,5 @@
 import os
 import pathlib
-from googletrans import Translator
 
 # manual launch version (through main.py)
 # project_dir = str(
@@ -10,6 +9,7 @@ from googletrans import Translator
 #         )
 #     )
 # )
+
 
 # exe version
 project_dir = str(
@@ -23,6 +23,15 @@ project_dir = str(
         )
     )
 )
+# path_for_boss_dict_eng = pathlib.Path(
+#     f'{project_dir}/dictionaries/maintranslation.trans'
+# ).absolute()
+# media_directory = pathlib.Path(
+#     f'{project_dir}/media'
+# ).absolute()
+# output_folder = pathlib.Path(
+#     f'{project_dir}/output'
+# ).absolute()
 
 path_for_translations_eng = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
@@ -30,32 +39,16 @@ path_for_translations_eng = pathlib.Path(
 path_for_translations_chn = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_chn'
 ).absolute()
-path_for_boss_dict_eng = pathlib.Path(
-    f'{project_dir}/dictionaries/maintranslation.trans'
-).absolute()
-path_for_boss_dict = pathlib.Path(
+path_for_dict_csv = pathlib.Path(
     f'{project_dir}/dictionaries/chn_base_dictionary.csv'
 ).absolute()
 path_for_main_dict = pathlib.Path(
     f'{project_dir}/dictionaries/decoded_dictionary.pkl'
 ).absolute()
-media_directory = pathlib.Path(
-    f'{project_dir}/media'
-).absolute()
-output_folder = pathlib.Path(
-    f'{project_dir}/output'
+abs_paths_translated_fls = pathlib.Path(
+    f'{project_dir}/trans_support_files_dirs/abs_paths_translated_fls.txt'
 ).absolute()
 
-exceptions_extez = ('.xprt', '.xml')
-exceptions_dots = ("'", "`", '"')
-
-save_changes = 'Save changes'
-undo_changes = 'Undo changes'
-
-iter_tags = ('plot', 'bottomaxis', 'leftaxis', 'series')
-child_names = ('labeltext', 'text', 'caption')
-
-translator = Translator()
 
 # lines_fixing_in_dictionary = (
 #     r'[\x19\x0c\x10\x17\x07\x13\x16\x1f\x14\x07\x0f\x8a\xb2'

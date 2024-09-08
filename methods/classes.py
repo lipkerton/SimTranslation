@@ -1,190 +1,181 @@
+import pathlib
+import os
 import pickle
-import platform
+import shutil
 import string
-from pathlib import Path
-
-from .constants import (output_folder, path_for_main_dict,
-                        path_for_translations_chn, path_for_translations_eng)
-from .dictionary import print_into_dictionary, quick_update
-from .translation_chn_eng import (check_the_word_in_dict,
-                                  translated_line_construction)
-from .working_with_files_dirs import one_file_exec
+from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_main_dict, path_for_dict_csv
 
 
-class PrepParseObj:
-    """Input file (path to it) which we need to translate
-    with support characteristics such as path to input/output folders
-    language, name of the file and samples of dictionaries."""
+class RunSettings:
     def __init__(
             self,
+            input_path: pathlib.Path,
+            output_path: pathlib.Path,
+            eng_or_chn: str
     ) -> None:
-        self.output_folder = output_folder
-        self.base_temp_dict = dict()
-        self.wordlist = dict()
-        self.num_files = 0
+        self.abs_paths_open = open(abs_paths_translated_fls, 'w', encoding='utf-8')
+        self.input_path = pathlib.Path(input_path)
+        self.output_path = pathlib.Path(output_path)
+        self.eng_or_chn = eng_or_chn
+        self.csv_file = None
+        self.input_file = None
+        self.file_name = None
+        self.file_suffix = None
+        self.acceptable_suffixes = ('.xprt', '.xml')
+        if eng_or_chn == 'English':
+            self.eng_or_chn = 'en'
+        else:
+            self.eng_or_chn = 'zh-cn'
         self.num_lines = 0
-        if platform.system().lower() == 'windows':
-            self.plat = 'win'
-        else:
-            self.plat = 'mac'
+        self.num_files = 0
 
-    def input_path_push(self, input_path):
-        """Path to folder from GUI."""
-        self.input_folder = Path(input_path)
+    def input_file_push(self, file):
+        self.input_file = pathlib.Path(file)
+        self.file_name = pathlib.Path(self.input_file).name.split('.')[0]
+        self.file_suffix = pathlib.Path(self.input_file).suffix
 
-    def output_path_push(self, output_path):
-        """Path to folder from GUI."""
-        self.output_folder = Path(output_path)
-
-    def language_push(self, language: str):
-        """Language from GUI."""
-        self.language = language
-        if language == 'English':
-            self.abs_for_translator = 'en'
-        else:
-            self.abs_for_translator = 'zh-cn'
-
-    def file_path_push(self, path):
-        """File need to be translated from core_pattern in main.py."""
-        self.input_file = path
-        self.name_file = Path(path).name.split('.')[0]
-
-    def one_file_exec(self):
-        """Open .csv file to print words have been
-        translated project per project."""
-        if self.language == 'English':
-            self.files_translations = (
-                one_file_exec(
-                    self.name_file,
-                    path_for_translations_eng
-                )
+    def output_folder_path(self):
+        self.output_folder = pathlib.Path(
+            str(self.input_file).replace(
+                str(self.input_path),
+                str(self.output_path)
             )
-        else:
-            self.files_translations = (
-                one_file_exec(
-                    self.name_file,
-                    path_for_translations_chn
-                )
-            )
+        ).parent
+        self.output_folder_create()
+        return self.output_folder
+    
+    def output_folder_create(self):
+        try:
+            os.makedirs(self.output_folder)
+        except OSError:
+            pass
+    
+    def create_copies_of_files(self):
+        output_folder = self.output_folder_path()
+        shutil.copy2(self.input_file, f'{output_folder}/{self.file_name}')
+    
+    def is_suffix(self):
+        if self.file_suffix in self.acceptable_suffixes:
+            return True
+        self.create_copies_of_files()
+        return False
+    
+    def csv_path(self):
+        if self.eng_or_chn == 'en':
+            return path_for_translations_eng
+        elif self.eng_or_chn == 'zh-cn':
+            return path_for_translations_chn
 
-    def temp_dict_push(self, key, value=None, additional_value=None):
-        """This dict is needed to print translations
-        per each file in one translation session. In previous versions
-        large projects overloaded the main translation pattern cause
-        there were many similar words and each of them were
-        translated as new one."""
-        self.base_temp_dict[key] = (value, additional_value)
-
-    def dictionaries_init(self):
-        """Inititalization of pickle_dictionaries."""
-        self.saved_dict = open(path_for_main_dict, 'rb')
-        self.boss_dict = pickle.load(self.saved_dict)
-
-    def dictionaries_creation(self):
-        """Create decoded_dictionary.pkl"""
-        print_into_dictionary()
-
-    def dictionaries_update(self, update):
-        """Save changes in decoded_dictionary.pkl"""
-        quick_update(update)
-
-    def saved_dict_close(self):
-        """Closing pickle dictionaries."""
-        self.base_temp_dict = dict()
-        self.saved_dict.close()
-
-    def compile_message(self):
+    def csv_per_file_translations(self):
+        csv_translations_path = self.csv_path()
+        self.csv_file = open(
+            f'{csv_translations_path}/{self.file_name}.csv',
+            'a',
+            encoding='utf-8'
+        )
+    
+    def compile_result_message(self):
         """Compile summary message for output window."""
-        message = (
-            f'{self.name_file} was translated!\n'
+        return (
+            f'{self.file_name} was translated!\n'
             f'File number: {self.num_files}\n'
             f'Translated lines counter: {self.num_lines}\n'
             '\n'
         )
-        return message
-
-    def upd_files_counter(self, zeroed=False):
-        """It is for messages that translation session was complete."""
-        if not zeroed:
-            self.num_files += 1
-        else:
-            self.num_files = 0
-
-    def upd_lines_counter(self, zeroed=False):
-        """It is for messages that translation session was complete."""
-        if not zeroed:
-            self.num_lines += 1
-        else:
-            self.num_lines = 0
+    
+    def abs_paths_txt_update(self, new_path):
+        new_path = pathlib.Path(new_path)
+        new_path = str(new_path) + '\n'
+        self.abs_paths_open.write(new_path)
+    
+    def abs_paths_txt_close(self):
+        self.abs_paths_open.close()
 
 
-class WordTranslate:
+class DictionaryInit:
 
-    def __init__(self, word, CORE_SETTINGS) -> None:
-        self.base_word = word
-        self.init_word = word.lower()
+    def __init__(self) -> None:
+        self.path_for_main_dict = path_for_main_dict
+        self.path_for_dict_csv = path_for_dict_csv
+        self.temp_dict = dict()
+        if not self.is_formed():
+            self.pkl_create()
+        with open(self.path_for_main_dict, 'rb') as cd:
+            self.core_dict = pickle.load(cd)
+
+    def is_in_dictionary(self, word):
+        core_dict_words = self.core_dict.get(word, None)
+        temp_dict_words = self.temp_dict.get(word, None)
+        if core_dict_words:
+            return core_dict_words
+        elif temp_dict_words:
+            return temp_dict_words
+    
+    def is_formed(self):
+        return os.path.exists(self.path_for_main_dict)
+    
+    def get_specifics(self, words):
+        try:
+            if self.eng_or_chn == 'en':
+                return words[0]
+            if self.eng_or_chn == 'zh-cn':
+                return words[1]
+        except IndexError:
+            return None
+        except TypeError:
+            return None
+
+    def eng_or_chn_set(self, setting):
+        self.eng_or_chn = setting
+    
+    def take_csv_data(self):
+        return_dict=dict()
+        with open(
+            self.path_for_dict_csv, 'r', encoding='utf-8'
+        ) as csv:
+            for line in csv.readlines():
+                line = line.strip('\n').split(';')
+                key, value, additional_value = (
+                    line[0].lower(), line[1], line[2]
+                )
+                return_dict[key] = (value, additional_value)
+        return return_dict
+
+    def take_update_data(self, changes):
+        """Parse changes, form update and send it to pkl_uodate."""
+        update = dict()
+        for line in changes:
+            if line:
+                line = line.strip().split(';')
+                russian_word = line[0].strip().lower()
+                english_word = line[1].strip()
+                chinese_word = line[2].strip()
+                update[russian_word] = (english_word, chinese_word)
+        if update:
+            self.pkl_update(update)
+
+    def pkl_create(self) -> None:
+        """Creating decoded_dictionary.pkl."""
+        with open(self.path_for_main_dict, 'xb') as pkl:
+            csv_data = self.take_csv_data()
+            pickle.dump(csv_data, pkl)
+        
+    def pkl_update(self, update):
+        with open(self.path_for_main_dict, 'rb') as pkl:
+            pkl_data = pickle.load(pkl)
+            pkl_data.update(update)
+        with open(self.path_for_main_dict, 'wb') as pkl:
+            pickle.dump(pkl_data, pkl)
+        with open(self.path_for_main_dict, 'rb') as pkl:
+            self.core_dict = pickle.load(pkl)
+        self.temp_dict = dict()
+        
+
+
+class Word:
+
+    def __init__(self, word) -> None:
+        self.word = word
         self.clean_word = word.strip(
-            string.punctuation + string.punctuation
+            string.whitespace
         ).lower()
-        self.CORE_SETTINGS = CORE_SETTINGS
-
-    def prep_translated_word(self):
-        self.translated_word = check_the_word_in_dict(self)
-
-
-class LineTranslate:
-    """The line is coming from parsing_xml func
-    searching for rus words in line and send them to
-    translation_chn_eng.py"""
-
-    def __init__(self, line, CORE_SETTINGS) -> None:
-        self.line = line
-        self.translated_line = line
-        self.wordlist = list()
-        self.exceptions_dots = ("'", "`", '"')
-        self.alphabet = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
-        self.translator_flag = self.match(line)
-        self.CORE_SETTINGS = CORE_SETTINGS
-
-    def match(
-            self, text: str
-    ) -> bool:
-        """Checking line for russian letters."""
-        if text is not None:
-            return not self.alphabet.isdisjoint(text.lower())
-
-    def core_parse_line(
-            self
-    ) -> None:
-        """Parsing line that we need to translate,
-        searching for any words in quotes,
-        send them into sorted wordlist.
-        Sorted list is going to be send in
-        words_in_line_translate func below."""
-        RUS_TEXT = str()
-        FLAG = False
-        for symbol_index in range(len(self.line) - 1):
-            if FLAG:
-                RUS_TEXT += self.line[symbol_index]
-            if self.line[symbol_index] in self.exceptions_dots:
-                FLAG = True
-            if self.line[symbol_index + 1] in self.exceptions_dots:
-                self.wordlist.append(RUS_TEXT)
-                RUS_TEXT = str()
-                FLAG = False
-        self.wordlist = sorted(self.wordlist, key=len, reverse=True)
-
-    def words_in_line_translate(
-            self, file_name=None
-    ) -> str:
-        """Iterating through wordlist
-        check-in every word for russion letters
-        sending each word into word_separation_in_two func."""
-        for word in self.wordlist:
-            if self.match(word):
-                word_obj = WordTranslate(word, self.CORE_SETTINGS)
-                translated_line_construction(self, word_obj)
-        if file_name and self.match(file_name):
-            word_obj = WordTranslate(file_name, self.CORE_SETTINGS)
-            translated_line_construction(self, word_obj)
-        return self.translated_line
