@@ -89,8 +89,7 @@ def output_dictionary_insert(
 
 def print_translations_text_field():
     for key, value in sorted(dictionaries.temp_dict.items(), key=lambda x: x[0], reverse=True):
-        core_message = f'{key.ljust(100)};{value[0].center(100)};{value[1].center(100)}\n'
-        print(len(core_message))
+        core_message = f'{key}   ;   {value[0]}   ;   {value[1]}\n'
         temp_dictionary_values = core_message.format(
             key, value[0], value[1]
         )
