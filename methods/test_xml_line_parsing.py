@@ -80,7 +80,7 @@ def translate_file_name(
     if match(file_name):
         word_obj = Word(file_name)
         translated_file_name = dictionary_or_translate(word_obj)
-    return translated_file_name.replace(' ', '_')
+        return translated_file_name.replace(' ', '_')
 
 
 def parse_wordlist(
