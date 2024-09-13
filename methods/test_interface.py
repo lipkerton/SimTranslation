@@ -123,7 +123,7 @@ def base_window_init():
     base_window = Tk()
     base_window_width = base_window.winfo_screenwidth()
     base_window_height = base_window.winfo_screenheight()
-    base_window.geometry(f'{base_window_width}x{base_window_height}')
+    base_window.geometry(f'1000x1000')
 
     main_menu = Menu()
     file_menu = Menu(tearoff=0)

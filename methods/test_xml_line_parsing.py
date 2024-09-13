@@ -129,27 +129,30 @@ def parse_line(
 def value_tag(
     child
 ):
-    child_name_text = child.findtext('name').lower()
-    if (
-        'labeltext' in child_name_text
-        or 'text' in child_name_text
-        or 'caption' in child_name_text
-    ):
-        value_text = child.findtext('value')
-        if match(value_text):
-            wordlist = parse_line(value_text)
-            translated_text = parse_wordlist(value_text, wordlist)
-            child.find('value').text = translated_text
+    child_name_text = child.findtext('name')
+    if child_name_text is not None:
+        child_name_text = child_name_text.lower()
+        if (
+            'labeltext' in child_name_text
+            or 'text' in child_name_text
+            or 'caption' in child_name_text
+        ):
+            value_text = child.findtext('value')
+            if match(value_text):
+                wordlist = parse_line(value_text)
+                translated_text = parse_wordlist(value_text, wordlist)
+                child.find('value').text = translated_text
 
 
 def title_tag(
     child
 ):
     title_text = child.findtext('title')
-    if match(title_text):
-        wordlist = parse_line(title_text)
-        translated_text = parse_wordlist(title_text, wordlist)
-        child.find('title').text = translated_text
+    if title_text is not None:
+        if match(title_text):
+            wordlist = parse_line(title_text)
+            translated_text = parse_wordlist(title_text, wordlist)
+            child.find('title').text = translated_text
 
 
 def parse_xml(
