@@ -180,27 +180,8 @@ def parse_xml(
     )
     tree.write(output_file, encoding='utf-8', xml_declaration=True)
     settings.num_files += 1
-    settings.csv_file.close()
     settings.abs_paths_txt_update(output_file)
     return settings.compile_result_message()
-
-
-def core_pattern(
-    input_path,
-    output_path,
-    eng_or_chn
-) -> None:
-    settings = RunSettings(
-        input_path=input_path,
-        output_path=output_path,
-        eng_or_chn=eng_or_chn
-    )
-    for file_path in settings.input_path.rglob('*.*'):
-        settings.input_file_push(file_path)
-        if settings.is_suffix():
-            settings.csv_per_file_translations()
-            message = parse_xml(settings)
-    settings.abs_paths_txt_close()
 
 
 dictionaries = DictionaryInit()

@@ -3,7 +3,7 @@ import os
 import pickle
 import shutil
 import string
-from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_main_dict, path_for_dict_csv
+from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_main_dict, path_for_dict_csv, logs
 
 
 class RunSettings:
@@ -66,13 +66,12 @@ class RunSettings:
         elif self.eng_or_chn == 'zh-cn':
             return path_for_translations_chn
 
-    def csv_per_file_translations(self):
+    def csv_done_translations(self, all_values):
         csv_translations_path = self.csv_path()
-        self.csv_file = open(
-            f'{csv_translations_path}/{self.file_name}.csv',
-            'a',
-            encoding='utf-8'
-        )
+        with open(csv_translations_path, 'a', encoding='utf-8') as csv:
+            for key, value in sorted(all_values, key=lambda x: x[0], reverse=True):
+                core_message = f'{key};{value[0]};{value[1]}\n'
+                csv.write(core_message)
     
     def compile_result_message(self):
         """Compile summary message for output window."""
@@ -90,6 +89,10 @@ class RunSettings:
     
     def abs_paths_txt_close(self):
         self.abs_paths_open.close()
+    
+    def print_in_logs(self, message):
+        with open(logs, 'w', encoding='utf-8') as log:
+            log.write(message)
 
 
 class DictionaryInit:

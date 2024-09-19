@@ -34,10 +34,10 @@ project_dir = str(
 # ).absolute()
 
 path_for_translations_eng = pathlib.Path(
-    f'{project_dir}/trans_support_files_dirs/trans_csv_eng'
+    f'{project_dir}/trans_support_files_dirs/trans_csv_eng/all_translations.csv'
 ).absolute()
 path_for_translations_chn = pathlib.Path(
-    f'{project_dir}/trans_support_files_dirs/trans_csv_chn'
+    f'{project_dir}/trans_support_files_dirs/trans_csv_chn/all_translations.csv'
 ).absolute()
 path_for_dict_csv = pathlib.Path(
     f'{project_dir}/dictionaries/chn_base_dictionary.csv'
@@ -47,6 +47,9 @@ path_for_main_dict = pathlib.Path(
 ).absolute()
 abs_paths_translated_fls = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/abs_paths_translated_fls.txt'
+).absolute()
+logs = pathlib.Path(
+    f'{project_dir}/trans_support_files_dirs/logs.txt'
 ).absolute()
 
 

@@ -1,7 +1,38 @@
 from tkinter import ttk, scrolledtext, filedialog, Tk, StringVar, Menu
-from .test_xml_line_parsing import dictionaries, core_pattern
-from .constants import abs_paths_translated_fls
+from threading import Thread
+from .test_xml_line_parsing import dictionaries, parse_xml
+from .constants import abs_paths_translated_fls, path_for_dict_csv, logs
+from .classes import RunSettings
 import os
+
+
+def core_pattern(
+    input_path,
+    output_path,
+    eng_or_chn
+) -> None:
+    save_chn_btn['state'] = 'disabled'
+    translate_btn['state'] = 'disabled'
+    settings = RunSettings(
+        input_path=input_path,
+        output_path=output_path,
+        eng_or_chn=eng_or_chn
+    )
+    try:
+        for file_path in settings.input_path.rglob('*.*'):
+            settings.input_file_push(file_path)
+            if settings.is_suffix():
+                message = parse_xml(settings)
+    except PermissionError as error:
+        message = f'{error}'
+        settings.print_in_logs(message=message)
+    settings.abs_paths_txt_close()
+    settings.csv_done_translations(
+        dictionaries.temp_dict.items()
+    )
+    print_translations_text_field()
+    save_chn_btn['state'] = 'normal'
+    translate_btn['state'] = 'normal'
 
 
 def radio_language() -> None:
@@ -90,10 +121,7 @@ def output_dictionary_insert(
 def print_translations_text_field():
     for key, value in sorted(dictionaries.temp_dict.items(), key=lambda x: x[0], reverse=True):
         core_message = f'{key}   ;   {value[0]}   ;   {value[1]}\n'
-        temp_dictionary_values = core_message.format(
-            key, value[0], value[1]
-        )
-        output_dictionary_insert(temp_dictionary_values)
+        output_dictionary_insert(core_message)
 
 
 def abs_paths_txt_open_cmd():
@@ -103,32 +131,53 @@ def abs_paths_txt_open_cmd():
         pass
 
 
+def base_dictionary_open_cmd():
+    try:
+        os.startfile(path_for_dict_csv)
+    except Exception:
+        pass
+
+
+def logs_open_cmd():
+    try:
+        os.startfile(logs)
+    except Exception:
+        pass
+
+
 def trnslt_btn_func():
     input_path = entry_input.get()
     output_path = entry_output.get()
+
     if (
         path_entry_is_valid(input_path)
         and path_entry_is_valid(output_path)
     ):
-        core_pattern(
-            input_path=input_path,
-            output_path=output_path,
-            eng_or_chn=radio_language()
+        parallel_core_func = Thread(
+            target=core_pattern,
+            args=(
+                input_path, output_path, radio_language()
+            )
         )
-        print_translations_text_field()
+        parallel_core_func.start()
+        # core_pattern(
+        #     input_path=input_path,
+        #     output_path=output_path,
+        #     eng_or_chn=radio_language()
+        # )
 
 
 def base_window_init():
-    global text_field, language_for_radio, error_message_input, error_message_output, entry_input, entry_output, string_input_entry, string_output_entry
+    global text_field, language_for_radio, error_message_input, error_message_output, entry_input, entry_output, string_input_entry, string_output_entry, translate_btn, save_chn_btn
     base_window = Tk()
-    base_window_width = base_window.winfo_screenwidth()
-    base_window_height = base_window.winfo_screenheight()
     base_window.geometry(f'1000x1000')
 
     main_menu = Menu()
     file_menu = Menu(tearoff=0)
     main_menu.add_cascade(label='File', menu=file_menu)
     file_menu.add_command(label='Open translated files names list', command=abs_paths_txt_open_cmd)
+    file_menu.add_command(label='Open base dictionary', command=base_dictionary_open_cmd)
+    file_menu.add_command(label='Open logs', command=logs_open_cmd)
 
     error_message_input = StringVar()
     error_message_output = StringVar()
@@ -176,15 +225,18 @@ def base_window_init():
     ttk.Button(
         text='Open...', command=otpt_search_btn_func
     ).place(anchor='nw', x=300, y=140, height=30, width=90)
-    ttk.Button(
+    translate_btn = ttk.Button(
         base_window, text='Translate', command=trnslt_btn_func
-    ).place(anchor='nw', x=300, y=190, height=30, width=90)
-    ttk.Button(
+    )
+    save_chn_btn = ttk.Button(
         base_window, text='Save changes', command=get_text_filed_values_and_save_them
-    ).place(anchor='nw', x=40, y=240, height=30, width=170)
+    )
     ttk.Button(
         base_window, text='Undo changes'
     ).place(anchor='nw', x=220, y=240, height=30, width=170)
+
+    translate_btn.place(anchor='nw', x=300, y=190, height=30, width=90)
+    save_chn_btn.place(anchor='nw', x=40, y=240, height=30, width=170)
 
     # Radio botton
     english_radio = ttk.Radiobutton(
