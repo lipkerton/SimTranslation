@@ -90,15 +90,17 @@ def parse_wordlist(
     """Iterating through wordlist
     check-in every word for russion letters
     sending each word into word_separation_in_two func."""
+    translated_text = line
     for word in wordlist:
         if match(word):
             word_obj = Word(word)
             translated_word = dictionary_or_translate(word_obj)
-            translated_text = line.replace(
+            translated_text = translated_text.replace(
                 word,
                 translated_word
             )
     return translated_text
+    
 
 
 def parse_line(
