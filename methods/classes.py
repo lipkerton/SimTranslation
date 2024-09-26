@@ -3,7 +3,7 @@ import os
 import pickle
 import shutil
 import string
-from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_main_dict, path_for_dict_csv, logs
+from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_main_dict, path_for_dict_csv, logs, dictionary_current_state_txt, dictionary_current_state_csv
 
 
 class RunSettings:
@@ -100,11 +100,15 @@ class DictionaryInit:
     def __init__(self) -> None:
         self.path_for_main_dict = path_for_main_dict
         self.path_for_dict_csv = path_for_dict_csv
+        self.dictionary_current_state_txt = dictionary_current_state_txt
+        self.dictionary_current_state_csv = dictionary_current_state_csv
         self.temp_dict = dict()
-        if not self.is_formed():
+        if not self.pkl_is_formed():
             self.pkl_create()
         with open(self.path_for_main_dict, 'rb') as cd:
             self.core_dict = pickle.load(cd)
+        self.txt_create_update()
+        self.csv_create_update()
 
     def is_in_dictionary(self, word):
         core_dict_words = self.core_dict.get(word, None)
@@ -114,7 +118,7 @@ class DictionaryInit:
         elif temp_dict_words:
             return temp_dict_words
     
-    def is_formed(self):
+    def pkl_is_formed(self):
         return os.path.exists(self.path_for_main_dict)
     
     def get_specifics(self, words):
@@ -172,7 +176,22 @@ class DictionaryInit:
         with open(self.path_for_main_dict, 'rb') as pkl:
             self.core_dict = pickle.load(pkl)
         self.temp_dict = dict()
-        
+    
+    def txt_create_update(self) -> None:
+        with open(self.path_for_main_dict, 'rb') as pkl:
+            pkl_data = pickle.load(pkl)
+        with open(self.dictionary_current_state_txt, 'w', encoding='utf-8') as txt:
+            for key, value in pkl_data.items():
+                message = f'{key}   ;   {value[0]}   ;   {value[1]}\n'
+                txt.write(message)
+
+    def csv_create_update(self):
+        with open(self.path_for_main_dict, 'rb') as pkl:
+            pkl_data = pickle.load(pkl)
+        with open(self.dictionary_current_state_csv, 'w', encoding='utf-8') as csv:
+            for key, value in pkl_data.items():
+                message = f'{key};{value[0]};{value[1]}\n'
+                csv.write(message)
 
 
 class Word:
