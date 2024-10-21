@@ -96,24 +96,6 @@ def txt_csv_is_valid(
     return saved_changes_list
 
 
-def get_text_filed_values_and_save_them() -> None:
-    """Получаем символы из текстового окна."""
-    text_field_values = text_field_text_is_valid(text_field.get('1.0', 'end'))
-    if text_field_values:
-        dictionaries.take_update_data(text_field_values)
-
-
-def get_txt_csv_values_and_save_them() -> None:
-    if radio_format() == 'txt':
-        path = dictionary_current_state_txt
-    else: 
-        path = dictionary_current_state_csv
-    with open(path, 'r', encoding='utf-8') as txt_csv:
-        txt_values = txt_csv_is_valid(txt_csv.read())
-        if txt_values:
-            dictionaries.take_update_data(txt_values)
-
-
 def path_entry_is_valid(
         value: str
 ) -> bool:
@@ -149,6 +131,24 @@ def otpt_search_btn_func():
     error_message_output.set('Check that the entered path is correct.')
 
 
+def get_text_filed_values_and_save_them() -> None:
+    """Получаем символы из текстового окна."""
+    text_field_values = text_field_text_is_valid(text_field.get('1.0', 'end'))
+    if text_field_values:
+        dictionaries.take_update_data(text_field_values)
+
+
+def get_txt_csv_values_and_save_them() -> None:
+    if radio_format() == 'txt':
+        path = dictionary_current_state_txt
+    else: 
+        path = dictionary_current_state_csv
+    with open(path, 'r', encoding='utf-8') as txt_csv:
+        txt_values = txt_csv_is_valid(txt_csv.read())
+        if txt_values:
+            dictionaries.take_update_data(txt_values)
+
+
 def output_dictionary_insert(
         temp_dictionary_values: str
 ) -> None:
@@ -165,8 +165,6 @@ def print_translations_text_field():
 
 
 def open_full_dictionary():
-    full_dict_open_btn['state'] = 'disabled'
-    txt_csv_update_btn['state'] = 'disabled'
     dictionaries.csv_create_update()
     dictionaries.txt_create_update()
     try:
@@ -176,8 +174,6 @@ def open_full_dictionary():
             os.startfile(dictionary_current_state_csv)
     except Exception:
         pass
-    full_dict_open_btn['state'] = 'normal'
-    txt_csv_update_btn['state'] = 'normal'
 
 
 def abs_paths_txt_open_cmd():
@@ -216,11 +212,6 @@ def trnslt_btn_func():
             )
         )
         parallel_core_func.start()
-        # core_pattern(
-        #     input_path=input_path,
-        #     output_path=output_path,
-        #     eng_or_chn=radio_language()
-        # )
 
 
 def base_window_init():
@@ -254,13 +245,6 @@ def base_window_init():
     ttk.Label(
         base_window, text='Enter the output folder: ', font=('Arial', 14)
     ).place(x=40, y=110)
-
-    # ttk.Label(
-    #     base_window, text='English', font=('Arial', 14)
-    # ).place(x=40, y=190)
-    # ttk.Label(
-    #     base_window, text='Chinese', font=('Arial', 14)
-    # ).place(x=150, y=190)
 
     # Entry fields
     entry_input = ttk.Entry(

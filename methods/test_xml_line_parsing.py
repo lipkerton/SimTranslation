@@ -159,20 +159,22 @@ def title_tag(
 
 def parse_xml(
     settings: RunSettings,
-    iter_tags=('plot', 'bottomaxis', 'leftaxis', 'series')
+    iter_tags=('plot', 'bottomaxis', 'leftaxis', 'series'),
+    node_tags=('project', 'datamanager')
 ) -> str:
     tree = ET.parse(settings.input_file)
     root_node = tree.getroot()
 
     dictionaries.eng_or_chn_set(settings.eng_or_chn)
-    for tag in root_node.findall('project'):
-        for child in tag.iter():
-            if child.tag == 'data':
-                value_tag(child)
-                settings.num_lines += 1
-            if child.tag in iter_tags:
-                title_tag(child)
-                settings.num_lines += 1
+    for node in node_tags:
+        for tag in root_node.findall(node):
+            for child in tag.iter():
+                if child.tag == 'data':
+                    value_tag(child)
+                    settings.num_lines += 1
+                if child.tag in iter_tags:
+                    title_tag(child)
+                    settings.num_lines += 1
     translated_file_name = translate_file_name(settings.file_name)
     output_folder = settings.output_folder_path()
     output_file = (
