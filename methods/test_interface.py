@@ -146,7 +146,7 @@ def get_txt_csv_values_and_save_them() -> None:
     with open(path, 'r', encoding='utf-8') as txt_csv:
         txt_values = txt_csv_is_valid(txt_csv.read())
         if txt_values:
-            dictionaries.take_update_data(txt_values)
+            dictionaries.take_update_data(txt_values, truncate=True)
 
 
 def output_dictionary_insert(

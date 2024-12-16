@@ -35,11 +35,6 @@ def translate_new_word(
     """If none had been found in dicts we will translate
     new value and write it in our dictionaries."""
 
-    # printing_translations_into_csv(
-    #         word_spec,
-    #         TRANSLATED,
-    #         word_obj.CORE_SETTINGS.files_translations
-    #     )
     if dictionaries.eng_or_chn == 'en':
         english_word = translate(word_obj.word, 'en')
         dictionaries.temp_dict[word_obj.clean_word] = (english_word, '')
@@ -53,7 +48,7 @@ def translate_new_word(
 def dictionary_or_translate(
     word_obj: Word
 ) -> str:
-    translated_word_in_dict = dictionaries.is_in_dictionary(word_obj.clean_word)  # Get tuple from dictionary or None.
+    translated_word_in_dict = dictionaries.is_in_db(word_obj.clean_word)  # Get tuple from dictionary or None.
     specific_word = dictionaries.get_specifics(translated_word_in_dict)  # Get specific word from tuple from dictionary or None.
     if specific_word:
         translated_word = specific_word
@@ -100,30 +95,13 @@ def parse_wordlist(
                 translated_word
             )
     return translated_text
-    
 
 
 def parse_line(
-    line: str,
-    flag=False,
-    exceptions_dots=("'","`",'"')
+        line: str,
 ) -> list:
-    """Parsing line that we need to translate,
-    searching for any words in quotes,
-    send them into sorted wordlist.
-    Sorted list is going to be send in
-    words_in_line_translate func below."""
-    wordlist = []
-    rus_text = str()
-    for symbol_index in range(len(line) - 1):
-        if flag:
-            rus_text += line[symbol_index]
-        if line[symbol_index] in exceptions_dots:
-            flag = True
-        if line[symbol_index + 1] in exceptions_dots:
-            wordlist.append(rus_text)
-            rus_text = str()
-            flag = False
+    import re
+    wordlist = re.findall(r"([а-яА-Я\s]+)", line)
     wordlist = sorted(wordlist, key=len, reverse=True)
     return wordlist
 

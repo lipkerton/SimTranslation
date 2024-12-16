@@ -57,3 +57,28 @@ def parsing_binary_trans(
         value = making_clean_string(value=line[-1])
         new_dict[key] = (value, None)
     return new_dict
+
+# Old parse
+def parse_line(
+    line: str,
+    flag=False,
+    exceptions_dots=("'","`",'"')
+) -> list:
+    """Parsing line that we need to translate,
+    searching for any words in quotes,
+    send them into sorted wordlist.
+    Sorted list is going to be send in
+    words_in_line_translate func below."""
+    wordlist = []
+    rus_text = str()
+    for symbol_index in range(len(line) - 1):
+        if flag:
+            rus_text += line[symbol_index]
+        if line[symbol_index] in exceptions_dots:
+            flag = True
+        if line[symbol_index + 1] in exceptions_dots:
+            wordlist.append(rus_text)
+            rus_text = str()
+            flag = False
+    wordlist = sorted(wordlist, key=len, reverse=True)
+    return wordlist

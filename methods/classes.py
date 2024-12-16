@@ -3,8 +3,8 @@ import os
 import pickle
 import shutil
 import string
-from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_main_dict, path_for_dict_csv, logs, dictionary_current_state_txt, dictionary_current_state_csv
-
+from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_dict_csv, logs, dictionary_current_state_txt, dictionary_current_state_csv, sql_dictionary_path
+import sqlite3
 
 class RunSettings:
     def __init__(
@@ -98,29 +98,15 @@ class RunSettings:
 class DictionaryInit:
 
     def __init__(self) -> None:
-        self.path_for_main_dict = path_for_main_dict
         self.path_for_dict_csv = path_for_dict_csv
         self.dictionary_current_state_txt = dictionary_current_state_txt
         self.dictionary_current_state_csv = dictionary_current_state_csv
         self.temp_dict = dict()
-        if not self.pkl_is_formed():
-            self.pkl_create()
-        with open(self.path_for_main_dict, 'rb') as cd:
-            self.core_dict = pickle.load(cd)
+        self.open_connection()
+        self.create_table()
         self.txt_create_update()
         self.csv_create_update()
 
-    def is_in_dictionary(self, word):
-        core_dict_words = self.core_dict.get(word, None)
-        temp_dict_words = self.temp_dict.get(word, None)
-        if core_dict_words:
-            return core_dict_words
-        elif temp_dict_words:
-            return temp_dict_words
-    
-    def pkl_is_formed(self):
-        return os.path.exists(self.path_for_main_dict)
-    
     def get_specifics(self, words):
         try:
             if self.eng_or_chn == 'en':
@@ -135,8 +121,8 @@ class DictionaryInit:
     def eng_or_chn_set(self, setting):
         self.eng_or_chn = setting
     
-    def take_csv_data(self):
-        return_dict=dict()
+    def take_csv_data(self) -> tuple:
+        return_list=list()
         with open(
             self.path_for_dict_csv, 'r', encoding='utf-8'
         ) as csv:
@@ -145,53 +131,107 @@ class DictionaryInit:
                 key, value, additional_value = (
                     line[0].lower(), line[1], line[2]
                 )
-                return_dict[key] = (value, additional_value)
-        return return_dict
+                data = (key, value, additional_value)
+                return_list.append(data)
+        return return_list
 
-    def take_update_data(self, changes):
+    def take_update_data(self, changes, truncate=False):
         """Parse changes, form update and send it to pkl_uodate."""
-        update = dict()
+        for_insert_list = list()
         for line in changes:
             if line:
                 line = line.strip().split(';')
                 russian_word = line[0].strip().lower()
                 english_word = line[1].strip()
                 chinese_word = line[2].strip()
-                update[russian_word] = (english_word, chinese_word)
-        if update:
-            self.pkl_update(update)
+                data = (russian_word, english_word, chinese_word)
+                for_insert_list.append(data)
+        if truncate:
+            self.curs.execute(
+                '''
+                DELETE FROM translations
+                '''
+            )
+        self.insert_data(for_insert_list)
+        self.conn.commit()
 
-    def pkl_create(self) -> None:
-        """Creating decoded_dictionary.pkl."""
-        with open(self.path_for_main_dict, 'xb') as pkl:
-            csv_data = self.take_csv_data()
-            pickle.dump(csv_data, pkl)
-        
-    def pkl_update(self, update):
-        with open(self.path_for_main_dict, 'rb') as pkl:
-            pkl_data = pickle.load(pkl)
-            pkl_data.update(update)
-        with open(self.path_for_main_dict, 'wb') as pkl:
-            pickle.dump(pkl_data, pkl)
-        with open(self.path_for_main_dict, 'rb') as pkl:
-            self.core_dict = pickle.load(pkl)
-        self.temp_dict = dict()
-    
+    def take_temp_data(self, data):
+        for_insert_list = list()
+        for key, value in data.items():
+            sample = (key, value[0], value[1])
+            for_insert_list.append(sample)
+        self.insert_data(for_insert_list)
+        self.conn.commit()
+
+    def create_table(self):
+        try:
+            self.curs.execute(
+                '''
+                CREATE TABLE translations
+                (
+                rus VARCHAR(100) PRIMARY KEY,
+                eng VARCHAR(100),
+                chn VARCHAR(100)
+                )
+                '''
+            )
+            data = self.take_csv_data()
+            self.insert_data(data)
+            self.conn.commit()
+
+        except sqlite3.OperationalError:
+            pass
+
+
+    def insert_data(self, data):
+        sql_message = 'INSERT OR REPLACE INTO translations (rus, eng, chn) VALUES(?, ?, ?)'
+        self.curs.executemany(sql_message, data)
+
+
+    def select_data(self) -> list:
+        self.curs.execute(
+            '''
+            SELECT * FROM translations
+            '''
+        )
+        return self.curs.fetchall()
+
+
+    def is_in_db(self, pk):
+        temp_dict_words = self.temp_dict.get(pk, None)
+        self.curs.execute(
+            f'''
+            SELECT * FROM translations
+            WHERE rus = '{pk}'
+            '''
+        )
+        rows = self.curs.fetchone()
+        if rows:
+            return (rows[1], rows[2])
+        if temp_dict_words:
+            return temp_dict_words
+
     def txt_create_update(self) -> None:
-        with open(self.path_for_main_dict, 'rb') as pkl:
-            pkl_data = pickle.load(pkl)
+        data = self.select_data()
         with open(self.dictionary_current_state_txt, 'w', encoding='utf-8') as txt:
-            for key, value in pkl_data.items():
-                message = f'{key}   ;   {value[0]}   ;   {value[1]}\n'
+            for rus, eng, chn in data:
+                message = f'{rus}   ;   {eng}   ;   {chn}\n'
                 txt.write(message)
 
     def csv_create_update(self):
-        with open(self.path_for_main_dict, 'rb') as pkl:
-            pkl_data = pickle.load(pkl)
+        data = self.select_data()
         with open(self.dictionary_current_state_csv, 'w', encoding='utf-8') as csv:
-            for key, value in pkl_data.items():
-                message = f'{key};{value[0]};{value[1]}\n'
+            for rus, eng, chn in data:
+                message = f'{rus};{eng};{chn}\n'
                 csv.write(message)
+
+    def open_connection(self):
+        self.conn = sqlite3.connect(sql_dictionary_path,  check_same_thread=False)
+        self.curs = self.conn.cursor()
+
+    def close_connection(self):
+        self.curs.close()
+        self.conn.close()
 
 
 class Word:
