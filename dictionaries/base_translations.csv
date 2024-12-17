@@ -1070,7 +1070,7 @@ HS - Маска турбины тип 2;HS - Turbine mask type 2;HS - 涡轮面�
 Верхняя граница ограничения;Upper limit of the constraint;约束上限
 Нижняя граница переключения;Lower switching limit;开关下限
 Верхняя граница переключения;Upper switching limit;开关上限
-Начальные условия (0;The initial conditions (0; 1)
+Начальные условия (0;The initial conditions (0; 1);初始条件（0；1）
 Исполнять на промежуточных шагах;Perform in intermediate steps;按中间步骤执行
 Нижняя граница зоны нечувствительности;Lower limit of deadband;死区下限
 Начальные условия (-1=Y1;The initial conditions (-1 = Y1;初始条件 (-1 = Y1
@@ -3401,7 +3401,7 @@ Krp регулятора;Krp controller(;KRP控制器（
 Постоянные распада пассивных примесей, 1/с;Constant decay of passive impurities, 1 / s;惰性杂质恒定衰减，1/s
 Имя проекта TPP;TPP Project Name;TPP项目名称
 Тип расчёта;Type of payment;付款方式
-Версия расчётного кода (x32r8;Version of the calculation code (x32r8; x64r8)
+Версия расчётного кода (x32r8;Version of the calculation code (x32r8; x64r8);计算代码的版本（x32r8；x64r8）
 Параметры рестарта;Restart Options;重新启动选项
 Время окончания счёта;End time of the account;账户结束时间
 Параметры интегрирования модели;Model Integration Parameters;模型集成参数
@@ -5253,7 +5253,7 @@ Cнизу;Bottom;底部
 Скорость газовой фазы, м/с;Gas phase velocity, m / s;气相速度，m/s
 Скорость воды, м/с;Water velocity, m / s;水流速度，米/秒
 Минимально допустимая концентрация газовой фазы /0 < x < 1/C;The minimum allowable concentration of the gas phase is / 0 <x <1;气相最低允许浓度为/0<x<1
-Имена неконденсируемых газов (разделители - , 9;Names of non-condensable gases (separators -,; line feed)
+Имена неконденсируемых газов (разделители - , 9;Names of non-condensable gases (separators -,; line feed);不凝性气体名称（分隔符 -,; 管线供给）
 Массовые концентрации неконденсируемых газов (разделитель ,)9;Mass concentrations of non-condensable gases (separator,);不凝性气体的质量浓度（分离器、）
 Массовая концентрация примеси жидкости;Mass concentration of a liquid impurity(;液体杂质的质量浓度(
 Режим вывода;Output mode0;输出方式0
@@ -5951,7 +5951,7 @@ ac - Генератор синхронный;ac - synchronous generator;交流�
 Длина линии, м;Line length, m;线路长度，米
 Род тока;Type of current;电流类型
 ЭЦС - Кабель низковольтный;ECS - Low Voltage Cable;ECS - 低压电缆
-ЭЦC - Переключатель (нрк 1-4;ECS - Switch (Nrk 1-4; nzk 1-2)
+ЭЦC - Переключатель (нрк 1-4;ECS - Switch (Nrk 1-4; nzk 1-2);ECS - 交换机（Nrk 1-4；nzk 1-2）
 ЭЦС - Переключатель (нрк 1-2;ECS - Switch (Nrk 1-2;ECS - 交换机（编号 1-2
 ЭЦС - Выключатель автоматический;ECS - Automatic switch;ECS-自动开关
 ЭЦС - Предохранитель;ECS - Fuse;ECS-保险丝
@@ -7574,7 +7574,7 @@ Cопротивление, Ом;Resistance, Ohm;电阻，欧姆
 Коэффициент плавности перехода;Smooth transition factor;平滑过渡因子
 Коэффициент нелинейности барьерной ёмкости;Barrier capacitance non-linearity coefficient;势垒电容非线性系数
 Ширина запрещенной зоны, эВ;Band gap, eV8;带隙，eV8
-Коэффициенты температурной зависимости EG, [TEG1, TEG2]5;Temperature dependence coefficients EG, [TEG1, TEG2];9
+Коэффициенты температурной зависимости EG, [TEG1, TEG2]5;Temperature dependence coefficients EG, [TEG1, TEG2];9;温度相关系数EG，[TEG1，TEG2]；9
 Температурный экспоненциальный коэффициент тока насыщения9;Temperature exponential coefficient of saturation current;饱和电流温度指数系数
 Температурный коэффициент последовательного сопротивления, 1/°С2;Temperature coefficient of series resistance, 1/°С;串联电阻温度系数，1/°С
 Обратное напряжение пробоя, В;Reverse breakdown voltage, V;反向击穿电压，V

@@ -129,7 +129,7 @@ class DictionaryInit:
             for line in csv.readlines():
                 line = line.strip('\n').split(';')
                 key, value, additional_value = (
-                    line[0].lower(), line[1], line[2]
+                    line[0], line[1], line[2]
                 )
                 data = (key, value, additional_value)
                 return_list.append(data)
@@ -141,7 +141,7 @@ class DictionaryInit:
         for line in changes:
             if line:
                 line = line.strip().split(';')
-                russian_word = line[0].strip().lower()
+                russian_word = line[0].strip()
                 english_word = line[1].strip()
                 chinese_word = line[2].strip()
                 data = (russian_word, english_word, chinese_word)
@@ -240,4 +240,4 @@ class Word:
         self.word = word
         self.clean_word = word.strip(
             string.whitespace
-        ).lower()
+        )
