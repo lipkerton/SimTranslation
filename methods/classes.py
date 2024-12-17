@@ -102,7 +102,6 @@ class DictionaryInit:
         self.dictionary_current_state_txt = dictionary_current_state_txt
         self.dictionary_current_state_csv = dictionary_current_state_csv
         self.temp_dict = dict()
-        self.open_connection()
         self.create_table()
         self.txt_create_update()
         self.csv_create_update()
@@ -147,13 +146,8 @@ class DictionaryInit:
                 data = (russian_word, english_word, chinese_word)
                 for_insert_list.append(data)
         if truncate:
-            self.curs.execute(
-                '''
-                DELETE FROM translations
-                '''
-            )
+            self.delete_data()
         self.insert_data(for_insert_list)
-        self.conn.commit()
 
     def take_temp_data(self, data):
         for_insert_list = list()
@@ -161,9 +155,9 @@ class DictionaryInit:
             sample = (key, value[0], value[1])
             for_insert_list.append(sample)
         self.insert_data(for_insert_list)
-        self.conn.commit()
 
     def create_table(self):
+        self.open_connection()
         try:
             self.curs.execute(
                 '''
@@ -177,27 +171,42 @@ class DictionaryInit:
             )
             data = self.take_csv_data()
             self.insert_data(data)
-            self.conn.commit()
 
         except sqlite3.OperationalError:
-            pass
+            self.conn.commit()
+            self.close_connection()
 
 
     def insert_data(self, data):
+        self.open_connection()
         sql_message = 'INSERT OR REPLACE INTO translations (rus, eng, chn) VALUES(?, ?, ?)'
         self.curs.executemany(sql_message, data)
+        self.conn.commit()
+        self.close_connection()
 
 
     def select_data(self) -> list:
+        self.open_connection()
         self.curs.execute(
             '''
             SELECT * FROM translations
             '''
         )
-        return self.curs.fetchall()
-
+        rows = self.curs.fetchall()
+        self.close_connection()
+        return rows
+    
+    def delete_data(self):
+        self.open_connection()
+        self.curs.execute(
+            '''
+            DELETE FROM translations
+            '''
+        )
+        self.close_connection()
 
     def is_in_db(self, pk):
+        self.open_connection()
         temp_dict_words = self.temp_dict.get(pk, None)
         self.curs.execute(
             f'''
@@ -206,6 +215,7 @@ class DictionaryInit:
             '''
         )
         rows = self.curs.fetchone()
+        self.close_connection()
         if rows:
             return (rows[1], rows[2])
         if temp_dict_words:

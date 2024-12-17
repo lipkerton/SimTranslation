@@ -3,27 +3,27 @@ import pathlib
 
 
 # manual launch version (through main.py)
-project_dir = str(
-    os.path.dirname(
-        os.path.dirname(
-            os.path.abspath(__file__)
-        )
-    )
-)
-
-
-# exe version
 # project_dir = str(
 #     os.path.dirname(
 #         os.path.dirname(
-#             os.path.dirname(
-#                 os.path.dirname(
-#                     os.path.abspath(__file__)
-#                 )
-#             )
+#             os.path.abspath(__file__)
 #         )
 #     )
 # )
+
+
+# exe version
+project_dir = str(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(
+                os.path.dirname(
+                    os.path.abspath(__file__)
+                )
+            )
+        )
+    )
+)
 
 # path_for_boss_dict_eng = pathlib.Path(
 #     f'{project_dir}/dictionaries/maintranslation.trans'

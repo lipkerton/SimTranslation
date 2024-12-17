@@ -101,7 +101,9 @@ def parse_line(
         line: str,
 ) -> list:
     import re
-    wordlist = re.findall(r"([а-яА-Я\s]+)", line)
+    wordlist = re.findall(r"([а-яА-ЯЁё][^a-zA-Z\d.:]*)", line)
+    for index in range(len(wordlist)):
+        wordlist[index] = wordlist[index].strip('\\-\'#`%, (:~')
     wordlist = sorted(wordlist, key=len, reverse=True)
     return wordlist
 
