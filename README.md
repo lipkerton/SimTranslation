@@ -46,9 +46,8 @@
 
 # Файлы и папки программы #
 + **'dictionaries'** - папка, которая хранит все словари.
-    + 'chn_base_dictionary.csv' - русско-англйиско-китайский словарь; является копией встроенного словаря SimInTech с добавлением китайских переводов - он никогда не будет изменяться, если только встроенный в SimInTech словарь не будет изменен.
-    + 'maintranslation.trans' - русско-англйискйи словарь; бинарный встроенный в SimInTech словарь.
-    + 'decoded_dictionary.pkl' - центральный словарь скрипта, используется для хранения базовых переводов, новых переводов и т.д.
+    + 'base_translations.csv' - русско-англйиско-китайский словарь; является копией встроенного словаря SimInTech с добавлением китайских переводов - он никогда не будет изменяться, если только встроенный в SimInTech словарь не будет изменен.
+    + 'translations.db' - центральный словарь скрипта, используется для хранения базовых переводов, новых переводов и т.д.
     + 'dictionary_current_state.txt' - словарь, который описывает текущее состояние словаря 'decoded_dictionary.pkl' в формате txt.
     + 'dictionary_current_state.csv' - словарь, который описывает текущее состояние словаря 'decoded_dictionary.pkl' в формате csv.
 + **'launcher_windows'** - папка, которая содержит исполняющий файл.
@@ -110,10 +109,9 @@ Script translates SimInTech's xprt/xml projects into English/Chinese.
 
 # Program files and folders #
 + **'dictionaries'** - folder that stores all dictionaries.
-    + 'chn_base_dictionary.csv' - Russian-English-Chinese dictionary; it is a copy of SimInTech built-in dictionary with Chinese translations added - it will never be changed unless SimInTech built-in dictionary is changed.
-    + 'maintranslation.trans' - Russian-English dictionary; binary built-in SimInTech dictionary.
-    + 'decoded_dictionary.pkl' - central dictionary of the script, used to store basic translations, new translations, etc.
-+ 'dictionary_current_state.txt' - dictionary that describes the current state of the 'decoded_dictionary.pkl' dictionary in txt format.
+    + 'base_translations.csv' - Russian-English-Chinese dictionary; it is a copy of SimInTech built-in dictionary with Chinese translations added - it will never be changed unless SimInTech built-in dictionary is changed.
+    + 'translations.db' - central dictionary of the script, used to store basic translations, new translations, etc.
+    + 'dictionary_current_state.txt' - dictionary that describes the current state of the 'decoded_dictionary.pkl' dictionary in txt format.
     + 'dictionary_current_state.csv' is a dictionary that describes the current state of the 'decoded_dictionary.pkl' dictionary in csv format.
 + **'launcher_windows'** - folder that contains the executable file.
 + **'methods'** - the folder that contains the main py-files of the program.
