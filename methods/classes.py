@@ -2,9 +2,12 @@ import pathlib
 import os
 import shutil
 import string
-from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_dict_csv, logs, dictionary_current_state_txt, dictionary_current_state_csv, sql_dictionary_path
+import argostranslate.package
 import sqlite3
+
+from .constants import abs_paths_translated_fls, path_for_dict_csv, logs, sql_dictionary_path
 from .constants import create_table, insert_values, select_values
+
 
 
 class RunSettings:
@@ -23,9 +26,23 @@ class RunSettings:
         self.file_name = None
         self.file_suffix = None
         self.acceptable_suffixes = ('.xprt', '.xml')
-        self.eng_or_chn = eng_or_chn
         self.num_lines = 0
         self.num_files = 0
+        self.from_lang = "ru"
+        self.argos_init()
+
+    def argos_init(self):
+
+        argostranslate.package.update_package_index()
+        available_packages = argostranslate.package.get_available_packages()
+        package_to_install = next(
+            filter(
+                lambda x: x.from_code == self.from_lang
+                and x.to_code == self.eng_or_chn,
+                available_packages
+            )
+        )
+        argostranslate.package.install_from_path(package_to_install.download())
 
     def input_file_push(self, file):
         self.input_file = pathlib.Path(file)
@@ -58,19 +75,6 @@ class RunSettings:
         self.create_copies_of_files()
         return False
     
-    def csv_path(self):
-        if self.eng_or_chn == 'en':
-            return path_for_translations_eng
-        elif self.eng_or_chn == 'zh-cn':
-            return path_for_translations_chn
-
-    def csv_done_translations(self, all_values):
-        csv_translations_path = self.csv_path()
-        with open(csv_translations_path, 'a', encoding='utf-8') as csv:
-            for key, value in sorted(all_values, key=lambda x: x[0], reverse=True):
-                core_message = f'{key};{value[0]};{value[1]}\n'
-                csv.write(core_message)
-    
     def compile_result_message(self):
         """Compile summary message for output window."""
         return (
@@ -97,18 +101,14 @@ class DictionaryInit:
 
     def __init__(self) -> None:
         self.path_for_dict_csv = path_for_dict_csv
-        self.dictionary_current_state_txt = dictionary_current_state_txt
-        self.dictionary_current_state_csv = dictionary_current_state_csv
         self.temp_dict = dict()
         self.create_table()
-        self.txt_create_update()
-        self.csv_create_update()
 
     def get_specifics(self, words):
         try:
             if self.eng_or_chn == 'en':
                 return words[0]
-            if self.eng_or_chn == 'zh-cn':
+            if self.eng_or_chn == 'ch':
                 return words[1]
         except IndexError:
             return None
@@ -160,18 +160,15 @@ class DictionaryInit:
             self.curs.execute(create_table)
             data = self.take_csv_data()
             self.insert_data(data)
-
         except sqlite3.OperationalError:
             self.conn.commit()
             self.close_connection()
-
 
     def insert_data(self, data):
         self.open_connection()
         self.curs.executemany(insert_values, data)
         self.conn.commit()
         self.close_connection()
-
 
     def select_data(self) -> list:
         self.open_connection()
@@ -196,20 +193,6 @@ class DictionaryInit:
             return (rows[1], rows[2])
         if temp_dict_words:
             return temp_dict_words
-
-    def txt_create_update(self) -> None:
-        data = self.select_data()
-        with open(self.dictionary_current_state_txt, 'w', encoding='utf-8') as txt:
-            for rus, eng, chn in data:
-                message = f'{rus}   ;   {eng}   ;   {chn}\n'
-                txt.write(message)
-
-    def csv_create_update(self):
-        data = self.select_data()
-        with open(self.dictionary_current_state_csv, 'w', encoding='utf-8') as csv:
-            for rus, eng, chn in data:
-                message = f'{rus};{eng};{chn}\n'
-                csv.write(message)
 
     def open_connection(self):
         self.conn = sqlite3.connect(sql_dictionary_path,  check_same_thread=False)

@@ -1,5 +1,4 @@
-from methods.test_interface import base_window_init
-from methods.test_xml_line_parsing import parse_xml, dictionaries
+from methods.test_xml_line_parsing import parse_xml
 from methods.classes import RunSettings
 import pathlib
 
@@ -24,13 +23,10 @@ def core_pattern(
         message = f'{error}'
         settings.print_in_logs(message=message)
     settings.abs_paths_txt_close()
-    settings.csv_done_translations(
-        dictionaries.temp_dict.items()
-    )
 
 
-input_path = pathlib.Path('F:\gsdfs\work\Тестовые примеры SimInTech\input')
-output_path = pathlib.Path('F:\gsdfs\work\Тестовые примеры SimInTech\output')
+input_path = pathlib.Path('../test_data/')
+output_path = pathlib.Path('../test_results/')
 
 if __name__ == '__main__':
     core_pattern(input_path=input_path, output_path=output_path, eng_or_chn='en')

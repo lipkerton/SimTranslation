@@ -1,1 +1,1 @@
-F:\gsdfs\work\Тестовые примеры SimInTech\output\Cochleoid_en.xprt
+../test_results/submodel_en.xprt

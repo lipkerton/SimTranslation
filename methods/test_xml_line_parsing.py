@@ -1,17 +1,18 @@
 import xml.etree.ElementTree as ET
-from googletrans import Translator
+import argostranslate.package
+import argostranslate.translate
+
 from .classes import Word, RunSettings, DictionaryInit
 
 
 def translate(
     word: str,
-    dest: str
+    from_lang: str,
+    to_lang: str
 ) -> str:
     """Line translation into english or chinese."""
-    translated_word = translator.translate(
-        word, dest=dest
-    )
-    return translated_word.text
+    translatedText = argostranslate.translate.translate(word, from_lang, to_lang)
+    return translatedText
 
 
 def dictionary_recovery(
@@ -20,7 +21,7 @@ def dictionary_recovery(
 ) -> str:
     """Append missing translation in temp_dict to merge it with big_dict later."""
     if tuple_from_dict[0]:
-        chinese_word = translate(word_obj.word, 'zh-cn')
+        chinese_word = translate(word_obj.word, 'ch')
         dictionaries.temp_dict[word_obj.clean_word] = (tuple_from_dict[0], chinese_word)
         return chinese_word
     if tuple_from_dict[1]:
@@ -36,11 +37,11 @@ def translate_new_word(
     new value and write it in our dictionaries."""
 
     if dictionaries.eng_or_chn == 'en':
-        english_word = translate(word_obj.word, 'en')
+        english_word = translate(word_obj.word, from_lang='ru', to_lang='en')
         dictionaries.temp_dict[word_obj.clean_word] = (english_word, '')
         return english_word
-    elif dictionaries.eng_or_chn == 'zh-cn':
-        chinese_word = translate(word_obj.word, 'zh-cn')
+    elif dictionaries.eng_or_chn == 'ch':
+        chinese_word = translate(word_obj.word, from_lang='ru', to_lang='ch')
         dictionaries.temp_dict[word_obj.clean_word] = ('', chinese_word)
         return chinese_word
 
@@ -48,7 +49,7 @@ def translate_new_word(
 def dictionary_or_translate(
     word_obj: Word
 ) -> str:
-    translated_word_in_dict = dictionaries.is_in_db(word_obj.clean_word)  # Get tuple from dictionary or None.
+    translated_word_in_dict = dictionaries.is_in_db(word_obj.clean_word)
     specific_word = dictionaries.get_specifics(translated_word_in_dict)  # Get specific word from tuple from dictionary or None.
     if specific_word:
         translated_word = specific_word
@@ -169,30 +170,4 @@ def parse_xml(
     return settings.compile_result_message()
 
 
-def core_pattern(
-    input_path,
-    output_path,
-    eng_or_chn
-) -> None:
-    settings = RunSettings(
-        input_path=input_path,
-        output_path=output_path,
-        eng_or_chn=eng_or_chn
-    )
-    try:
-        for file_path in settings.input_path.rglob('*.*'):
-            settings.input_file_push(file_path)
-            if settings.is_suffix():
-                message = parse_xml(settings)
-                print(message)
-    except PermissionError as error:
-        message = f'{error}'
-        settings.print_in_logs(message=message)
-    settings.abs_paths_txt_close()
-    settings.csv_done_translations(
-        dictionaries.temp_dict.items()
-    )
-
-
 dictionaries = DictionaryInit()
-translator = Translator()
