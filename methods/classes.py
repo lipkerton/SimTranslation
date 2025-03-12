@@ -4,10 +4,9 @@ import shutil
 import string
 import argostranslate.package
 import sqlite3
+import logging
 
-from .constants import abs_paths_translated_fls, path_for_dict_csv, logs, sql_dictionary_path
-from .constants import create_table, insert_values, select_values
-
+from .constants import abs_paths_translated_fls, path_for_dict_csv, log_file, sql_dictionary_path, create_table, insert_values, select_values
 
 
 class RunSettings:
@@ -17,19 +16,17 @@ class RunSettings:
             output_path: pathlib.Path,
             eng_or_chn: str
     ) -> None:
+        self.log()
         self.abs_paths_open = open(abs_paths_translated_fls, 'w', encoding='utf-8')
         self.input_path = pathlib.Path(input_path)
         self.output_path = pathlib.Path(output_path)
         self.eng_or_chn = eng_or_chn
-        self.csv_file = None
-        self.input_file = None
-        self.file_name = None
-        self.file_suffix = None
         self.acceptable_suffixes = ('.xprt', '.xml')
         self.num_lines = 0
         self.num_files = 0
         self.from_lang = "ru"
         self.argos_init()
+        logging.info(f'Translating from "{self.from_lang}" to "{self.eng_or_chn}"...')
 
     def argos_init(self):
 
@@ -92,9 +89,20 @@ class RunSettings:
     def abs_paths_txt_close(self):
         self.abs_paths_open.close()
     
-    def print_in_logs(self, message):
-        with open(logs, 'w', encoding='utf-8') as log:
-            log.write(message)
+    def log(self):
+        root_logger = logging.getLogger()
+        root_logger.setLevel(logging.INFO)
+        handler = logging.FileHandler(
+            filename=log_file,
+            mode='w',
+            encoding='utf-8'
+        )
+        handler.setFormatter(
+            logging.Formatter(
+                '%(asctime)s %(levelname)s %(message)s'
+            )
+        )
+        root_logger.addHandler(handler)
 
 
 class DictionaryInit:
@@ -155,52 +163,45 @@ class DictionaryInit:
         self.insert_data(for_insert_list)
 
     def create_table(self):
-        self.open_connection()
-        try:
-            self.curs.execute(create_table)
-            data = self.take_csv_data()
-            self.insert_data(data)
-        except sqlite3.OperationalError:
-            self.conn.commit()
-            self.close_connection()
+        with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
+            curs = conn.cursor()
+            try:
+                curs.execute(create_table)
+                data = self.take_csv_data()
+                self.insert_data(data)
+                conn.commit()
+            except sqlite3.OperationalError as error:
+                logging.error(error)
 
     def insert_data(self, data):
-        self.open_connection()
-        self.curs.executemany(insert_values, data)
-        self.conn.commit()
-        self.close_connection()
+        with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
+            curs = conn.cursor()
+            curs.executemany(insert_values, data)
+            conn.commit()
 
     def select_data(self) -> list:
-        self.open_connection()
-        self.curs.execute(select_values)
-        rows = self.curs.fetchall()
-        self.close_connection()
+        with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
+            curs = conn.cursor()
+            curs.execute(select_values)
+            rows = curs.fetchall()
         return rows
     
-    def delete_data(self):
-        # что блять?
-        self.open_connection()
-        self.curs.execute(select_values)
-        self.close_connection()
+    # def delete_data(self):
+    #     # что блять?
+    #     self.open_connection()
+    #     self.curs.execute(select_values)
+    #     self.close_connection()
 
     def is_in_db(self, word):
-        self.open_connection()
-        temp_dict_words = self.temp_dict.get(word, None)
-        self.curs.execute(f"{select_values} WHERE rus = '{word}';")
-        rows = self.curs.fetchone()
-        self.close_connection()
+        with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
+            curs = conn.cursor()
+            temp_dict_words = self.temp_dict.get(word, None)
+            curs.execute(f"{select_values} WHERE rus = '{word}';")
+            rows = curs.fetchone()
         if rows:
             return (rows[1], rows[2])
         if temp_dict_words:
             return temp_dict_words
-
-    def open_connection(self):
-        self.conn = sqlite3.connect(sql_dictionary_path,  check_same_thread=False)
-        self.curs = self.conn.cursor()
-
-    def close_connection(self):
-        self.curs.close()
-        self.conn.close()
 
 
 class Word:

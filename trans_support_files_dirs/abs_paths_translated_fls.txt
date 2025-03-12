@@ -1,1 +1,224 @@
-../test_results/submodel_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\cochleoid_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Варианты топологий схем\Пример двунаправленной топологии\Example_of_bidirectional_topology_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Варианты топологий схем\Пример использования ненаправленных связей для суммирования источников\An_example_of_using_undirected_links_to_summarize_sources_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Варианты топологий схем\Пример множественного объединения портов 1\Example_of_multiple_port_combinations_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Варианты топологий схем\Пример множественного объединения портов 2\Example_of_multiple_port_combinations_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Варианты топологий схем\Пример множественного объединения портов 3\Example_of_multiple_port_combinations_3_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Варианты топологий схем\Пример ненаправленных соединителей\Example_of_non-directional_connectors_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\2_tanks_similar_to_ISMA_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\van_der_Paul_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\2_mass_unspecified_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\2_mass_with_clarification_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\2_tanks_test_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\2_tanks_test_with_block_of_clarification_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\Jumping_ball_on_integrators_without_specifying_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\Jumping_ball_on_integrators_with_reset_with_integrator_output_restriction_on_a_good_step_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\Jumping_ball_on_integrators_with_reset_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\Jumping_ball_with_another_way_to_stabilize_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\Speed_limit_jumper_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Гибридные системы\Детекция пересечений\Jumping_ball_with_very_small_minimum_pitch_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Детекция событий\Блок уточнения пересечений\The_block_of_clarification_of_intersections_-_a_test_with_quantization_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Детекция событий\Блок уточнения пересечений\The_block_of_clarification_of_intersections_-_the_test_of_the_PWM_element_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Детекция событий\Блок уточнения пересечений\Clarification_block_for_intersections_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Детекция событий\Сравнение с уточнением\SHIM_model_test_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Akzo Nobel - диффузия радиоактивных меток\Akzo_Nodel_diffusion_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Akzo Nobel - диффузия радиоактивных меток\Speed_comparison_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\BEAM\BEAM_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\BRUS\BRUS_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\BRUSS\BRUSS_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\CUSP\CUSP_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\HIRES\HIRES_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\OREGO\OREGO_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Pendulum\Pendulum_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\PLATE\PLATE_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\ROBER\ROBER_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\SiCo\SiCo_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\VDPOL\VDPL_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\VDPOL\VDPOL_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Аренсторф\erenstorff_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Жесткий осциллятор\Hard_oscillator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Кольцевой модулятор\Model_of_ring_modulator_in_equations_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Локально-неустойчивая\Locally_unstable_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Меры задачи Коши\Measures_of_the_Cauchy_task_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Механизм Эндрюса\Andrews_mechanism_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Реакция Жаботинского\Jabotinsky's_reaction_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Решатель Agresim 1\Decisive_Agresim_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Решатель Agresim 2\Decisive_Agresim_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Система Робертсона\Robertson_system_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Тест метода SRK2\BRUSS_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Тест метода SRK2\BRUSS2D_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Тест метода SRK2\Burgers_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Тест метода SRK2\LinDif_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Трудная задача\Tough_task_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Функции устойчивости SRK\Diffusion_SRK2_m2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Жесткие задачи\Функции устойчивости SRK\SRK_stability_functions_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Идентификация\Апериодика 1 го порядка\Identification_model_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Интерполяция\Двумерная линейная интерполяция\Two-dimensional_linear_interpolation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Интерполяция\Двумерная линейная интерполяция в скрипте\Two-dimensional_linear_interpolation_in_a_script_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Интерполяция\Интерполяция двумерной таблицы из файла\Test_piecewise_-_permanent_function_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Интерполяция\Многомерная интерполяция\Multidimensional_interpolation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Интерполяция\Многомерная интерполяция в скрипте\Multidimensional_interpolation_in_a_script_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Интерполяция\Одномерная интерполяция\One-dimensional_interpolation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Блок экстраполятор\Block_extrapolator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Дельтоид\deltoid_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Кохлеоида\cochleoid_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Логарифмическая спираль\Logarithmic_spiral_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Нефроида\nephroid_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Параболы Нейля\Neil's_parabolas_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Спираль Корню\Spiral_Root_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Улитка Паскаля\Pascal's_snail_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Четырёхлепестковая роза\Four-petaled_rose_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Эвольвента окружности\evolventa_circle_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Кривые высоких порядков\Эллипс\Ellipse._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Логические\Модель архитектуры контроллера\Controller_architecture_model_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Аттракторы\Матье\mathieu_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Аттракторы\Нозе-Гувера\Nose_Hoover_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Аттракторы\Рёсслера\roessler_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Аттракторы\Рикитаке\ricitake_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Аттракторы\Статистический анализ странного аттрактора Лоренца\Statistical_analysis_of_the_strange_Lorentz_attractor_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Аттракторы\Странный аттрактор Лоренца\Strange_Lorentz_attractor_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Брюсселятор\Brusselser_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Задача о 100 узниках и 100 ящиках\Task_of_100_Prisoners_and_100_Boxes_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Линейное алгебраическое уравнение\Linear_equation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Модель эпидемии\sir-model_epidemic_-_calibration_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Модель эпидемии\SIR_model_of_the_epidemic_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение алгебраических уравнений\Адаптивный метод\Adaptive_method_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение алгебраических уравнений\Метод Гира\The_Geer_Method_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение алгебраических уравнений\Метод Гира + итерация Бройдена\Gere_method_+_Broyden_iteration_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение алгебраических уравнений\Тесты решения НАУ\Решение линейного алгебраического уравнения\Solving_a_linear_algebraic_equation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение алгебраических уравнений\Тесты решения НАУ\Решение системы тригонометрических уравнений\Solving_the_system_of_trigonometric_equations_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение СЛАУ\Решение СЛАУ разными способами\Solving_SLAW_in_different_ways_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Решение СЛАУ\Решение СЛАУ типовым блоком\SLAU_solution_by_standard_block_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Тесты методов интегрирования\Решение дифф уравнения неявным методом\Solving_the_Diff_Equation_by_Implicit_Method_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Математические задачи\Фрактал\fractal_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Следящая система с ШИМ сигнала ошибки\Tracking_system_with_PWM_error_signal_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Способы формирования ШИМ сигнала\Methods_of_formation_of_PWM_signal_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Тесты систем с ШИМ\Модель следящего привода с ШИМ\Tracking_system_with_PWM_-_with_the_source_block_of_the_saw-shaped_signal_and_clarification_on_it_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Тесты систем с ШИМ\Модель следящего привода с ШИМ\Tracking_system_with_PWM_error_signal_-_no_detection_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Тесты систем с ШИМ\Модель следящего привода с ШИМ\Tracking_system_with_PWM_error_signal_-_reference_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Тесты систем с ШИМ\Модель следящего привода с ШИМ\Tracking_system_with_PWM_error_signal_-_with_detection_+_enabled_event_clarification_for_discrete_extrapolation_block_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Тесты систем с ШИМ\Модель следящего привода с ШИМ\Tracking_system_with_PWM_error_signal_-_with_detection_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Управление шагом ШИМ\SHIM_step_control_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\Управление шагом ШИМ симметричный\PWM_step_control_symmetrical_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Модуляция\ФИМ\FIME_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Нечёткая Логика\Изменение параметров фазификации в ходе моделирования\Change_of_phasification_parameters_during_modeling_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Нечёткая Логика\Нечёткая кластеризация\Fuzzy_clustering_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Нечёткая Логика\Построение поверхности характеристик регулятора\Construction_of_the_surface_characteristics_of_the_regulator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Нечёткая Логика\Система поддержания уровня воды в баке\Water_level_maintenance_system_in_the_tank_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Нечёткая Логика\Система поддержания уровня воды в баке с примером генерации и подключения DLL\Control_algorithm_prepared_for_code_generation_(in_DLL)_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Нечёткая Логика\Система поддержания уровня воды в баке с примером генерации и подключения DLL\System_for_maintaining_the_water_level_in_the_tank_with_the_control_algorithm_in_dll_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\RST-регулятор\RST_regulator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивные ПИ регуляторы\Адаптивный ПИ регулятор 1\Adaptive_PI_regulator_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивные ПИ регуляторы\Адаптивный ПИ регулятор 2\Adaptive_PI_regulator_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивные ПИ регуляторы\Адаптивный ПИ регулятор 3\Adaptive_PI_regulator_3_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивные ПИ регуляторы\Адаптивный ПИ регулятор с пультом 1\Adaptive_PI_regulator_with_remote_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивные ПИ регуляторы\Адаптивный ПИ регулятор с пультом 2\Adaptive_PI_regulator_with_remote_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивные ПИ регуляторы\Адаптивный ПИ регулятор с пультом 3\Adaptive_PI_regulator_with_remote_3_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Адаптивный регулятор с эталонной моделью\Adaptive_regulator_with_reference_model_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Дискретный ПИД-регулятор с компенсацией эффекта насыщения\Discrete_PID_regulator_with_saturation_effect_compensation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\ПИД регуляторы\ПИД обычный\PID_routine_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\ПИД регуляторы\ПИД с изменяемыми параметрами\Variable_PID_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\ПИД регуляторы\Сравнение типовых регуляторов\Comparison_of_standard_regulators_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Предиктор Смита\Smith's_predictor_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Регулятор с обратной связью по состоянию\Controller_with_feedback_as_of_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Регулятор со скользящим режимом\Sliding_Regulator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Регуляторы\Релейные регуляторы\Релейный регулятор для САР ядерного реактора\Relay_regulator_for_SAR_nuclear_reactor_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Example_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Example_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Example_3.3_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Example_4_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Example_5_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Example_6._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Standard_Type_1_models_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Standard_Type_2_models_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Синтез САУ\SimInTech\Standard_polynomials_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Системы со сбросом\Example_of_a_discrete_model_with_a_reset_loader_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Системы со сбросом\Example_of_a_discrete_reset_model_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Системы со сбросом\Example_of_a_model_with_reset_on_continuous_integrators_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Системы со сбросом\Example_of_a_reset_model_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Системы со сбросом\Derivative-loader_reset_test_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Системы со сбросом\Derivative_reset_test_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Следящие приводы\Аналоговые\С двухстепенчатым редуктором\Continuous_tracking_drive_with_DPT_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Следящие приводы\Дискретные\С ДПТ и редуктором\With_DPT_and_gearbox._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Следящие приводы\Дискретные\С ДПТ при независимом возбуждении с корректирующими устройствами\With_DPT_in_independent_excitation_with_corrective_devices_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Следящие приводы\Дискретные\С квантованием сигнала ошибки по времени и уровню\Tracking_drive_with_quantization_of_error_signal_in_time_and_level_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Блоки с дискретным временем\Discrete_delay_and_extrapolator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\В память и Из памяти\Использование локальных переносов\Use_of_local_transfers_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\В память и Из памяти\Множественное соединение - с фиксированными именами\Multiple_compounds_with_fixed_names_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\В память и Из памяти\Множественное соединение для блоков в память и из памяти\Multiple_connection_for_blocks_in_and_out_of_memory_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\В память и Из памяти\Тест ассоциирования\Association_test_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Векторные операции\Dynamic_sampling_of_a_subvector_from_a_common_vector_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Выбор номера ненулевого элемента и СASE\Selection_of_non-zero_element_number_and_CASE_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Выбор номера ненулевого элемента и СASE\DLL_loader_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Задержка на период квантования и экстраполятор\Quantization_Delay_and_Extrapolator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Запись по условию\Recording_by_condition_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Идеальное транспортное запаздывание\Perfect_delay_approximated_near_Pade_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Идеальное транспортное запаздывание\Ideal_transport_lag_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Интеграторы\Интеграторы со сбросом и ограничением на неявном методе\Integrators_with_reset_and_restriction_on_the_implicit_method_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Интеграторы\Сброс состояния у дискретного интегратора\Discrete_integrator_state_reset_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Итератор модели\Model_iterator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Ключи\Несколько ключей\Several_keys_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Ключи\Ручные\Manual_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Линейное звено с переменным ограничением\Linear_Link_with_Variable_Limitation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Логарифмы с защитой 0\Logarithms_with_protection_0_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Округление\Rounding_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Переменное транспортное запаздывание\Variable_transport_delay(_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Реле\relay_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Релейные блоки с зоной нечувствительности\Relay_blocks_with_insensitivity_zone_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Триггер D\DLL_loader_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Триггер D\Trigger_D._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Указатели сортировки\Sorting_signs_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Упаковка и распаковка матриц\Packaging_and_unpacking_of_matrices_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Управляемый синусоидальный генератор\Managed_Sine_Wave_Generator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Уровень неподключенных портов\Level_of_unconnected_ports_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Тесты блоков\Циклограмма\Cyclogram_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Блок управления клапаном (БУК)\VCU_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\speed_test_DLL_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\speed_test_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\BRU-22-1._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\BRU-22-2._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\BRU-42-1._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\BRU-42-2._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\_BSD_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\_BSD_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\_BSS_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\RZD-12_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\_RP4-U_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Ускорение расчета\блоки регулятора\_ERK_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Staff_power_regulator_(SRP)_BS_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\BRU-22-1._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\BRU-22-2._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\BRU-42-1._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\BRU-42-2._en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\_BSD_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\_BSD_2_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\_BSS_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\RZD-12_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\_RP4-U_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Типовые блоки алгоритмов АЭС\Штатный регулятор питания барабан-сепаратора (БС)\Штатный регулятор питания (ШРП) БС\Блоки регулятора\_ERK_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Транспортные потоки\Модель с переменной плотностью потока\transport_model_1_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Транспортные потоки\Модель с переменной плотностью потока\Model_of_movement_of_the_machine_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Транспортные потоки\Управление светофорами\Model_with_aperiodics_with_nonlinearities_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Временное подтверждение\Temporary_confirmation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Дискретная передаточная ф-я\Discrete_transmission_f-i_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Дискретная передаточная ф-я обратного аргумента\Discrete_transfer_f-I_of_the_inverse_argument_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Дискретная производная\The_Discrete_Derivative_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Дискретные переменные состояния\Discrete_State_Variables_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Дискретный ПИД-регулятор\Discrete_PID_controller_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Задержка по включению\Delay_on_inclusion_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Задержка по включению и выключению\Delay_on_power_on_and_off_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Задержка по выключению\Delay_on_shutdown_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Запаздывание на период квантования\Delay_for_the_quantization_period_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Импульс\Pulse_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Импульс длительности не более заданной\Impulse_of_duration_no_more_than_given_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Импульс с пролонгированием\Impulse_with_prolongation_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Кусочно-постоянная функция\Slice-permanent_function_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Меандр\Meander_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Одновибратор\Univibrator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Пила\Saw_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Синусоида\Sinewave_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Управление шагом в сгенерированном коде\Loader_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Управление шагом в сгенерированном коде\Code_template_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Управляемы синусоидальный генератор\Controlled_sinusoidal_generator_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Циклограмма\Cyclogram_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Управление шагом модели\Экстраполятор\Extrapolator_en.xprt

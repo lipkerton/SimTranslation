@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
-import argostranslate.package
 import argostranslate.translate
+import logging
 
 from .classes import Word, RunSettings, DictionaryInit
 
@@ -12,6 +12,7 @@ def translate(
 ) -> str:
     """Line translation into english or chinese."""
     translatedText = argostranslate.translate.translate(word, from_lang, to_lang)
+    logging.info(f'{word:^30}{translatedText:^30}')
     return translatedText
 
 
@@ -35,7 +36,6 @@ def translate_new_word(
 ) -> str:
     """If none had been found in dicts we will translate
     new value and write it in our dictionaries."""
-
     if dictionaries.eng_or_chn == 'en':
         english_word = translate(word_obj.word, from_lang='ru', to_lang='en')
         dictionaries.temp_dict[word_obj.clean_word] = (english_word, '')
@@ -95,7 +95,6 @@ def parse_wordlist(
                 word,
                 translated_word
             )
-    print(translated_text)
     return translated_text
 
 
@@ -103,7 +102,8 @@ def parse_line(
         line: str,
 ) -> list:
     import re
-    wordlist = re.findall(r"([а-яА-ЯЁё][^a-zA-Z\d.:]*)", line)
+    # wordlist = re.findall(r"([а-яА-ЯЁё][^a-zA-Z\d.:]*)", line)
+    wordlist = re.findall(r"\'.*\'|\`.*\`|\".*\"", line)
     for index in range(len(wordlist)):
         wordlist[index] = wordlist[index].strip('\\-\'#`%, (:~')
     wordlist = sorted(wordlist, key=len, reverse=True)

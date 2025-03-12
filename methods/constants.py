@@ -14,8 +14,8 @@ project_dir = str(
 abs_paths_translated_fls = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/abs_paths_translated_fls.txt'
 ).absolute()
-logs = pathlib.Path(
-    f'{project_dir}/trans_support_files_dirs/logs.txt'
+log_file = pathlib.Path(
+    f'{project_dir}/trans_support_files_dirs/sim_log.log'
 ).absolute()
 path_for_dict_csv = pathlib.Path(
     f'{project_dir}/dictionaries/base_translations.csv'
