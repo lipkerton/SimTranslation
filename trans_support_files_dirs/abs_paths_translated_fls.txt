@@ -1,1 +1,1 @@
-F:\gsdfs\test_runs\Calculation_of_frequency_characteristics_using_transient_response_en.xprt
+F:\gsdfs\work\Тестовые примеры SimInTech\output\Cochleoid_en.xprt

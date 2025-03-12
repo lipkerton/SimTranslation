@@ -94,6 +94,7 @@ def parse_wordlist(
                 word,
                 translated_word
             )
+    print(translated_text)
     return translated_text
 
 
@@ -168,6 +169,30 @@ def parse_xml(
     return settings.compile_result_message()
 
 
+def core_pattern(
+    input_path,
+    output_path,
+    eng_or_chn
+) -> None:
+    settings = RunSettings(
+        input_path=input_path,
+        output_path=output_path,
+        eng_or_chn=eng_or_chn
+    )
+    try:
+        for file_path in settings.input_path.rglob('*.*'):
+            settings.input_file_push(file_path)
+            if settings.is_suffix():
+                message = parse_xml(settings)
+                print(message)
+    except PermissionError as error:
+        message = f'{error}'
+        settings.print_in_logs(message=message)
+    settings.abs_paths_txt_close()
+    settings.csv_done_translations(
+        dictionaries.temp_dict.items()
+    )
+
+
 dictionaries = DictionaryInit()
 translator = Translator()
-

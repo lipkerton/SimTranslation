@@ -1,10 +1,11 @@
 import pathlib
 import os
-import pickle
 import shutil
 import string
 from .constants import abs_paths_translated_fls, path_for_translations_chn, path_for_translations_eng, path_for_dict_csv, logs, dictionary_current_state_txt, dictionary_current_state_csv, sql_dictionary_path
 import sqlite3
+from .constants import create_table, insert_values, select_values
+
 
 class RunSettings:
     def __init__(
@@ -22,10 +23,7 @@ class RunSettings:
         self.file_name = None
         self.file_suffix = None
         self.acceptable_suffixes = ('.xprt', '.xml')
-        if eng_or_chn == 'English':
-            self.eng_or_chn = 'en'
-        else:
-            self.eng_or_chn = 'zh-cn'
+        self.eng_or_chn = eng_or_chn
         self.num_lines = 0
         self.num_files = 0
 
@@ -159,16 +157,7 @@ class DictionaryInit:
     def create_table(self):
         self.open_connection()
         try:
-            self.curs.execute(
-                '''
-                CREATE TABLE translations
-                (
-                rus VARCHAR(100) PRIMARY KEY,
-                eng VARCHAR(100),
-                chn VARCHAR(100)
-                )
-                '''
-            )
+            self.curs.execute(create_table)
             data = self.take_csv_data()
             self.insert_data(data)
 
@@ -179,41 +168,28 @@ class DictionaryInit:
 
     def insert_data(self, data):
         self.open_connection()
-        sql_message = 'INSERT OR REPLACE INTO translations (rus, eng, chn) VALUES(?, ?, ?)'
-        self.curs.executemany(sql_message, data)
+        self.curs.executemany(insert_values, data)
         self.conn.commit()
         self.close_connection()
 
 
     def select_data(self) -> list:
         self.open_connection()
-        self.curs.execute(
-            '''
-            SELECT * FROM translations
-            '''
-        )
+        self.curs.execute(select_values)
         rows = self.curs.fetchall()
         self.close_connection()
         return rows
     
     def delete_data(self):
+        # что блять?
         self.open_connection()
-        self.curs.execute(
-            '''
-            DELETE FROM translations
-            '''
-        )
+        self.curs.execute(select_values)
         self.close_connection()
 
-    def is_in_db(self, pk):
+    def is_in_db(self, word):
         self.open_connection()
-        temp_dict_words = self.temp_dict.get(pk, None)
-        self.curs.execute(
-            f'''
-            SELECT * FROM translations
-            WHERE rus = '{pk}'
-            '''
-        )
+        temp_dict_words = self.temp_dict.get(word, None)
+        self.curs.execute(f"{select_values} WHERE rus = '{word}';")
         rows = self.curs.fetchone()
         self.close_connection()
         if rows:

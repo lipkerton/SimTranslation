@@ -3,40 +3,13 @@ import pathlib
 
 
 # manual launch version (through main.py)
-# project_dir = str(
-#     os.path.dirname(
-#         os.path.dirname(
-#             os.path.abspath(__file__)
-#         )
-#     )
-# )
-
-
-# exe version
 project_dir = str(
     os.path.dirname(
         os.path.dirname(
-            os.path.dirname(
-                os.path.dirname(
-                    os.path.abspath(__file__)
-                )
-            )
+            os.path.abspath(__file__)
         )
     )
 )
-
-# path_for_boss_dict_eng = pathlib.Path(
-#     f'{project_dir}/dictionaries/maintranslation.trans'
-# ).absolute()
-# media_directory = pathlib.Path(
-#     f'{project_dir}/media'
-# ).absolute()
-# output_folder = pathlib.Path(
-#     f'{project_dir}/output'
-# ).absolute()
-# path_for_main_dict = pathlib.Path(
-#     f'{project_dir}/dictionaries/decoded_dictionary.pkl'
-# ).absolute()
 
 path_for_translations_eng = pathlib.Path(
     f'{project_dir}/trans_support_files_dirs/trans_csv_eng/all_translations.csv'
@@ -62,3 +35,16 @@ dictionary_current_state_csv = pathlib.Path(
 sql_dictionary_path = pathlib.Path(
     f'{project_dir}/dictionaries/translations.db'
 )
+
+
+#SQL Commands
+create_table = '''
+    CREATE TABLE translation(
+    translation_id BIGINT GENERATED ALWAYS AS IDENTITY RPIMARY KEY,
+    rus VARCHAR(100) NOT NULL,
+    eng VARCHAR(100),
+    chn VARCHAR(100)
+    );
+'''
+insert_values = 'INSERT OR REPLACE INTO translation (rus, eng, chn) VALUES(?, ?, ?);'
+select_values = 'SELECT rus, eng, chn FROM translation'
