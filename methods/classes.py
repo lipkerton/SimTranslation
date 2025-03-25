@@ -156,6 +156,7 @@ class DictionaryInit:
         self.insert_data(for_insert_list)
 
     def take_temp_data(self, data):
+        """Parse temp_dict, get key and all values, insert it into DB."""
         for_insert_list = list()
         for key, value in data.items():
             sample = (key, value[0], value[1])
@@ -163,6 +164,7 @@ class DictionaryInit:
         self.insert_data(for_insert_list)
 
     def create_table(self):
+        """Create a table if not exists."""
         with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
             curs = conn.cursor()
             try:
@@ -174,12 +176,14 @@ class DictionaryInit:
                 logging.error(error)
 
     def insert_data(self, data):
+        """Insert data into DB."""
         with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
             curs = conn.cursor()
             curs.executemany(insert_values, data)
             conn.commit()
 
     def select_data(self) -> list:
+        """Select data from DB."""
         with sqlite3.connect(sql_dictionary_path,  check_same_thread=False) as conn:
             curs = conn.cursor()
             curs.execute(select_values)

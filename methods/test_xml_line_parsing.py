@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import argostranslate.translate
 import logging
+from threading import Thread
 
 from .classes import Word, RunSettings, DictionaryInit
 
@@ -13,6 +14,8 @@ def translate(
     """Line translation into english or chinese."""
     translatedText = argostranslate.translate.translate(word, from_lang, to_lang)
     logging.info(f'{word:^30}{translatedText:^30}')
+    with open('translations.txt', 'a', encoding='utf-8') as file:
+        file.write(f'(\"{word}\", \"{translatedText}\", \"\")\n')
     return translatedText
 
 
@@ -103,7 +106,7 @@ def parse_line(
 ) -> list:
     import re
     # wordlist = re.findall(r"([а-яА-ЯЁё][^a-zA-Z\d.:]*)", line)
-    wordlist = re.findall(r"\'.*\'|\`.*\`|\".*\"", line)
+    wordlist = re.findall(r"[а-яА-я,\/]+[\sа-яА-Я]+", line)
     for index in range(len(wordlist)):
         wordlist[index] = wordlist[index].strip('\\-\'#`%, (:~')
     wordlist = sorted(wordlist, key=len, reverse=True)
@@ -111,32 +114,34 @@ def parse_line(
 
 
 def value_tag(
-    child
+    *args
 ):
-    child_name_text = child.findtext('name')
-    if child_name_text is not None:
-        child_name_text = child_name_text.lower()
-        if (
-            'labeltext' in child_name_text
-            or 'text' in child_name_text
-            or 'caption' in child_name_text
-        ):
-            value_text = child.findtext('value')
-            if match(value_text):
-                wordlist = parse_line(value_text)
-                translated_text = parse_wordlist(value_text, wordlist)
-                child.find('value').text = translated_text
+    for child in args:
+        child_name_text = child.findtext('name')
+        if child_name_text is not None:
+            child_name_text = child_name_text.lower()
+            if (
+                'labeltext' in child_name_text
+                or 'text' in child_name_text
+                or 'caption' in child_name_text
+            ):
+                value_text = child.findtext('value')
+                if match(value_text):
+                    wordlist = parse_line(value_text)
+                    translated_text = parse_wordlist(value_text, wordlist)
+                    child.find('value').text = translated_text
 
 
 def title_tag(
-    child
+    *args
 ):
-    title_text = child.findtext('title')
-    if title_text is not None:
-        if match(title_text):
-            wordlist = parse_line(title_text)
-            translated_text = parse_wordlist(title_text, wordlist)
-            child.find('title').text = translated_text
+    for child in args:
+        title_text = child.findtext('title')
+        if title_text is not None:
+            if match(title_text):
+                wordlist = parse_line(title_text)
+                translated_text = parse_wordlist(title_text, wordlist)
+                child.find('title').text = translated_text
 
 
 def parse_xml(
@@ -148,15 +153,31 @@ def parse_xml(
     root_node = tree.getroot()
 
     dictionaries.eng_or_chn_set(settings.eng_or_chn)
-    for node in node_tags:
-        for tag in root_node.findall(node):
-            for child in tag.iter():
-                if child.tag == 'data':
-                    value_tag(child)
-                    settings.num_lines += 1
-                if child.tag in iter_tags:
-                    title_tag(child)
-                    settings.num_lines += 1
+
+    data_nodes = (
+        root_node.findall('./project//data')
+         + root_node.findall('./datamanager//data')
+    )
+    other_nodes = (
+        root_node.findall('./project//plot')
+        + root_node.findall('./project//bottomaxis')
+        + root_node.findall('./project//leftaxis')
+        + root_node.findall('./project//series')
+        + root_node.findall('./datamanager//plot')
+        + root_node.findall('./datamanager//bottomaxis')
+        + root_node.findall('./datamanager//leftaxis')
+        + root_node.findall('./datamanager//series')
+    )
+    value_tag_thread = Thread(target=value_tag, args=(data_nodes))
+    title_tag_thread = Thread(target=title_tag, args=(other_nodes))
+    value_tag_thread.start()
+    title_tag_thread.start()
+    value_tag_thread.join()
+    title_tag_thread.join()
+    # раньше я пользовался здесь циклом for и считал в нем же строчки.
+    # settings.num_lines += 1
+    # settings.num_lines += 1
+
     translated_file_name = translate_file_name(settings.file_name)
     output_folder = settings.output_folder_path()
     output_file = (

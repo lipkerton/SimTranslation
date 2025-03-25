@@ -20,7 +20,7 @@ def core_pattern(
             if settings.is_suffix():
                 logging.info(f'Translating {file_path}...')
                 parse_xml(settings)
-            logging.info(f'Translation of {file_path} fineshed!')
+                logging.info(f'Translation of {file_path} fineshed!')
     except PermissionError as error:
         logging.error(error)
     settings.abs_paths_txt_close()
