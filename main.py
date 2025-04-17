@@ -32,7 +32,6 @@ def core_pattern(
 # output_path = pathlib.Path('F:\gsdfs\work\Тестовые примеры SimInTech\output')
 
 if __name__ == '__main__':
-    print(sys.argv[1:])
     if sys.argv[1:]:
         input_path, output_path = sys.argv[1:]
         input_path = pathlib.Path(input_path)

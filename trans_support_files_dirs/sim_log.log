@@ -1,0 +1,232 @@
+2025-04-17 15:15:23,710 INFO Translating from "ru" to "en"...
+2025-04-17 15:15:23,716 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Кохлеоида.xprt...
+2025-04-17 15:15:25,143 INFO           Кохлеоида                     cochleoid           
+2025-04-17 15:15:25,158 INFO           Кохлеоида                     cochleoid           
+2025-04-17 15:15:25,191 INFO           О примере                     An example          
+2025-04-17 15:15:25,247 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Кохлеоида.xprt fineshed!
+2025-04-17 15:15:25,279 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример двунаправленной топологии\Пример двунаправленной топологии.xprt...
+2025-04-17 15:15:25,721 INFO Пример двунаправленной топологииExample of bidirectional topology
+2025-04-17 15:15:25,750 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример двунаправленной топологии\Пример двунаправленной топологии.xprt fineshed!
+2025-04-17 15:15:25,763 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример использования ненаправленных связей для суммирования источников\Пример использования ненаправленных связей для суммирования источников.xprt...
+2025-04-17 15:15:26,338 INFO         Сумма входных                Amount of input        
+2025-04-17 15:15:26,381 INFO              мник                          mint             
+2025-04-17 15:15:26,408 INFO            сигналов                       signal            
+2025-04-17 15:15:26,439 INFO              При                           Prix             
+2025-04-17 15:15:26,464 INFO               с                             on              
+2025-04-17 15:15:26,489 INFO            Источник                       Source            
+2025-04-17 15:15:26,609 INFO Пример использования ненаправленных связей для суммирования источниковAn example of using undirected links to summarize sources
+2025-04-17 15:15:26,665 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример использования ненаправленных связей для суммирования источников\Пример использования ненаправленных связей для суммирования источников.xprt fineshed!
+2025-04-17 15:15:26,675 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример множественного объединения портов 1\Пример множественного объединения портов 1.xprt...
+2025-04-17 15:15:27,105 INFO          соединитель                    connector           
+2025-04-17 15:15:27,190 INFO Пример множественного объединения портов 1Example of multiple port combinations 1
+2025-04-17 15:15:27,229 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример множественного объединения портов 1\Пример множественного объединения портов 1.xprt fineshed!
+2025-04-17 15:15:27,240 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример множественного объединения портов 2\Пример множественного объединения портов 2.xprt...
+2025-04-17 15:15:27,758 INFO         Ненаправленное                 Undirected.          
+2025-04-17 15:15:27,795 INFO           соединение                     linkage            
+2025-04-17 15:15:27,871 INFO Пример множественного объединения портов 2Example of multiple port combinations 2
+2025-04-17 15:15:27,934 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример множественного объединения портов 2\Пример множественного объединения портов 2.xprt fineshed!
+2025-04-17 15:15:27,951 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример множественного объединения портов 3\Пример множественного объединения портов 3.xprt...
+2025-04-17 15:15:28,425 INFO Пример множественного объединения портов 3Example of multiple port combinations 3
+2025-04-17 15:15:28,460 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример множественного объединения портов 3\Пример множественного объединения портов 3.xprt fineshed!
+2025-04-17 15:15:28,470 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример ненаправленных соединителей\Пример ненаправленных соединителей.xprt...
+2025-04-17 15:15:29,013 INFO Пример ненаправленных соединителейExample of non-directional connectors
+2025-04-17 15:15:29,053 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Варианты топологий схем\Пример ненаправленных соединителей\Пример ненаправленных соединителей.xprt fineshed!
+2025-04-17 15:15:29,080 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\2 бака аналогично ИСМА.xprt...
+2025-04-17 15:15:29,608 INFO           Включение                     Inclusion           
+2025-04-17 15:15:29,684 INFO     2 бака аналогично ИСМА       2 tanks similar to ISMA    
+2025-04-17 15:15:29,799 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\2 бака аналогично ИСМА.xprt fineshed!
+2025-04-17 15:15:29,813 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Ван-дер-Поль.xprt...
+2025-04-17 15:15:30,243 INFO          Ван-дер-Поль                  van der Paul         
+2025-04-17 15:15:30,286 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Ван-дер-Поль.xprt fineshed!
+2025-04-17 15:15:31,526 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 mass без уточнения.xprt...
+2025-04-17 15:15:32,029 INFO дополниительной детекцией пересеченийcomplementary detection of intersections
+2025-04-17 15:15:32,056 INFO             Масса                         Massa             
+2025-04-17 15:15:32,132 INFO Задача двух осциллирующих масс сThe problem of two oscillating masses with
+2025-04-17 15:15:32,178 INFO      Теоретическое время             Theoretical time       
+2025-04-17 15:15:32,247 INFO      2 mass без уточнения           2 mass unspecified      
+2025-04-17 15:15:32,284 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 mass без уточнения.xprt fineshed!
+2025-04-17 15:15:32,299 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 mass с уточнением.xprt...
+2025-04-17 15:15:32,763 INFO      2 mass с уточнением        2 mass with clarification   
+2025-04-17 15:15:32,807 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 mass с уточнением.xprt fineshed!
+2025-04-17 15:15:32,824 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 бака тест 1.xprt...
+2025-04-17 15:15:33,664 INFO           Вычисление                   Calculation          
+2025-04-17 15:15:33,721 INFO   Расход через нижнюю трубу          Downstream flow        
+2025-04-17 15:15:33,742 INFO            расхода                       expense            
+2025-04-17 15:15:33,777 INFO         уровень врезки                  insertion           
+2025-04-17 15:15:33,812 INFO         уровень врезки                  insertion           
+2025-04-17 15:15:33,860 INFO   Расход через верхнюю трубу         Upper pipe flow        
+2025-04-17 15:15:33,902 INFO         Расход насоса                Pump consumption       
+2025-04-17 15:15:33,957 INFO       Событие насос выкл              Pump event off        
+2025-04-17 15:15:34,018 INFO       Событие насос вкл               Pump-on event         
+2025-04-17 15:15:34,068 INFO        Состояние насоса               Pump condition        
+2025-04-17 15:15:34,126 INFO         2 бака тест 1                 2 tanks test 1        
+2025-04-17 15:15:34,384 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 бака тест 1.xprt fineshed!
+2025-04-17 15:15:34,398 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 бака тест с блоком уточнения.xprt...
+2025-04-17 15:15:35,255 INFO 2 бака тест с блоком уточнения2 tanks test with block of clarification
+2025-04-17 15:15:35,545 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\2 бака тест с блоком уточнения.xprt fineshed!
+2025-04-17 15:15:35,554 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик на интеграторах без уточнения.xprt...
+2025-04-17 15:15:36,180 INFO Тест точности сброса интеграторов вTest of accuracy of integrators in
+2025-04-17 15:15:36,215 INFO           Координата                   Coordination         
+2025-04-17 15:15:36,274 INFO без использования блока детекции      non-detection unit      
+2025-04-17 15:15:36,321 INFO         Событие сброса                Dumping event         
+2025-04-17 15:15:36,369 INFO    задаче прыгающего мячика               jumper            
+2025-04-17 15:15:36,415 INFO          пересечений                     crossing           
+2025-04-17 15:15:36,558 INFO Прыгающий мячик на интеграторах без уточненияJumping ball on integrators without specifying
+2025-04-17 15:15:36,655 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик на интеграторах без уточнения.xprt fineshed!
+2025-04-17 15:15:36,664 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик на интеграторах со сбросом с ограничением выхода интегратора на хорошем шаге.xprt...
+2025-04-17 15:15:37,249 INFO   задано нижнее ограничение            lower bound          
+2025-04-17 15:15:37,288 INFO         по координате                   coordinate          
+2025-04-17 15:15:37,476 INFO Прыгающий мячик на интеграторах со сбросом с ограничением выхода интегратора на хорошем шагеJumping ball on integrators with reset with integrator output restriction on a good step
+2025-04-17 15:15:37,551 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик на интеграторах со сбросом с ограничением выхода интегратора на хорошем шаге.xprt fineshed!
+2025-04-17 15:15:37,565 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик на интеграторах со сбросом.xprt...
+2025-04-17 15:15:38,184 INFO Детекция событий при помощи блокаDetection of events using a block
+2025-04-17 15:15:38,243 INFO      детекции пересечений           crossing-detection      
+2025-04-17 15:15:38,283 INFO        без ограничений                  limitless           
+2025-04-17 15:15:38,400 INFO Прыгающий мячик на интеграторах со сбросомJumping ball on integrators with reset
+2025-04-17 15:15:38,491 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик на интеграторах со сбросом.xprt fineshed!
+2025-04-17 15:15:38,505 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик с ещё одним способом стабилизации.xprt...
+2025-04-17 15:15:39,096 INFO Прыгающий мячик с ещё одним способом стабилизацииJumping ball with another way to stabilize
+2025-04-17 15:15:39,181 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик с ещё одним способом стабилизации.xprt fineshed!
+2025-04-17 15:15:39,192 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик с ограничением по скорости.xprt...
+2025-04-17 15:15:39,695 INFO Прыгающий мячик с ограничением по скорости      Speed limit jumper      
+2025-04-17 15:15:39,775 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик с ограничением по скорости.xprt fineshed!
+2025-04-17 15:15:39,784 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик с очень мелким минимальным шагом.xprt...
+2025-04-17 15:15:40,381 INFO Прыгающий мячик с очень мелким минимальным шагомJumping ball with very small minimum pitch
+2025-04-17 15:15:40,459 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Гибридные системы\Детекция пересечений\Прыгающий мячик с очень мелким минимальным шагом.xprt fineshed!
+2025-04-17 15:15:40,500 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Блок уточнения пересечений\Блок уточнения пересечений - тест с квантованием.xprt...
+2025-04-17 15:15:40,988 INFO          с уточнением                  clarifyingly         
+2025-04-17 15:15:41,030 INFO            Оператор                      Operator           
+2025-04-17 15:15:41,058 INFO            события                        events            
+2025-04-17 15:15:41,185 INFO Блок уточнения пересечений - тест с квантованиемThe block of clarification of intersections - a test with quantization
+2025-04-17 15:15:41,246 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Блок уточнения пересечений\Блок уточнения пересечений - тест с квантованием.xprt fineshed!
+2025-04-17 15:15:41,261 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Блок уточнения пересечений\Блок уточнения пересечений - тест элемента ШИМ.xprt...
+2025-04-17 15:15:41,787 INFO Блок уточнения пересечений - тест элемента ШИМThe block of clarification of intersections - the test of the PWM element
+2025-04-17 15:15:41,834 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Блок уточнения пересечений\Блок уточнения пересечений - тест элемента ШИМ.xprt fineshed!
+2025-04-17 15:15:41,844 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Блок уточнения пересечений\Блок уточнения пересечений.xprt...
+2025-04-17 15:15:42,370 INFO   Блок уточнения пересечений  Clarification block for intersections
+2025-04-17 15:15:42,426 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Блок уточнения пересечений\Блок уточнения пересечений.xprt fineshed!
+2025-04-17 15:15:42,434 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Сравнение с уточнением\Тест модели ШИМ.xprt...
+2025-04-17 15:15:42,891 INFO Для корректного детектирования    For correct detection     
+2025-04-17 15:15:42,971 INFO треугольного сигнала ШИМ надо  triangular PWM signal needs  
+2025-04-17 15:15:43,020 INFO  при достижении верхей точки            top-point           
+2025-04-17 15:15:43,092 INFO    Пример детекции событий      Example of Event Detection  
+2025-04-17 15:15:43,135 INFO    при пересечении уставки              crossover           
+2025-04-17 15:15:43,183 INFO         для блока ШИМ                   CHIM block          
+2025-04-17 15:15:43,214 INFO         детектировать                     detect            
+2025-04-17 15:15:43,280 INFO            Детекция                     Detection           
+2025-04-17 15:15:43,320 INFO            верхней                        upper             
+2025-04-17 15:15:43,360 INFO             точки                         point             
+2025-04-17 15:15:43,419 INFO        Тест модели ШИМ               SHIM model test        
+2025-04-17 15:15:43,495 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Детекция событий\Сравнение с уточнением\Тест модели ШИМ.xprt fineshed!
+2025-04-17 15:15:43,614 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Akzo Nobel - диффузия радиоактивных меток\Akzo Nodel диффузия.xprt...
+2025-04-17 15:15:44,122 INFO              сек                           sec              
+2025-04-17 15:15:44,149 INFO              сек                           sec              
+2025-04-17 15:15:44,261 INFO      Akzo Nodel диффузия           Akzo Nodel diffusion     
+2025-04-17 15:15:44,358 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Akzo Nobel - диффузия радиоактивных меток\Akzo Nodel диффузия.xprt fineshed!
+2025-04-17 15:15:44,383 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Akzo Nobel - диффузия радиоактивных меток\Сравнение скорости.xprt...
+2025-04-17 15:15:44,880 INFO       Размерность задачи          Dimension of the task     
+2025-04-17 15:15:44,905 INFO               от                           from             
+2025-04-17 15:15:44,937 INFO        Время выполнения            Implementation time      
+2025-04-17 15:15:44,991 INFO           Адаптивный                     Adaptive           
+2025-04-17 15:15:45,047 INFO       Сравнение скорости             Speed comparison       
+2025-04-17 15:15:45,107 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Akzo Nobel - диффузия радиоактивных меток\Сравнение скорости.xprt fineshed!
+2025-04-17 15:15:46,385 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\BEAM\BEAM.xprt...
+2025-04-17 15:15:46,801 INFO             Задача                    The challenge         
+2025-04-17 15:15:46,878 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\BEAM\BEAM.xprt fineshed!
+2025-04-17 15:15:46,887 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\BRUS\BRUS.xprt...
+2025-04-17 15:15:47,343 INFO             Ошибка                       Mistake            
+2025-04-17 15:15:47,374 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\BRUS\BRUS.xprt fineshed!
+2025-04-17 15:15:47,389 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\BRUSS\BRUSS.xprt...
+2025-04-17 15:15:47,938 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\BRUSS\BRUSS.xprt fineshed!
+2025-04-17 15:15:47,948 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\CUSP\CUSP.xprt...
+2025-04-17 15:15:48,554 INFO         интегрирования                 integration          
+2025-04-17 15:15:48,615 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\CUSP\CUSP.xprt fineshed!
+2025-04-17 15:15:48,630 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\HIRES\HIRES.xprt...
+2025-04-17 15:15:49,205 INFO          на интервале                    interval           
+2025-04-17 15:15:49,238 INFO           Уравнения                     Equations           
+2025-04-17 15:15:49,347 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\HIRES\HIRES.xprt fineshed!
+2025-04-17 15:15:49,358 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\OREGO\OREGO.xprt...
+2025-04-17 15:15:49,813 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\OREGO\OREGO.xprt fineshed!
+2025-04-17 15:15:49,827 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Pendulum\Pendulum.xprt...
+2025-04-17 15:15:50,299 INFO            маятник                       pendulum           
+2025-04-17 15:15:50,360 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Pendulum\Pendulum.xprt fineshed!
+2025-04-17 15:15:50,369 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\PLATE\PLATE.xprt...
+2025-04-17 15:15:50,951 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\PLATE\PLATE.xprt fineshed!
+2025-04-17 15:15:50,960 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\ROBER\ROBER.xprt...
+2025-04-17 15:15:51,451 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\ROBER\ROBER.xprt fineshed!
+2025-04-17 15:15:51,460 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\SiCo\SiCo.xprt...
+2025-04-17 15:15:51,945 INFO            Решение                       Decision           
+2025-04-17 15:15:51,969 INFO            Решение                       Decision           
+2025-04-17 15:15:52,018 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\SiCo\SiCo.xprt fineshed!
+2025-04-17 15:15:52,029 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\VDPOL\VDPL_2.xprt...
+2025-04-17 15:15:52,450 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\VDPOL\VDPL_2.xprt fineshed!
+2025-04-17 15:15:52,459 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\VDPOL\VDPOL.xprt...
+2025-04-17 15:15:52,920 INFO            Фазовый                        Phase             
+2025-04-17 15:15:52,953 INFO            портрет                       portrait           
+2025-04-17 15:15:53,011 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\VDPOL\VDPOL.xprt fineshed!
+2025-04-17 15:15:53,021 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Аренсторф\Аренсторф.xprt...
+2025-04-17 15:15:53,493 INFO           Решение на                   Decision on          
+2025-04-17 15:15:53,527 INFO           м периоде                       period            
+2025-04-17 15:15:53,561 INFO           м периоде                       period            
+2025-04-17 15:15:53,587 INFO               на                            on              
+2025-04-17 15:15:53,682 INFO       Задача Аренсторфа              Arenstorf's task       
+2025-04-17 15:15:53,750 INFO           Аренсторф                     erenstorff          
+2025-04-17 15:15:53,794 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Аренсторф\Аренсторф.xprt fineshed!
+2025-04-17 15:15:53,810 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Жесткий осциллятор\Жесткий осциллятор.xprt...
+2025-04-17 15:15:54,267 INFO       Значение аргумента         Meaning of the argument    
+2025-04-17 15:15:54,322 INFO       Значение аргумента         Meaning of the argument    
+2025-04-17 15:15:54,349 INFO            решения                       decision           
+2025-04-17 15:15:54,411 INFO    Фазовый портрет решения    Phase portrait of the solution
+2025-04-17 15:15:54,486 INFO       Жесткий осциллятор             Hard oscillator        
+2025-04-17 15:15:54,512 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Жесткий осциллятор\Жесткий осциллятор.xprt fineshed!
+2025-04-17 15:15:55,051 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Кольцевой модулятор\Модель кольцевого модулятора в уравнениях.xprt...
+2025-04-17 15:15:55,613 INFO Модель кольцевого модулятора в уравненияхModel of ring modulator in equations
+2025-04-17 15:15:55,670 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Кольцевой модулятор\Модель кольцевого модулятора в уравнениях.xprt fineshed!
+2025-04-17 15:15:55,686 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Локально-неустойчивая\Локально-неустойчивая.xprt...
+2025-04-17 15:15:56,136 INFO      неустойчивая задача                 fixture            
+2025-04-17 15:15:56,186 INFO            Локально                      Locally.           
+2025-04-17 15:15:56,246 INFO     Локально-неустойчивая            Locally unstable       
+2025-04-17 15:15:56,283 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Локально-неустойчивая\Локально-неустойчивая.xprt fineshed!
+2025-04-17 15:15:56,294 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Меры задачи Коши\Меры задачи Коши.xprt...
+2025-04-17 15:15:56,861 INFO        колебательности                 fluctuation          
+2025-04-17 15:15:56,902 INFO             Мж, Мк                         Mk.              
+2025-04-17 15:15:56,951 INFO         Меры жесткости             Stringency measures      
+2025-04-17 15:15:56,978 INFO              Мну                           Me.              
+2025-04-17 15:15:57,004 INFO         неустойчивости                 instability          
+2025-04-17 15:15:57,032 INFO         неустойчивости                 instability          
+2025-04-17 15:15:57,060 INFO               Мж                            M               
+2025-04-17 15:15:57,138 INFO и неустойчивости на примере задачиInstability in the example of the problem
+2025-04-17 15:15:57,173 INFO               Мк                            Mk              
+2025-04-17 15:15:57,235 INFO      Расчет мер жесткости     Calculation of rigidity measures
+2025-04-17 15:15:57,313 INFO        Меры задачи Коши        Measures of the Cauchy task  
+2025-04-17 15:15:57,371 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Меры задачи Коши\Меры задачи Коши.xprt fineshed!
+2025-04-17 15:15:57,381 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Механизм Эндрюса\Механизм Эндрюса.xprt...
+2025-04-17 15:15:57,848 INFO         Углы механизма             Corners of machinery     
+2025-04-17 15:15:57,937 INFO         Углы механизма             Corners of machinery     
+2025-04-17 15:15:57,978 INFO              тела                          body             
+2025-04-17 15:15:58,025 INFO           Угол между                  Corner between        
+2025-04-17 15:15:58,062 INFO             телами                        bodies            
+2025-04-17 15:15:58,096 INFO               и                            and              
+2025-04-17 15:15:58,168 INFO        Механизм Эндрюса             Andrews mechanism       
+2025-04-17 15:15:58,215 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Механизм Эндрюса\Механизм Эндрюса.xprt fineshed!
+2025-04-17 15:15:58,227 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Реакция Жаботинского\Реакция Жаботинского.xprt...
+2025-04-17 15:15:58,753 INFO      Реакция Жаботинского         Jabotinsky's reaction     
+2025-04-17 15:15:58,820 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Реакция Жаботинского\Реакция Жаботинского.xprt fineshed!
+2025-04-17 15:15:58,830 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Решатель Agresim 1\Решатель Agresim 1.xprt...
+2025-04-17 15:15:59,371 INFO       Значение величины             Value of magnitude      
+2025-04-17 15:15:59,471 INFO       Решатель Agresim 1            Decisive Agresim 1      
+2025-04-17 15:15:59,552 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Решатель Agresim 1\Решатель Agresim 1.xprt fineshed!
+2025-04-17 15:15:59,562 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Решатель Agresim 2\Решатель Agresim 2.xprt...
+2025-04-17 15:16:00,099 INFO       Значаение величины            Value of magnitude      
+2025-04-17 15:16:00,183 INFO       Решатель Agresim 2            Decisive Agresim 2      
+2025-04-17 15:16:00,252 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Решатель Agresim 2\Решатель Agresim 2.xprt fineshed!
+2025-04-17 15:16:00,262 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Система Робертсона\Система Робертсона.xprt...
+2025-04-17 15:16:00,696 INFO       Графики переменных             Variable graphs        
+2025-04-17 15:16:00,747 INFO      уравнений Робертсона          Robertson equations      
+2025-04-17 15:16:00,793 INFO        Пример решения ж            Example of decision      
+2025-04-17 15:16:00,834 INFO         сткой системы                    plumbing           
+2025-04-17 15:16:00,885 INFO       Система Робертсона             Robertson system       
+2025-04-17 15:16:00,918 INFO Translation of F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Система Робертсона\Система Робертсона.xprt fineshed!
+2025-04-17 15:16:00,941 INFO Translating F:\gsdfs\work\Тестовые примеры SimInTech\input\Жесткие задачи\Тест метода SRK2\BRUSS.xprt...
+2025-04-17 15:16:01,472 INFO          Число стадий                Number of stages       
+2025-04-17 15:16:01,515 INFO          Число стадий                Number of stages       
