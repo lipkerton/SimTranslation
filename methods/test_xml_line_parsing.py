@@ -146,8 +146,6 @@ def title_tag(
 
 def parse_xml(
     settings: RunSettings,
-    iter_tags=('plot', 'bottomaxis', 'leftaxis', 'series'),
-    node_tags=('project', 'datamanager')
 ) -> str:
     tree = ET.parse(settings.input_file)
     root_node = tree.getroot()

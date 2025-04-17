@@ -36,3 +36,8 @@ create_table = '''
 '''
 insert_values = 'INSERT OR REPLACE INTO translation (rus, eng, chn) VALUES(?, ?, ?);'
 select_values = 'SELECT rus, eng, chn FROM translation'
+
+
+# error messages
+input_path_incorrect = 'Your input path is incorrect.'
+output_path_incorrect = 'Your output path is incorrect.'
